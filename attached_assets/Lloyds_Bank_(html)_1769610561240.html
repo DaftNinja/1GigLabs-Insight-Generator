@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lloyds Banking Group - Strategic Overview 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@400;700&family=Aptos:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --lloyds-green: #006A4A;
+            --lloyds-green-light: #008F63;
+            --lloyds-green-dark: #004D35;
+            --lloyds-black: #000000;
+            --lloyds-white: #FFFFFF;
+            --lloyds-gray: #F5F5F5;
+            --lloyds-charcoal: #333333;
+        }
+        
+        body {
+            font-family: 'Aptos', 'Quattrocento Sans', sans-serif;
+            background: var(--lloyds-gray);
+            overflow-x: hidden;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            width: 100%;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+        
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(0,106,74,0.95) 0%, rgba(0,77,53,0.9) 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,106,74,0.15);
+        }
+        
+        .stat-number {
+            background: linear-gradient(135deg, var(--lloyds-green) 0%, var(--lloyds-green-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .animate-fade-up {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--lloyds-green);
+            border-radius: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1.5rem;
+            width: 2px;
+            height: calc(100% - 1rem);
+            background: linear-gradient(to bottom, var(--lloyds-green), transparent);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .brand-card {
+            background: white;
+            border-left: 4px solid var(--lloyds-green);
+            transition: all 0.3s ease;
+        }
+        
+        .brand-card:hover {
+            border-left-width: 8px;
+            transform: translateX(8px);
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, var(--lloyds-green) 0%, var(--lloyds-green-light) 100%);
+        }
+        
+        .navigation-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .navigation-dot.active {
+            background: var(--lloyds-green);
+            transform: scale(1.3);
+        }
+        
+        .glass-panel {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .horse-icon {
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8faf9 100%);
+            border: 1px solid rgba(0,106,74,0.1);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 250px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+
+    <!-- Fixed Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-[#006A4A] rounded-lg flex items-center justify-center">
+                    <i data-lucide="landmark" class="text-white w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-[#006A4A] text-lg leading-tight">Lloyds Banking Group</h1>
+                    <p class="text-xs text-gray-500">Strategic Overview 2025</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="prevSlide()" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                    <i data-lucide="chevron-left" class="w-6 h-6 text-[#006A4A]"></i>
+                </button>
+                <span class="text-sm font-medium text-gray-600"><span id="currentSlide">1</span> / 6</span>
+                <button onclick="nextSlide()" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                    <i data-lucide="chevron-right" class="w-6 h-6 text-[#006A4A]"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Progress Indicator -->
+    <div class="fixed right-6 top-1/2 transform -translate-y-1/2 z-40 flex flex-col gap-3">
+        <div class="navigation-dot active" onclick="goToSlide(0)"></div>
+        <div class="navigation-dot" onclick="goToSlide(1)"></div>
+        <div class="navigation-dot" onclick="goToSlide(2)"></div>
+        <div class="navigation-dot" onclick="goToSlide(3)"></div>
+        <div class="navigation-dot" onclick="goToSlide(4)"></div>
+        <div class="navigation-dot" onclick="goToSlide(5)"></div>
+    </div>
+
+    <!-- Slide 1: Title Slide -->
+    <section class="slide active flex-col relative overflow-hidden pt-20" data-slide="0">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#006A4A] via-[#004D35] to-[#003D2B]"></div>
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-20 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-20 w-72 h-72 bg-[#008F63] rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="relative z-10 flex-1 flex items-center max-w-7xl mx-auto px-6 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+                <div class="animate-fade-up">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white/90 text-sm mb-6 border border-white/20">
+                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                        <span>January 2025</span>
+                    </div>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+                        Strategic<br/>
+                        <span class="text-[#7DD3C0]">Overview</span>
+                    </h1>
+                    <p class="text-xl text-white/80 mb-8 max-w-lg leading-relaxed">
+                        Helping Britain Prosper through 320 years of heritage and digital innovation
+                    </p>
+                    <div class="flex gap-4">
+                        <div class="bg-white/10 backdrop-blur-sm px-6 py-4 rounded-xl border border-white/20">
+                            <p class="text-3xl font-bold text-white">30M</p>
+                            <p class="text-sm text-white/70">Customers</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm px-6 py-4 rounded-xl border border-white/20">
+                            <p class="text-3xl font-bold text-white">63K</p>
+                            <p class="text-sm text-white/70">Employees</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm px-6 py-4 rounded-xl border border-white/20">
+                            <p class="text-3xl font-bold text-white">FTSE</p>
+                            <p class="text-sm text-white/70">100 Listed</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:block animate-fade-up" style="animation-delay: 0.2s;">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-[#006A4A] to-transparent rounded-3xl transform rotate-3"></div>
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="Modern Architecture" class="relative rounded-3xl shadow-2xl w-full h-[500px] object-cover">
+                        <div class="absolute bottom-6 left-6 right-6 glass-panel p-6 rounded-2xl">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-[#006A4A] rounded-full flex items-center justify-center">
+                                    <i data-lucide="trending-up" class="text-white w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-900">Est. 1695</p>
+                                    <p class="text-sm text-gray-600">320+ Years of Heritage</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 2: Group Overview -->
+    <section class="slide flex-col bg-gray-50 pt-20" data-slide="1">
+        <div class="flex-1 max-w-7xl mx-auto px-6 py-12 w-full">
+            <div class="mb-12">
+                <p class="text-[#006A4A] font-semibold mb-2 tracking-wider uppercase text-sm">01 • Group Overview</p>
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900">320 Years of Serving Britain</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Who We Are</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            Lloyds Banking Group is the UK's largest retail and commercial financial services provider, serving approximately 30 million customers through our iconic brands. With a heritage spanning over 320 years, we have been at the heart of British banking since 1695.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            Our dual headquarters in London and Edinburgh reflect our commitment to serving communities across the entire United Kingdom. As a FTSE 100 constituent with a market capitalisation of approximately <span class="font-bold text-[#006A4A]">£59.9 billion</span>, we combine the stability of a heritage institution with the innovation of a digital leader.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="metric-card rounded-xl p-6 text-center card-hover">
+                            <i data-lucide="users" class="w-8 h-8 text-[#006A4A] mx-auto mb-3"></i>
+                            <p class="text-3xl font-bold stat-number">30M</p>
+                            <p class="text-sm text-gray-600">Customers</p>
+                        </div>
+                        <div class="metric-card rounded-xl p-6 text-center card-hover">
+                            <i data-lucide="briefcase" class="w-8 h-8 text-[#006A4A] mx-auto mb-3"></i>
+                            <p class="text-3xl font-bold stat-number">63K</p>
+                            <p class="text-sm text-gray-600">Employees</p>
+                        </div>
+                        <div class="metric-card rounded-xl p-6 text-center card-hover">
+                            <i data-lucide="trending-up" class="w-8 h-8 text-[#006A4A] mx-auto mb-3"></i>
+                            <p class="text-3xl font-bold stat-number">£59.9B</p>
+                            <p class="text-sm text-gray-600">Market Cap</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-[#006A4A] text-white rounded-2xl p-6 shadow-lg">
+                        <h4 class="font-bold text-lg mb-4 flex items-center gap-2">
+                            <i data-lucide="history" class="w-5 h-5"></i>
+                            Heritage Timeline
+                        </h4>
+                        <div class="space-y-4">
+                            <div class="timeline-item">
+                                <p class="font-bold text-lg">1695</p>
+                                <p class="text-white/80 text-sm">Bank of Scotland Founded</p>
+                            </div>
+                            <div class="timeline-item">
+                                <p class="font-bold text-lg">1765</p>
+                                <p class="text-white/80 text-sm">Lloyds Bank Founded</p>
+                            </div>
+                            <div class="timeline-item">
+                                <p class="font-bold text-lg">2009</p>
+                                <p class="text-white/80 text-sm">Lloyds Banking Group Formed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h4 class="font-bold text-gray-900 mb-4">Business Segments</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Retail Banking</span>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-32 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                        <div class="progress-bar h-full rounded-full" style="width: 45%"></div>
+                                    </div>
+                                    <span class="font-bold text-[#006A4A]">45%</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Commercial Banking</span>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-32 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                        <div class="progress-bar h-full rounded-full" style="width: 35%"></div>
+                                    </div>
+                                    <span class="font-bold text-[#006A4A]">35%</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Insurance & Wealth</span>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-32 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                        <div class="progress-bar h-full rounded-full" style="width: 20%"></div>
+                                    </div>
+                                    <span class="font-bold text-[#006A4A]">20%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategic Pillars -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-xl p-6 shadow-sm border-t-4 border-[#006A4A] card-hover">
+                    <i data-lucide="target" class="w-10 h-10 text-[#006A4A] mb-4"></i>
+                    <h4 class="font-bold text-gray-900 mb-2">Customer Focus</h4>
+                    <p class="text-sm text-gray-600">Delivering market-leading, mobile-first experiences</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border-t-4 border-[#006A4A] card-hover">
+                    <i data-lucide="cpu" class="w-10 h-10 text-[#006A4A] mb-4"></i>
+                    <h4 class="font-bold text-gray-900 mb-2">Digital Leadership</h4>
+                    <p class="text-sm text-gray-600">Leveraging technology and AI transformation</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border-t-4 border-[#006A4A] card-hover">
+                    <i data-lucide="leaf" class="w-10 h-10 text-[#006A4A] mb-4"></i>
+                    <h4 class="font-bold text-gray-900 mb-2">Sustainable Growth</h4>
+                    <p class="text-sm text-gray-600">Supporting Britain's transition to sustainable economy</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border-t-4 border-[#006A4A] card-hover">
+                    <i data-lucide="layers" class="w-10 h-10 text-[#006A4A] mb-4"></i>
+                    <h4 class="font-bold text-gray-900 mb-2">Integrated Services</h4>
+                    <p class="text-sm text-gray-600">Comprehensive solutions across banking & insurance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3: Financial Performance -->
+    <section class="slide flex-col bg-white pt-20" data-slide="2">
+        <div class="flex-1 max-w-7xl mx-auto px-6 py-12 w-full">
+            <div class="mb-12">
+                <p class="text-[#006A4A] font-semibold mb-2 tracking-wider uppercase text-sm">02 • Financial Performance</p>
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900">2024 Financial Highlights</h2>
+                <p class="text-gray-600 mt-4 text-lg">Robust performance, strong capital returns, and shareholder distributions</p>
+            </div>
+
+            <!-- Key Metrics Grid -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="bg-gradient-to-br from-[#006A4A] to-[#004D35] rounded-2xl p-6 text-white shadow-xl">
+                    <i data-lucide="pound-sign" class="w-8 h-8 mb-3 opacity-80"></i>
+                    <p class="text-4xl font-bold">£4.5B</p>
+                    <p class="text-white/80 text-sm mt-1">Statutory Profit</p>
+                    <p class="text-white/60 text-xs mt-2">-19% vs 2023</p>
+                </div>
+                <div class="bg-gradient-to-br from-[#006A4A] to-[#004D35] rounded-2xl p-6 text-white shadow-xl">
+                    <i data-lucide="bar-chart-2" class="w-8 h-8 mb-3 opacity-80"></i>
+                    <p class="text-4xl font-bold">£6.3B</p>
+                    <p class="text-white/80 text-sm mt-1">Underlying Profit</p>
+                    <p class="text-white/60 text-xs mt-2">-19% vs 2023</p>
+                </div>
+                <div class="bg-gradient-to-br from-[#006A4A] to-[#004D35] rounded-2xl p-6 text-white shadow-xl">
+                    <i data-lucide="percent" class="w-8 h-8 mb-3 opacity-80"></i>
+                    <p class="text-4xl font-bold">12.3%</p>
+                    <p class="text-white/80 text-sm mt-1">Return on Tangible Equity</p>
+                    <p class="text-white/60 text-xs mt-2">14.0% before provision</p>
+                </div>
+                <div class="bg-gradient-to-br from-[#006A4A] to-[#004D35] rounded-2xl p-6 text-white shadow-xl">
+                    <i data-lucide="gift" class="w-8 h-8 mb-3 opacity-80"></i>
+                    <p class="text-4xl font-bold">£3.6B</p>
+                    <p class="text-white/80 text-sm mt-1">Shareholder Returns</p>
+                    <p class="text-white/60 text-xs mt-2">~9% of market cap</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Chart Section -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+                    <h3 class="text-xl font-bold text-gray-900 mb-6">Income & Cost Analysis</h3>
+                    <div class="chart-container">
+                        <canvas id="financialChart"></canvas>
+                    </div>
+                    <div class="mt-6 grid grid-cols-2 gap-4 text-sm">
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 bg-[#006A4A] rounded-full"></div>
+                            <span class="text-gray-600">Net Income: £17.1B (-5% YoY)</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 bg-[#7DD3C0] rounded-full"></div>
+                            <span class="text-gray-600">Operating Costs: £9.4B (+3% YoY)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Capital Management -->
+                <div class="space-y-6">
+                    <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Capital Strength</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700">CET1 Ratio</span>
+                                    <span class="font-bold text-[#006A4A]">13.5%</span>
+                                </div>
+                                <div class="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full rounded-full" style="width: 67.5%"></div>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-1">Comfortably above regulatory requirements</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 mt-6">
+                                <div class="bg-white rounded-lg p-4 border border-gray-200">
+                                    <p class="text-2xl font-bold text-gray-900">£224.6B</p>
+                                    <p class="text-xs text-gray-600">Risk-Weighted Assets</p>
+                                </div>
+                                <div class="bg-white rounded-lg p-4 border border-gray-200">
+                                    <p class="text-2xl font-bold text-gray-900">52.4p</p>
+                                    <p class="text-xs text-gray-600">Tangible Net Assets/Share</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#006A4A] text-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-xl font-bold mb-4">2024 Shareholder Distributions</h3>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <p class="text-3xl font-bold">3.17p</p>
+                                <p class="text-white/80 text-sm">Ordinary Dividend (+15% YoY)</p>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-bold">£1.7B</p>
+                                <p class="text-white/80 text-sm">Share Buyback Programme</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: Strategic Transformation -->
+    <section class="slide flex-col bg-gray-50 pt-20" data-slide="3">
+        <div class="flex-1 max-w-7xl mx-auto px-6 py-12 w-full">
+            <div class="mb-12">
+                <p class="text-[#006A4A] font-semibold mb-2 tracking-wider uppercase text-sm">03 • Strategic Transformation</p>
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900">Building Momentum for Growth</h2>
+            </div>
+
+            <!-- Phase One Success -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                <div class="lg:col-span-2 bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                            <i data-lucide="check-circle" class="w-6 h-6 text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">Phase One Complete: 2024 Achievements</h3>
+                            <p class="text-gray-600">Successfully exceeded revenue targets</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="text-center p-4 bg-gray-50 rounded-xl">
+                            <p class="text-sm text-gray-600 mb-1">Target</p>
+                            <p class="text-2xl font-bold text-gray-400">£0.7B</p>
+                            <p class="text-xs text-gray-500">Additional Income</p>
+                        </div>
+                        <div class="text-center p-4 bg-[#006A4A]/10 rounded-xl border-2 border-[#006A4A]">
+                            <p class="text-sm text-[#006A4A] mb-1">Achieved</p>
+                            <p class="text-3xl font-bold text-[#006A4A]">£0.8B</p>
+                            <p class="text-xs text-[#006A4A]">+14% Above Target</p>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-xl">
+                            <p class="text-sm text-gray-600 mb-1">Cost Savings</p>
+                            <p class="text-2xl font-bold text-gray-900">£1.2B</p>
+                            <p class="text-xs text-gray-500">Gross Savings</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="text-center p-4 border border-gray-200 rounded-lg">
+                            <i data-lucide="smartphone" class="w-6 h-6 text-[#006A4A] mx-auto mb-2"></i>
+                            <p class="font-bold text-gray-900">20M+</p>
+                            <p class="text-xs text-gray-600">App Users</p>
+                        </div>
+                        <div class="text-center p-4 border border-gray-200 rounded-lg">
+                            <i data-lucide="log-in" class="w-6 h-6 text-[#006A4A] mx-auto mb-2"></i>
+                            <p class="font-bold text-gray-900">6B+</p>
+                            <p class="text-xs text-gray-600">Annual Logons</p>
+                        </div>
+                        <div class="text-center p-4 border border-gray-200 rounded-lg">
+                            <i data-lucide="percent" class="w-6 h-6 text-[#006A4A] mx-auto mb-2"></i>
+                            <p class="font-bold text-gray-900">~80%</p>
+                            <p class="text-xs text-gray-600">Outcomes Delivered</p>
+                        </div>
+                        <div class="text-center p-4 border border-gray-200 rounded-lg">
+                            <i data-lucide="piggy-bank" class="w-6 h-6 text-[#006A4A] mx-auto mb-2"></i>
+                            <p class="font-bold text-gray-900">£11.3B</p>
+                            <p class="text-xs text-gray-600">Deposit Growth</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Digital Highlights -->
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 card-hover">
+                        <i data-lucide="smartphone" class="w-8 h-8 text-[#006A4A] mb-3"></i>
+                        <h4 class="font-bold text-gray-900 mb-2">Mobile Banking Refresh</h4>
+                        <p class="text-sm text-gray-600">Transformed engagement through refreshed Mobile app</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 card-hover">
+                        <i data-lucide="home" class="w-8 h-8 text-[#006A4A] mb-3"></i>
+                        <h4 class="font-bold text-gray-900 mb-2">Home Hub Ecosystem</h4>
+                        <p class="text-sm text-gray-600">Mobile-first home ownership experience</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 card-hover">
+                        <i data-lucide="credit-card" class="w-8 h-8 text-[#006A4A] mb-3"></i>
+                        <h4 class="font-bold text-gray-900 mb-2">Credit Score Proposition</h4>
+                        <p class="text-sm text-gray-600">Improved creditworthiness and conversion</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 card-hover">
+                        <i data-lucide="trending-up" class="w-8 h-8 text-[#006A4A] mb-3"></i>
+                        <h4 class="font-bold text-gray-900 mb-2">Ready-Made Investments</h4>
+                        <p class="text-sm text-gray-600">Making investing accessible to more customers</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase Two Targets -->
+            <div class="bg-gradient-to-r from-[#006A4A] to-[#004D35] rounded-2xl p-8 text-white shadow-xl">
+                <h3 class="text-2xl font-bold mb-8">Phase Two Ambitions: 2026 Targets</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                        <p class="text-3xl font-bold mb-2">£1.5B+</p>
+                        <p class="text-white/80 text-sm">Additional Income from Strategic Initiatives</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                        <p class="text-3xl font-bold mb-2">&lt;50%</p>
+                        <p class="text-white/80 text-sm">Cost:Income Ratio Target</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                        <p class="text-3xl font-bold mb-2">&gt;15%</p>
+                        <p class="text-white/80 text-sm">Return on Tangible Equity</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                        <p class="text-3xl font-bold mb-2">&gt;200 bps</p>
+                        <p class="text-white/80 text-sm">Capital Generation Target</p>
+                    </div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-white/20">
+                    <p class="text-white/90 italic text-lg">"We're just scratching the surface. There's significant scope for further improvements as we build out our digital capabilities."</p>
+                    <p class="text-white/70 mt-2">— Charlie Nunn, Group CEO</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: Digital Innovation & AI -->
+    <section class="slide flex-col bg-white pt-20" data-slide="4">
+        <div class="flex-1 max-w-7xl mx-auto px-6 py-12 w-full">
+            <div class="mb-12">
+                <p class="text-[#006A4A] font-semibold mb-2 tracking-wider uppercase text-sm">04 • Digital Innovation & AI</p>
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900">Leading the UK's Digital Banking Revolution</h2>
+            </div>
+
+            <!-- Digital Stats -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="bg-gradient-to-br from-[#006A4A] to-[#004D35] rounded-2xl p-6 text-white text-center shadow-lg transform hover:scale-105 transition-transform">
+                    <i data-lucide="brain" class="w-10 h-10 mx-auto mb-3 opacity-80"></i>
+                    <p class="text-4xl font-bold">800+</p>
+                    <p class="text-white/80 text-sm mt-1">AI Models Live</p>
+                </div>
+                <div class="bg-gradient-to-br from-[#006A4A] to-[#004D35] rounded-2xl p-6 text-white text-center shadow-lg transform hover:scale-105 transition-transform">
+                    <i data-lucide="smartphone" class="w-10 h-10 mx-auto mb-3 opacity-80"></i>
+                    <p class="text-4xl font-bold">20M+</p>
+                    <p class="text-white/80 text-sm mt-1">App Users</p>
+                </div>
+                <div class="bg-gradient-to-br from-[#006A4A] to-[#004D35] rounded-2xl p-6 text-white text-center shadow-lg transform hover:scale-105 transition-transform">
+                    <i data-lucide="bot" class="w-10 h-10 mx-auto mb-3 opacity-80"></i>
+                    <p class="text-4xl font-bold">18+</p>
+                    <p class="text-white/80 text-sm mt-1">GenAI Systems</p>
+                </div>
+                <div class="bg-gradient-to-br from-[#006A4A] to-[#004D35] rounded-2xl p-6 text-white text-center shadow-lg transform hover:scale-105 transition-transform">
+                    <i data-lucide="users" class="w-10 h-10 mx-auto mb-3 opacity-80"></i>
+                    <p class="text-4xl font-bold">40K</p>
+                    <p class="text-white/80 text-sm mt-1">Colleagues with Copilot</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- AI Transformation -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                        <i data-lucide="sparkles" class="w-8 h-8 text-[#006A4A]"></i>
+                        AI Transformation
+                    </h3>
+                    <p class="text-gray-600 mb-6">While AI has been part of our toolkit for over two decades, 2024 marked a pivotal shift to a Group-wide strategy focused on generative and agentic AI.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-[#006A4A] rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="users" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">People</h4>
+                                <p class="text-sm text-gray-600">Comprehensive upskilling programme with 200+ AI specialists</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-[#006A4A] rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="workflow" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Process</h4>
+                                <p class="text-sm text-gray-600">Scalable operating model with GenAI Control Tower governance</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-[#006A4A] rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="cloud" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Technology</h4>
+                                <p class="text-sm text-gray-600">Multi-platform approach leveraging Microsoft and Google Cloud</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-[#006A4A]/10 rounded-lg border border-[#006A4A]/20">
+                        <p class="text-[#006A4A] font-bold">£50M</p>
+                        <p class="text-sm text-gray-700">Incremental value expected from AI in 2025</p>
+                    </div>
+                </div>
+
+                <!-- AI Financial Assistant -->
+                <div class="space-y-6">
+                    <div class="bg-[#006A4A] text-white rounded-2xl p-8 shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-10 -mt-10"></div>
+                        <div class="relative z-10">
+                            <div class="inline-flex items-center gap-2 bg-white/20 px-3 py-1 rounded-full text-sm mb-4">
+                                <i data-lucide="rocket" class="w-4 h-4"></i>
+                                <span>Launching Early 2026</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4">UK's First AI Financial Assistant</h3>
+                            <p class="text-white/90 mb-6">The UK's first large-scale, multi-feature AI-powered financial assistant will transform how over 21 million customers manage their finances.</p>
+                            <div class="grid grid-cols-2 gap-3 text-sm">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                    <span>Personalised analytics</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                    <span>Tailored savings advice</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                    <span>Investment guidance</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                    <span>24/7 financial companion</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                        <h4 class="font-bold text-gray-900 mb-4">Athena: AI Knowledge Hub</h4>
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div>
+                                <p class="text-2xl font-bold text-[#006A4A]">21K</p>
+                                <p class="text-xs text-gray-600">Colleagues Using</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-[#006A4A]">2.1M</p>
+                                <p class="text-xs text-gray-600">Searches YTD</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-[#006A4A]">66%</p>
+                                <p class="text-xs text-gray-600">Time Reduction</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="cloud" class="w-6 h-6 text-[#006A4A]"></i>
+                            <h4 class="font-bold text-gray-900">Google Cloud Vertex AI</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">Migrated 15 modelling systems with hundreds of models</p>
+                        <div class="flex gap-4 text-xs">
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded">Income Verification: Days → Seconds</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">27 Tonnes CO2 Saved</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: Future Outlook -->
+    <section class="slide flex-col bg-gray-50 pt-20" data-slide="5">
+        <div class="flex-1 max-w-7xl mx-auto px-6 py-12 w-full">
+            <div class="mb-12">
+                <p class="text-[#006A4A] font-semibold mb-2 tracking-wider uppercase text-sm">05 • Future Outlook</p>
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900">Confident in Our Strategic Path</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                <!-- 2025 Guidance -->
+                <div class="lg:col-span-2 bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">2025 Financial Guidance</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="text-center p-6 bg-gray-50 rounded-xl border-2 border-[#006A4A]">
+                            <i data-lucide="pound-sign" class="w-8 h-8 text-[#006A4A] mx-auto mb-3"></i>
+                            <p class="text-3xl font-bold text-gray-900">~£13.5B</p>
+                            <p class="text-sm text-gray-600 mt-1">Net Interest Income</p>
+                        </div>
+                        <div class="text-center p-6 bg-gray-50 rounded-xl">
+                            <i data-lucide="wallet" class="w-8 h-8 text-[#006A4A] mx-auto mb-3"></i>
+                            <p class="text-3xl font-bold text-gray-900">~£9.7B</p>
+                            <p class="text-sm text-gray-600 mt-1">Operating Costs</p>
+                        </div>
+                        <div class="text-center p-6 bg-gray-50 rounded-xl">
+                            <i data-lucide="shield" class="w-8 h-8 text-[#006A4A] mx-auto mb-3"></i>
+                            <p class="text-3xl font-bold text-gray-900">~25 bps</p>
+                            <p class="text-sm text-gray-600 mt-1">Asset Quality Ratio</p>
+                        </div>
+                        <div class="text-center p-6 bg-gray-50 rounded-xl">
+                            <i data-lucide="target" class="w-8 h-8 text-[#006A4A] mx-auto mb-3"></i>
+                            <p class="text-3xl font-bold text-gray-900">~13.5%</p>
+                            <p class="text-sm text-gray-600 mt-1">Return on Tangible Equity</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-8 border-t border-gray-100">
+                        <h4 class="font-bold text-gray-900 mb-4">Analyst Consensus</h4>
+                        <div class="flex items-center gap-8">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-green-100 text-green-800 px-4 py-2 rounded-lg font-bold">BUY</div>
+                                <span class="text-gray-600">Consensus Rating</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="bg-[#006A4A] text-white px-4 py-2 rounded-lg font-bold">103.8p</div>
+                                <span class="text-gray-600">Price Target</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg font-bold">9/10</div>
+                                <span class="text-gray-600">TipRanks Smart Score</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ESG & Sustainability -->
+                <div class="space-y-6">
+                    <div class="bg-[#006A4A] text-white rounded-2xl p-6 shadow-lg">
+                        <h4 class="font-bold text-lg mb-4 flex items-center gap-2">
+                            <i data-lucide="leaf" class="w-5 h-5"></i>
+                            Sustainable Finance Leader
+                        </h4>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-2xl font-bold">£20B+</p>
+                                <p class="text-white/80 text-sm">Social Housing Since 2018</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold">£9B+</p>
+                                <p class="text-white/80 text-sm">Sustainable Finance H1 2025</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h4 class="font-bold text-gray-900 mb-4">Dividend Outlook</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">2025 Forecast</span>
+                                <span class="font-bold text-[#006A4A]">3.43p</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">2026 Forecast</span>
+                                <span class="font-bold text-[#006A4A]">4.01p</span>
+                            </div>
+                            <div class="pt-3 border-t border-gray-100">
+                                <span class="text-green-600 font-bold">+17%</span>
+                                <span class="text-gray-600 text-sm"> growth expected 2025-2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Risk Management -->
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 mb-12">
+                <h3 class="text-xl font-bold text-gray-900 mb-6">Risk Management & Resilience</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border-l-4 border-[#006A4A] pl-4">
+                        <h4 class="font-bold text-gray-900 mb-2">Line 1: Business Units</h4>
+                        <p class="text-sm text-gray-600">Risk Ownership - Proactive identification and management</p>
+                    </div>
+                    <div class="border-l-4 border-[#006A4A] pl-4">
+                        <h4 class="font-bold text-gray-900 mb-2">Line 2: Risk Function</h4>
+                        <p class="text-sm text-gray-600">Oversight - Independent monitoring and challenge</p>
+                    </div>
+                    <div class="border-l-4 border-[#006A4A] pl-4">
+                        <h4 class="font-bold text-gray-900 mb-2">Line 3: Internal Audit</h4>
+                        <p class="text-sm text-gray-600">Assurance - Independent verification and validation</p>
+                    </div>
+                </div>
+                <div class="mt-6 grid grid-cols-3 gap-4 text-center">
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <p class="text-xl font-bold text-gray-900">£433M</p>
+                        <p class="text-xs text-gray-600">Underlying Impairment Charge</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <p class="text-xl font-bold text-gray-900">10 bps</p>
+                        <p class="text-xs text-gray-600">Asset Quality Ratio</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <p class="text-xl font-bold text-gray-900">13.5%</p>
+                        <p class="text-xs text-gray-600">CET1 Ratio</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Summary -->
+            <div class="bg-gradient-to-r from-[#006A4A] to-[#004D35] rounded-2xl p-8 text-white text-center shadow-xl">
+                <h3 class="text-2xl font-bold mb-6">Helping Britain Prosper</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+                    <div>
+                        <p class="text-3xl font-bold">30M</p>
+                        <p class="text-white/80 text-sm">Customers</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold">£3.6B</p>
+                        <p class="text-white/80 text-sm">Shareholder Returns</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold">800+</p>
+                        <p class="text-white/80 text-sm">AI Models</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold">£20B+</p>
+                        <p class="text-white/80 text-sm">Social Housing</p>
+                    </div>
+                </div>
+                <p class="text-white/90 max-w-2xl mx-auto">With a clear strategic vision, strong capital position, and digital leadership, we are well-positioned for continued success.</p>
+                <p class="text-white/70 mt-4 text-sm">Lloyds Banking Group • January 2025</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Chart instance storage
+        let financialChartInstance = null;
+
+        // Chart initialization function
+        function initFinancialChart() {
+            const ctx = document.getElementById('financialChart');
+            if (!ctx) return;
+            
+            // Destroy existing chart if it exists
+            if (financialChartInstance) {
+                financialChartInstance.destroy();
+            }
+            
+            financialChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Net Income', 'Operating Costs', 'Underlying Profit', 'Statutory Profit'],
+                    datasets: [{
+                        label: '2024 (£ Billions)',
+                        data: [17.1, 9.4, 6.3, 4.5],
+                        backgroundColor: [
+                            '#006A4A',
+                            '#7DD3C0',
+                            '#006A4A',
+                            '#004D35'
+                        ],
+                        borderRadius: 8,
+                        borderSkipped: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return '£' + context.parsed.y + 'B';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#f0f0f0'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return '£' + value + 'B';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Slide management
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.navigation-dot');
+        const currentSlideSpan = document.getElementById('currentSlide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                dots[i].classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                    dots[i].classList.add('active');
+                }
+            });
+            currentSlideSpan.textContent = index + 1;
+            currentSlideIndex = index;
+            
+            // Initialize chart when slide 3 (index 2) is shown
+            if (index === 2) {
+                // Small delay to ensure DOM is visible
+                setTimeout(initFinancialChart, 100);
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < slides.length - 1) {
+                showSlide(currentSlideIndex + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                showSlide(currentSlideIndex - 1);
+            }
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Smooth scroll behavior for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
