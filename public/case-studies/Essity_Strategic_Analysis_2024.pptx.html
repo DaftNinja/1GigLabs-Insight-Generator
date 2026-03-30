@@ -1,0 +1,731 @@
+<style>
+.ppt-slide {
+    width: 100%;
+    height: 100%;
+    padding: 60px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    position: relative;
+}
+
+/* Cover Slide */
+.cover-slide {
+    background: linear-gradient(135deg, #0d5a3a 0%, #1a7a52 50%, #2d9a6b 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.cover-logo {
+    font-size: 72px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: -2px;
+}
+.cover-title {
+    font-size: 48px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.cover-subtitle {
+    font-size: 24px;
+    color: #e2e8f0;
+    margin-bottom: 60px;
+    font-weight: 300;
+}
+.cover-meta {
+    font-size: 16px;
+    color: #cbd5e0;
+    line-height: 2;
+}
+.cover-badge {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    background: rgba(255,255,255,0.1);
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* Content Slides */
+.content-slide {
+    background: #fafafa;
+}
+.slide-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #0d5a3a;
+    margin-bottom: 40px;
+    padding-bottom: 15px;
+    border-bottom: 4px solid #0d5a3a;
+}
+.slide-subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 25px;
+}
+
+/* Metrics */
+.metrics-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+}
+.metric-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+    border-top: 4px solid #0d5a3a;
+}
+.metric-value {
+    font-size: 42px;
+    font-weight: 700;
+    color: #0d5a3a;
+    margin-bottom: 10px;
+}
+.metric-label {
+    font-size: 14px;
+    color: #718096;
+}
+
+/* Highlight Box */
+.highlight-box {
+    background: #e6fffa;
+    border-left: 5px solid #38b2ac;
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 8px;
+}
+.highlight-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #285e61;
+    margin-bottom: 15px;
+}
+
+/* Tables */
+.table-container {
+    margin: 25px 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.table-title {
+    background: #0d5a3a;
+    color: white;
+    padding: 15px 20px;
+    font-weight: 600;
+    font-size: 16px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th {
+    background: #f7fafc;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #2d3748;
+    border-bottom: 2px solid #e2e8f0;
+}
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e2e8f0;
+}
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Business Area Cards */
+.area-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 25px 0;
+}
+.area-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.area-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0d5a3a;
+    margin-bottom: 10px;
+}
+.area-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #4a5568;
+}
+.area-revenue {
+    font-size: 16px;
+    font-weight: 600;
+    color: #38a169;
+    margin-top: 10px;
+}
+
+/* Sustainability Grid */
+.sustainability-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 25px 0;
+}
+.sustainability-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.sustainability-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0d5a3a;
+    margin-bottom: 10px;
+}
+.sustainability-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #38a169;
+    margin-bottom: 5px;
+}
+.sustainability-desc {
+    font-size: 14px;
+    color: #4a5568;
+}
+
+/* Lists */
+.content-list {
+    margin: 20px 0;
+    padding-left: 25px;
+}
+.content-list li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Text Styles */
+.body-text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #2d3748;
+    margin: 20px 0;
+}
+.strong {
+    font-weight: 700;
+    color: #0d5a3a;
+}
+
+/* Section Divider */
+.section-divider {
+    height: 4px;
+    background: linear-gradient(90deg, #0d5a3a, #38b2ac);
+    margin: 40px 0;
+}
+</style>
+
+<!-- Slide 1: Cover -->
+<div class="ppt-slide cover-slide">
+    <div class="cover-badge">Strategic Analysis Series<br>Swedish Companies 2024</div>
+    <div class="cover-logo">Essity</div>
+    <div class="cover-title">Strategic Analysis Report 2024</div>
+    <div class="cover-subtitle">Breaking Barriers to Well-being<br>Global Hygiene & Health Leader</div>
+    <div class="cover-meta">
+        <p><strong>Company:</strong> Essity AB (publ)</p>
+        <p><strong>Headquarters:</strong> Stockholm, Sweden</p>
+        <p><strong>Sector:</strong> Hygiene & Health</p>
+        <p><strong>Founded:</strong> 2017 (roots to 1849) | <strong>Analysis Date:</strong> January 2026</p>
+    </div>
+</div>
+
+<!-- Slide 2: Executive Summary -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Executive Summary</div>
+    <div class="body-text">Essity is a <strong class="strong">leading global hygiene and health company</strong> that develops, produces, and sells products and solutions within the segments Personal Care, Consumer Tissue, and Professional Hygiene. The company's purpose is to <strong class="strong">"break barriers to well-being"</strong> for the benefit of consumers, patients, and customers across the globe.</div>
+    
+    <div class="metrics-row">
+        <div class="metric-card">
+            <div class="metric-value">SEK 146B</div>
+            <div class="metric-label">Net Sales 2024</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">SEK 20.3B</div>
+            <div class="metric-label">Record Profit 2024</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">36,000</div>
+            <div class="metric-label">Employees Globally</div>
+        </div>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">2024 Record Performance</div>
+        <div class="body-text">Essity achieved its <strong class="strong">highest-ever profit</strong> in 2024, with EBITA margin of <strong class="strong">14.0%</strong> and ROCE of <strong class="strong">17.6%</strong>. The company grew strongly in its most profitable categories and gained market shares, demonstrating the success of its strategy to accelerate profitable growth.</div>
+    </div>
+    
+    <div class="body-text">Essity's products improve the well-being of <strong class="strong">1 billion people every day</strong> in approximately 150 countries. The company's strong brand portfolio includes TENA, Tork, Libero, Libresse, Lotus, Tempo, and many more leading brands.</div>
+</div>
+
+<!-- Slide 3: Company Overview -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Company Overview</div>
+    <div class="slide-subtitle">Global Hygiene & Health Leader</div>
+    
+    <div class="body-text">Essity was founded in 2017 through the spin-off of SCA's hygiene business, though its roots trace back to 1849. The name "Essity" stems from "essentials" and "necessities," reflecting the company's focus on products that are essential for well-being.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Key Business Metrics 2024</div>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>Value</th>
+                <th>Details</th>
+            </tr>
+            <tr>
+                <td><strong>Sales Countries</strong></td>
+                <td>~150</td>
+                <td>Global market presence</td>
+            </tr>
+            <tr>
+                <td><strong>Production Facilities</strong></td>
+                <td>~70</td>
+                <td>Close to customers strategy</td>
+            </tr>
+            <tr>
+                <td><strong>Leading Brands</strong></td>
+                <td>20+</td>
+                <td>TENA, Tork, Libero, Lotus, etc.</td>
+            </tr>
+            <tr>
+                <td><strong>Market Position</strong></td>
+                <td>#1 or #2</td>
+                <td>90% of branded sales</td>
+            </tr>
+            <tr>
+                <td><strong>Net Debt/EBITDA</strong></td>
+                <td>1.16</td>
+                <td>Solid investment grade rating</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Strategic Portfolio Optimization</div>
+        <div class="body-text">In 2024, Essity <strong class="strong">divested its 51.59% stake in Vinda</strong> (Asian hygiene company) for approximately SEK 19 billion, strengthening its portfolio for higher-margin, lower-volatility products and focusing on core markets.</div>
+    </div>
+</div>
+
+<!-- Slide 4: Business Segments -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Business Segments</div>
+    <div class="slide-subtitle">Three Core Business Areas</div>
+    
+    <div class="body-text">Effective January 1, 2026, Essity will reorganize into four business areas to accelerate growth and achieve financial targets more rapidly. The current Consumer Goods area will be split into Personal Care and Consumer Tissue.</div>
+    
+    <div class="area-grid">
+        <div class="area-card">
+            <div class="area-name">Health & Medical</div>
+            <div class="area-desc">Incontinence products (TENA), wound care (Cutimed, Leukoplast), compression therapy (JOBST), orthopedics. Leading position in incontinence care globally.</div>
+            <div class="area-revenue">20% of sales | 19.3% EBITA margin</div>
+        </div>
+        <div class="area-card">
+            <div class="area-name">Personal Care</div>
+            <div class="area-desc">Retail incontinence, feminine care (Libresse, Nosotras, Saba, Knix), baby care (Libero, Lotus). Growing in leakproof apparel and menstrual cups.</div>
+            <div class="area-revenue">23% of sales | 15.3% EBITA margin</div>
+        </div>
+        <div class="area-card">
+            <div class="area-name">Consumer Tissue</div>
+            <div class="area-desc">Toilet paper, household towels, facial tissues, wet wipes. Brands include Lotus, Tempo, Zewa, Cushelle, Plenty. Strong private-label presence.</div>
+            <div class="area-revenue">31% of sales | 9.7% EBITA margin</div>
+        </div>
+        <div class="area-card">
+            <div class="area-name">Professional Hygiene</div>
+            <div class="area-desc">Complete hygiene solutions under Tork brand: dispensers, paper products, soaps, digital solutions, cleaning services. Leading global position.</div>
+            <div class="area-revenue">26% of sales | 17.9% EBITA margin</div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 5: Financial Performance 2024 -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Financial Performance 2024</div>
+    <div class="slide-subtitle">Record-High Profit Achievement</div>
+    
+    <div class="body-text">Essity delivered exceptional financial performance in 2024, achieving its highest-ever profit of SEK 20.3 billion with strong margin expansion and cash generation.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Financial Performance Summary (SEK Billion)</div>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>2024</th>
+                <th>2023</th>
+                <th>Growth</th>
+            </tr>
+            <tr>
+                <td><strong>Net Sales</strong></td>
+                <td>145.5</td>
+                <td>147.1</td>
+                <td>-1.1%</td>
+            </tr>
+            <tr>
+                <td><strong>EBITA excl. IAC</strong></td>
+                <td>20.3</td>
+                <td>18.9</td>
+                <td>+7.6%</td>
+            </tr>
+            <tr>
+                <td><strong>EBITA Margin</strong></td>
+                <td>14.0%</td>
+                <td>12.8%</td>
+                <td>+1.2pp</td>
+            </tr>
+            <tr>
+                <td><strong>Operating Cash Flow</strong></td>
+                <td>17.2</td>
+                <td>17.7</td>
+                <td>-2.8%</td>
+            </tr>
+            <tr>
+                <td><strong>ROCE</strong></td>
+                <td>17.6%</td>
+                <td>16.4%</td>
+                <td>+1.2pp</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Dividend & Shareholder Returns</div>
+        <div class="body-text">Proposed dividend increased <strong class="strong">6.5% to SEK 8.25</strong> per share (vs SEK 7.75 in 2023). Essity also launched a <strong class="strong">SEK 3 billion share buyback program</strong> in 2024, with a new SEK 3 billion program announced for 2025, reflecting strong cash generation and commitment to shareholder returns.</div>
+    </div>
+</div>
+
+<!-- Slide 6: Q1 2025 Performance -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Q1 2025 Performance</div>
+    <div class="slide-subtitle">Solid Performance with Higher Sales</div>
+    
+    <div class="body-text">Essity began 2025 with positive organic sales growth in all business areas, stable profitability, and continued strong cash flow, demonstrating resilience in turbulent times.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Q1 2025 Performance (SEK Million)</div>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>Q1 2025</th>
+                <th>Q1 2024</th>
+                <th>Growth</th>
+            </tr>
+            <tr>
+                <td><strong>Net Sales</strong></td>
+                <td>34,976</td>
+                <td>34,850</td>
+                <td>+0.4%</td>
+            </tr>
+            <tr>
+                <td><strong>Organic Sales Growth</strong></td>
+                <td>2.1%</td>
+                <td>-4.0%</td>
+                <td>+6.1pp</td>
+            </tr>
+            <tr>
+                <td><strong>EBITA excl. IAC</strong></td>
+                <td>4,706</td>
+                <td>4,880</td>
+                <td>-3.6%</td>
+            </tr>
+            <tr>
+                <td><strong>EBITA Margin excl. IAC</strong></td>
+                <td>13.5%</td>
+                <td>14.0%</td>
+                <td>-0.5pp</td>
+            </tr>
+            <tr>
+                <td><strong>Operating Cash Flow</strong></td>
+                <td>3,765</td>
+                <td>4,253</td>
+                <td>-11.5%</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Key Q1 2025 Highlights</div>
+        <div class="body-text"><strong class="strong">Product Superiority:</strong> Achieved 70%+ (highest ever) | <strong class="strong">Limited Tariff Impact:</strong> Production close to customers mitigates trade risks | <strong class="strong">Growth Drivers:</strong> Higher prices, positive mix, premium products</div>
+    </div>
+</div>
+
+<!-- Slide 7: Regional Performance -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Regional Performance</div>
+    <div class="slide-subtitle">Global Footprint with Local Presence</div>
+    
+    <div class="body-text">Essity's strategy of having production close to customers and consumers provides resilience against trade disruptions and enables rapid response to local market needs.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Net Sales by Region (9M 2025)</div>
+        <table>
+            <tr>
+                <th>Region</th>
+                <th>Share of Sales</th>
+                <th>Key Markets</th>
+                <th>Growth Outlook</th>
+            </tr>
+            <tr>
+                <td><strong>Europe</strong></td>
+                <td>61%</td>
+                <td>Germany (12%), UK (8%), France (8%), Spain (6%)</td>
+                <td>Stable, mature markets</td>
+            </tr>
+            <tr>
+                <td><strong>Latin America</strong></td>
+                <td>17%</td>
+                <td>Mexico (8%), Colombia (4%)</td>
+                <td>High growth potential</td>
+            </tr>
+            <tr>
+                <td><strong>North America</strong></td>
+                <td>16%</td>
+                <td>US (14%)</td>
+                <td>Growth focus area</td>
+            </tr>
+            <tr>
+                <td><strong>Other</strong></td>
+                <td>6%</td>
+                <td>Asia, Oceania, Africa</td>
+                <td>Selective presence</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Manufacturing Strategy</div>
+        <div class="body-text">Essity operates approximately <strong class="strong">70 production facilities worldwide</strong>, enabling local production and supply chain optimization. Recent investments include a <strong class="strong">€24 million expansion in Tarragona, Spain</strong> for incontinence products, making it the first European plant to produce all product lines.</div>
+    </div>
+</div>
+
+<!-- Slide 8: Innovation & Product Development -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Innovation & Product Development</div>
+    <div class="slide-subtitle">Breaking Barriers to Well-being</div>
+    
+    <div class="body-text">Essity invests significantly in innovation to create products that improve people's lives. Over 70% of the company's offerings are rated as best in market, the highest percentage to date.</div>
+    
+    <div class="content-list">
+        <li><strong>TENA Proskin Pants:</strong> Enhanced absorption and skin health for incontinence care</li>
+        <li><strong>Tork Optiserve Coreless:</strong> New toilet paper system complementing Tork PeakServe</li>
+        <li><strong>Improved Libero Diapers:</strong> Softer leg pads for better comfort</li>
+        <li><strong>Cutimed Sorbion Upgrades:</strong> Easier and more comfortable wound dressings</li>
+        <li><strong>Digital Solutions:</strong> Tork Vision Cleaning and connected dispensers</li>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Sustainable Innovations</div>
+        <div class="body-text">In 2024, <strong class="strong">87% of Essity's innovations</strong> yielded social and/or environmental improvements, significantly exceeding the target of 50%. This demonstrates the company's commitment to developing sustainable solutions that benefit both people and planet.</div>
+    </div>
+</div>
+
+<!-- Slide 9: Sustainability Leadership -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Sustainability Leadership</div>
+    <div class="slide-subtitle">Net Zero by 2050</div>
+    
+    <div class="body-text">Essity is committed to achieving <strong class="strong">net zero greenhouse gas emissions by 2050</strong>. The company's targets have been validated by the Science Based Targets initiative (SBTi) and align with the 1.5°C pathway.</div>
+    
+    <div class="sustainability-grid">
+        <div class="sustainability-card">
+            <div class="sustainability-title">Carbon Reduction (Scope 1&2)</div>
+            <div class="sustainability-value">-27%</div>
+            <div class="sustainability-desc">vs 2016 baseline (target: -35% by 2030)</div>
+        </div>
+        <div class="sustainability-card">
+            <div class="sustainability-title">Scope 3 Reduction</div>
+            <div class="sustainability-value">-35%</div>
+            <div class="sustainability-desc">Target by 2030 vs 2016 (updated from 18%)</div>
+        </div>
+        <div class="sustainability-card">
+            <div class="sustainability-title">Sustainable Innovations</div>
+            <div class="sustainability-value">87%</div>
+            <div class="sustainability-desc">2024 (target: >50% annually)</div>
+        </div>
+        <div class="sustainability-card">
+            <div class="sustainability-title">Production Waste Recovery</div>
+            <div class="sustainability-value">71%</div>
+            <div class="sustainability-desc">Target: 100% by 2030</div>
+        </div>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Sustainability Recognition</div>
+        <div class="body-text">Essity was named one of the <strong class="strong">world's 100 most sustainable companies</strong> by Corporate Knights and included in <strong class="strong">S&P Global's Sustainability Yearbook 2025</strong>. The company also partnered with the World Economic Forum to promote menstrual health globally.</div>
+    </div>
+</div>
+
+<!-- Slide 10: Brand Portfolio -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Brand Portfolio</div>
+    <div class="slide-subtitle">Leading Global & Local Brands</div>
+    
+    <div class="body-text">Essity's portfolio includes world-leading brands and strong local brands, with the company holding the #1 or #2 position in 90% of its branded sales.</div>
+    
+    <div class="area-grid">
+        <div class="area-card">
+            <div class="area-name">TENA</div>
+            <div class="area-desc">World-leading incontinence brand offering products for both healthcare and retail markets. Focus on skin health and absorption technology.</div>
+            <div class="area-revenue">Global market leader</div>
+        </div>
+        <div class="area-card">
+            <div class="area-name">Tork</div>
+            <div class="area-desc">Global leader in professional hygiene with complete solutions including dispensers, paper products, soaps, and digital services for facilities.</div>
+            <div class="area-revenue">Professional hygiene leader</div>
+        </div>
+        <div class="area-card">
+            <div class="area-name">Libero & Lotus</div>
+            <div class="area-desc">Baby care and consumer tissue brands with strong positions in Nordic markets and other European countries.</div>
+            <div class="area-revenue">Nordic market leader</div>
+        </div>
+        <div class="area-card">
+            <div class="area-name">Libresse & Others</div>
+            <div class="area-desc">Feminine care brands including Libresse, Nosotras, Saba, Knix, plus medical brands Cutimed, JOBST, Leukoplast.</div>
+            <div class="area-revenue">Regional leaders</div>
+        </div>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Brand Strength</div>
+        <div class="body-text">Essity's brands are built on <strong class="strong">trust, scientific efficacy, and innovation</strong>. The company continuously invests in brand building and product development to maintain competitive advantages and customer loyalty across markets.</div>
+    </div>
+</div>
+
+<!-- Slide 11: Strategic Priorities -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Strategic Priorities</div>
+    <div class="slide-subtitle">Accelerating Profitable Growth</div>
+    
+    <div class="body-text">Essity has launched new, more ambitious financial targets and organizational changes to accelerate growth and achieve targets more rapidly.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Financial Targets 2024+</div>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>Target</th>
+                <th>2024 Outcome</th>
+            </tr>
+            <tr>
+                <td><strong>Annual Organic Sales Growth</strong></td>
+                <td>>3%</td>
+                <td>0.2%</td>
+            </tr>
+            <tr>
+                <td><strong>EBITA Margin excl. IAC</strong></td>
+                <td>>15%</td>
+                <td>14.0%</td>
+            </tr>
+            <tr>
+                <td><strong>ROCE</strong></td>
+                <td>>15%</td>
+                <td>17.6%</td>
+            </tr>
+            <tr>
+                <td><strong>Capital Structure</strong></td>
+                <td>Solid investment grade</td>
+                <td>Maintained</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Organizational Restructuring (Jan 2026)</div>
+        <div class="body-text">Essity will implement four business areas: <strong class="strong">Health & Medical, Personal Care, Consumer Tissue, and Professional Hygiene</strong>. This change decentralizes decision-making and strengthens end-to-end accountability to enhance customer focus, speed, and operational efficiency.</div>
+    </div>
+</div>
+
+<!-- Slide 12: Leadership Transition -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Leadership Transition</div>
+    <div class="slide-subtitle">New CEO for Next Growth Phase</div>
+    
+    <div class="body-text">After 14 years with Essity and nearly 10 years as President and CEO, Magnus Groth announced his departure in 2025. Ulrika Kolsrud was appointed as the new President and CEO, effective June 1, 2025.</div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Magnus Groth Legacy (2015-2025)</div>
+        <div class="body-text">Magnus Groth successfully led Essity through significant transformation, increasing profitability, growth, and innovation. Under his leadership, Essity became a world-leading hygiene and health company with strong brands, recognized sustainability work, and profitable growth platform for continued global expansion.</div>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Ulrika Kolsrud - New CEO</div>
+        <div class="body-text"><strong class="strong">Background:</strong> Previously President of Health & Medical business unit, member of Executive Management Team since 2015, extensive experience across innovation, production, and sales. Holds Master of Science in Engineering from Chalmers University of Technology. Brings engaging and positive leadership style with deep industry knowledge.</div>
+    </div>
+    
+    <div class="body-text">The leadership transition positions Essity for the next phase of growth, with a focus on accelerating profitable expansion and strengthening market positions globally.</div>
+</div>
+
+<!-- Slide 13: Strategic Outlook -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Strategic Outlook</div>
+    <div class="slide-subtitle">Future Growth Drivers</div>
+    
+    <div class="body-text">Essity is well-positioned for continued growth, supported by favorable demographic trends, increasing hygiene awareness, and the company's strategic initiatives.</div>
+    
+    <div class="content-list">
+        <li><strong>Demographic Trends:</strong> Longer life expectancy drives demand for incontinence and healthcare products</li>
+        <li><strong>Living Standards:</strong> Higher living standards increase consumption of hygiene products globally</li>
+        <li><strong>Hygiene Awareness:</strong> Greater awareness of hygiene and health, accelerated post-COVID</li>
+        <li><strong>E-commerce Growth:</strong> Digital transformation and online sales expansion</li>
+        <li><strong>Emerging Markets:</strong> Growth opportunities in developing regions with rising consumption</li>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Key Growth Enablers</div>
+        <div class="body-text"><strong class="strong">Innovation:</strong> Continuous product development and digital solutions | <strong class="strong">Sustainability:</strong> Circular economy and net zero commitment | <strong class="strong">Efficiency:</strong> Cost savings and operational excellence | <strong class="strong">Culture:</strong> Winning culture driving performance</div>
+    </div>
+</div>
+
+<!-- Slide 14: Strategic Recommendations -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Strategic Recommendations</div>
+    <div class="slide-subtitle">Building on Strong Foundation</div>
+    
+    <div class="content-list">
+        <li><strong>Accelerate Digital Transformation:</strong> Expand connected dispensers and digital services to create recurring revenue streams and customer stickiness</li>
+        <li><strong>Grow High-Margin Categories:</strong> Focus investment on Health & Medical and Professional Hygiene for superior margins and growth</li>
+        <li><strong>Expand in Growth Markets:</strong> Strengthen positions in North America and Latin America where consumption is rising</li>
+        <li><strong>Leverage Sustainability Leadership:</strong> Use validated net zero targets and sustainable innovations as competitive advantages</li>
+        <li><strong>Optimize Portfolio Mix:</strong> Continue shift away from commoditized consumer tissue toward value-added solutions</li>
+        <li><strong>Strengthen Innovation Pipeline:</strong> Invest in R&D to maintain product superiority above 70% across portfolio</li>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Investment Thesis</div>
+        <div class="body-text">Essity offers compelling investment opportunity as global hygiene and health leader with strong brands, record profitability, and clear sustainability commitments. The company's strategic restructuring, new leadership, and focus on high-margin categories position it well for continued profitable growth and value creation.</div>
+    </div>
+</div>
+
+<!-- Slide 15: Final Slide -->
+<div class="ppt-slide cover-slide">
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+        <div style="font-size: 48px; font-weight: 700; margin-bottom: 30px;">Thank You</div>
+        <div style="font-size: 24px; color: #e2e8f0; margin-bottom: 60px;">Essity Strategic Analysis 2024</div>
+        <div style="font-size: 16px; color: #cbd5e0; text-align: center; line-height: 2;">
+            <p><strong>Sources:</strong> Essity Annual Report 2024; Q1 2025 Report</p>
+            <p>Financial Targets & Sustainability Reports; Press Releases</p>
+            <p><strong>Analysis Date:</strong> January 2026</p>
+        </div>
+    </div>
+</div>

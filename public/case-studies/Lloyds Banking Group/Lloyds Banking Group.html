@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lloyds Banking Group - Strategic Analysis 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@400;700&family=Aptos:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Quattrocento Sans', 'Aptos', sans-serif;
+        }
+        .lloyds-green { color: #006A4A; }
+        .bg-lloyds-green { background-color: #006A4A; }
+        .border-lloyds-green { border-color: #006A4A; }
+        .slide {
+            width: 1280px;
+            height: 720px;
+            margin: 0 auto 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            page-break-after: always;
+        }
+        @media print {
+            .slide { page-break-after: always; margin: 0; box-shadow: none; }
+        }
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(0,106,74,0.95) 0%, rgba(0,0,0,0.8) 100%);
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-left: 4px solid #006A4A;
+        }
+        .executive-card {
+            transition: all 0.3s ease;
+        }
+        .executive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,106,74,0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 py-8">
+
+<!-- Slide 1: Title Slide -->
+<div class="slide bg-white relative">
+    <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black"></div>
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-lloyds-green opacity-20 transform skew-x-12"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-lloyds-green rounded-full opacity-10 transform -translate-x-1/2 translate-y-1/2"></div>
+    
+    <div class="relative z-10 h-full flex flex-col justify-center px-20">
+        <div class="flex items-center mb-8">
+            <div class="w-20 h-20 bg-lloyds-green rounded-full flex items-center justify-center text-white text-3xl font-bold mr-6">
+                <i class="fas fa-university"></i>
+            </div>
+            <div class="text-white">
+                <p class="text-sm tracking-widest uppercase opacity-70">Deep Research Deck</p>
+                <p class="text-lg opacity-90">Strategic Business Analysis 2025</p>
+            </div>
+        </div>
+        
+        <h1 class="text-7xl font-bold text-white mb-6 leading-tight">
+            Lloyds Banking<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Group plc</span>
+        </h1>
+        
+        <p class="text-2xl text-gray-300 mb-12 max-w-2xl">
+            UK's Largest Digital Bank • £900bn Assets • 27M Customers
+        </p>
+        
+        <div class="flex gap-8 text-white">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-calendar-alt text-lloyds-green text-xl"></i>
+                <span>January 2025</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <i class="fas fa-chart-line text-lloyds-green text-xl"></i>
+                <span>LSE: LLOY</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <i class="fas fa-pound-sign text-lloyds-green text-xl"></i>
+                <span>FTSE 100 Component</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="absolute bottom-10 right-10 text-white opacity-50 text-sm">
+        Helping Britain Prosper
+    </div>
+</div>
+
+<!-- Slide 2: Executive Summary -->
+<div class="slide bg-white p-16 flex flex-col">
+    <div class="flex justify-between items-end mb-8 border-b-2 border-lloyds-green pb-4">
+        <div>
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-1">Strategic Overview</p>
+            <h2 class="text-5xl font-bold text-gray-900">Executive Summary</h2>
+        </div>
+        <div class="text-right text-lloyds-green">
+            <i class="fas fa-clipboard-check text-4xl"></i>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-6 flex-grow">
+        <div class="col-span-2 space-y-6">
+            <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-lloyds-green">
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Strategic Position</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    Lloyds Banking Group maintains its position as the UK's largest digital bank and mortgage lender, serving <strong>27 million customers</strong> with £900bn in assets. The Group has successfully completed Phase 1 of its transformation strategy, exceeding revenue targets with <strong>£0.8bn in additional strategic revenues</strong> against a £0.7bn target.
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-lloyds-green">
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Financial Performance</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    2024 delivered robust results despite headwinds: Statutory profit of <strong>£4.5bn</strong>, with return on tangible equity of 12.3% (14.0% excluding motor finance provision). The Group maintains a strong capital position with CET1 ratio at <strong>13.5%</strong> and distributed <strong>£3.6bn</strong> to shareholders.
+                </p>
+            </div>
+
+            <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-lloyds-green">
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Digital Transformation</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    Accelerating technology investment with <strong>£4bn committed through 2026</strong>. The Group has deployed 800+ AI models, migrated 20% of applications to cloud, and serves 22.7 million digitally active customers. AI initiatives projected to generate <strong>£50m incremental value in 2025</strong>, scaling to £150m.
+                </p>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <div class="metric-card p-5 rounded-lg shadow-md">
+                <p class="text-sm text-gray-500 uppercase font-semibold">Market Cap</p>
+                <p class="text-3xl font-bold text-gray-900">£32.4bn</p>
+                <p class="text-xs text-gray-500 mt-1">3rd largest UK bank</p>
+            </div>
+            
+            <div class="metric-card p-5 rounded-lg shadow-md">
+                <p class="text-sm text-gray-500 uppercase font-semibold">Digital Users</p>
+                <p class="text-3xl font-bold text-gray-900">22.7M</p>
+                <p class="text-xs text-gray-500 mt-1">+25% over 3 years</p>
+            </div>
+            
+            <div class="metric-card p-5 rounded-lg shadow-md">
+                <p class="text-sm text-gray-500 uppercase font-semibold">Mortgage Portfolio</p>
+                <p class="text-3xl font-bold text-gray-900">£300bn+</p>
+                <p class="text-xs text-gray-500 mt-1">UK Market Leader</p>
+            </div>
+            
+            <div class="metric-card p-5 rounded-lg shadow-md">
+                <p class="text-sm text-gray-500 uppercase font-semibold">Tech Investment</p>
+                <p class="text-3xl font-bold text-gray-900">£1.9bn</p>
+                <p class="text-xs text-gray-500 mt-1">Annual ICT spend</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 3: Market Position & Scale -->
+<div class="slide bg-white p-16 flex flex-col">
+    <div class="flex justify-between items-end mb-8 border-b-2 border-lloyds-green pb-4">
+        <div>
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-1">Competitive Analysis</p>
+            <h2 class="text-5xl font-bold text-gray-900">Market Position & Scale</h2>
+        </div>
+        <div class="text-lloyds-green text-right">
+            <p class="text-3xl font-bold">#1</p>
+            <p class="text-sm">UK Digital Bank</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-8 flex-grow">
+        <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">UK Banking Market Share</h3>
+            <div class="chart-container mb-6">
+                <canvas id="marketShareChart"></canvas>
+            </div>
+            <div class="grid grid-cols-2 gap-4 text-sm">
+                <div class="bg-gray-50 p-3 rounded">
+                    <p class="font-semibold text-gray-900">Big Four Control</p>
+                    <p class="text-gray-600">75% of UK current accounts held by HSBC, Barclays, Lloyds & NatWest</p>
+                </div>
+                <div class="bg-gray-50 p-3 rounded">
+                    <p class="font-semibold text-gray-900">Challenger Growth</p>
+                    <p class="text-gray-600">Digital banks now serve 50% of UK adults (up from 16% in 2018)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Operational Scale</h3>
+            
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 text-white p-6 rounded-lg">
+                    <i class="fas fa-users text-3xl mb-3 text-green-400"></i>
+                    <p class="text-4xl font-bold">27M</p>
+                    <p class="text-sm opacity-80">Total Customers</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-lloyds-green to-green-800 text-white p-6 rounded-lg">
+                    <i class="fas fa-mobile-alt text-3xl mb-3"></i>
+                    <p class="text-4xl font-bold">20M+</p>
+                    <p class="text-sm opacity-80">Mobile App Users</p>
+                </div>
+                
+                <div class="bg-gray-100 p-6 rounded-lg border-2 border-gray-200">
+                    <i class="fas fa-home text-3xl mb-3 text-lloyds-green"></i>
+                    <p class="text-4xl font-bold text-gray-900">£300bn</p>
+                    <p class="text-sm text-gray-600">Mortgage Lending</p>
+                    <p class="text-xs text-gray-500 mt-1">#1 UK Mortgage Lender</p>
+                </div>
+                
+                <div class="bg-gray-100 p-6 rounded-lg border-2 border-gray-200">
+                    <i class="fas fa-pound-sign text-3xl mb-3 text-lloyds-green"></i>
+                    <p class="text-4xl font-bold text-gray-900">£900bn</p>
+                    <p class="text-sm text-gray-600">Total Assets</p>
+                    <p class="text-xs text-gray-500 mt-1">Largest UK bank by assets</p>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 mt-4">
+                <h4 class="font-bold text-gray-900 mb-2">Brand Portfolio</h4>
+                <div class="flex gap-3 flex-wrap">
+                    <span class="px-3 py-1 bg-lloyds-green text-white rounded-full text-sm">Lloyds Bank</span>
+                    <span class="px-3 py-1 bg-gray-800 text-white rounded-full text-sm">Halifax</span>
+                    <span class="px-3 py-1 bg-blue-800 text-white rounded-full text-sm">Bank of Scotland</span>
+                    <span class="px-3 py-1 bg-purple-800 text-white rounded-full text-sm">Scottish Widows</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Financial Performance Dashboard -->
+<div class="slide bg-white p-16 flex flex-col">
+    <div class="flex justify-between items-end mb-8 border-b-2 border-lloyds-green pb-4">
+        <div>
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-1">FY 2024 Results</p>
+            <h2 class="text-5xl font-bold text-gray-900">Financial Performance</h2>
+        </div>
+        <div class="text-right">
+            <p class="text-3xl font-bold text-lloyds-green">£4.5bn</p>
+            <p class="text-sm text-gray-500">Statutory Profit After Tax</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-6 mb-6">
+        <div class="col-span-2">
+            <div class="chart-container" style="height: 280px;">
+                <canvas id="financialChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="space-y-3">
+            <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                <p class="text-sm text-gray-600">Statutory Profit Change</p>
+                <p class="text-2xl font-bold text-red-600">-19%</p>
+                <p class="text-xs text-gray-500">vs 2023 (£5.5bn)</p>
+            </div>
+            
+            <div class="bg-lloyds-green bg-opacity-10 border-l-4 border-lloyds-green p-4 rounded">
+                <p class="text-sm text-gray-600">Return on Tangible Equity</p>
+                <p class="text-2xl font-bold text-lloyds-green">12.3%</p>
+                <p class="text-xs text-gray-500">14.0% ex. motor finance</p>
+            </div>
+            
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                <p class="text-sm text-gray-600">CET1 Ratio</p>
+                <p class="text-2xl font-bold text-blue-600">13.5%</p>
+                <p class="text-xs text-gray-500">Strong capital position</p>
+            </div>
+            
+            <div class="bg-purple-50 border-l-4 border-purple-500 p-4 rounded">
+                <p class="text-sm text-gray-600">Cost-to-Income Ratio</p>
+                <p class="text-2xl font-bold text-purple-600">60.4%</p>
+                <p class="text-xs text-gray-500">Up from 54.7% in 2023</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-4">
+        <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <p class="text-3xl font-bold text-gray-900">£17.1bn</p>
+            <p class="text-sm text-gray-600">Net Income</p>
+            <p class="text-xs text-red-500">↓ 5% YoY</p>
+        </div>
+        <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <p class="text-3xl font-bold text-gray-900">2.95%</p>
+            <p class="text-sm text-gray-600">Net Interest Margin</p>
+            <p class="text-xs text-red-500">↓ from 3.11%</p>
+        </div>
+        <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <p class="text-3xl font-bold text-gray-900">£3.6bn</p>
+            <p class="text-sm text-gray-600">Shareholder Returns</p>
+            <p class="text-xs text-green-600">£1.7bn buyback + div</p>
+        </div>
+        <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <p class="text-3xl font-bold text-gray-900">£9.4bn</p>
+            <p class="text-sm text-gray-600">Operating Costs</p>
+            <p class="text-xs text-red-500">↑ 3% YoY</p>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 5: IT Spend & Technology Strategy -->
+<div class="slide bg-white p-16 flex flex-col">
+    <div class="flex justify-between items-end mb-8 border-b-2 border-lloyds-green pb-4">
+        <div>
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-1">Technology Investment</p>
+            <h2 class="text-5xl font-bold text-gray-900">IT Spend & Digital Strategy</h2>
+        </div>
+        <div class="text-lloyds-green text-right">
+            <p class="text-3xl font-bold">£4bn</p>
+            <p class="text-sm">Through 2026</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-8 flex-grow">
+        <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Technology Investment Roadmap</h3>
+            <div class="space-y-4">
+                <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-lg">
+                    <div class="w-16 h-16 bg-lloyds-green rounded-full flex items-center justify-center text-white font-bold text-xl">1</div>
+                    <div>
+                        <p class="font-bold text-gray-900">Digital Transformation</p>
+                        <p class="text-sm text-gray-600">£3bn invested (2022-2024), £4bn total through 2026</p>
+                        <p class="text-xs text-lloyds-green mt-1">20% apps migrated to cloud</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-lg">
+                    <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-white font-bold text-xl">2</div>
+                    <div>
+                        <p class="font-bold text-gray-900">AI & Machine Learning</p>
+                        <p class="text-sm text-gray-600">800+ AI models in production</p>
+                        <p class="text-xs text-lloyds-green mt-1">£50m value target 2025</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-lg">
+                    <div class="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center text-white font-bold text-xl">3</div>
+                    <div>
+                        <p class="font-bold text-gray-900">Legacy Modernization</p>
+                        <p class="text-sm text-gray-600">10%+ legacy systems decommissioned since 2021</p>
+                        <p class="text-xs text-lloyds-green mt-1">60% lending decisions automated</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 p-4 bg-lloyds-green bg-opacity-10 rounded-lg border border-lloyds-green">
+                <h4 class="font-bold text-lloyds-green mb-2">Key Technology Partners</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-2 py-1 bg-white rounded text-xs border">Google Cloud</span>
+                    <span class="px-2 py-1 bg-white rounded text-xs border">ServiceNow</span>
+                    <span class="px-2 py-1 bg-white rounded text-xs border">Oracle</span>
+                    <span class="px-2 py-1 bg-white rounded text-xs border">Thought Machine</span>
+                    <span class="px-2 py-1 bg-white rounded text-xs border">Form3</span>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">ICT Budget Allocation</h3>
+            <div class="chart-container mb-6" style="height: 250px;">
+                <canvas id="itSpendChart"></canvas>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-gray-900 text-white p-4 rounded-lg">
+                    <p class="text-sm opacity-80">Annual ICT Spend</p>
+                    <p class="text-3xl font-bold">$1.9bn</p>
+                    <p class="text-xs opacity-60">(Approx £1.5bn)</p>
+                </div>
+                <div class="bg-lloyds-green text-white p-4 rounded-lg">
+                    <p class="text-sm opacity-80">Tech Headcount</p>
+                    <p class="text-3xl font-bold">4,000+</p>
+                    <p class="text-xs opacity-60">New hires since 2021</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 6: Digital Transformation & AI -->
+<div class="slide bg-white p-16 flex flex-col">
+    <div class="flex justify-between items-end mb-8 border-b-2 border-lloyds-green pb-4">
+        <div>
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-1">Innovation Focus</p>
+            <h2 class="text-5xl font-bold text-gray-900">AI & Digital Transformation</h2>
+        </div>
+        <div class="text-lloyds-green">
+            <i class="fas fa-robot text-4xl"></i>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-6 flex-grow">
+        <div class="col-span-2">
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="bg-gradient-to-br from-lloyds-green to-green-800 text-white p-6 rounded-lg">
+                    <div class="flex justify-between items-start mb-4">
+                        <i class="fas fa-brain text-4xl opacity-80"></i>
+                        <span class="text-4xl font-bold">800+</span>
+                    </div>
+                    <p class="text-lg font-semibold">AI Models Deployed</p>
+                    <p class="text-sm opacity-80 mt-2">Across operations, risk, and customer service</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 text-white p-6 rounded-lg">
+                    <div class="flex justify-between items-start mb-4">
+                        <i class="fas fa-cloud text-4xl opacity-80"></i>
+                        <span class="text-4xl font-bold">20%</span>
+                    </div>
+                    <p class="text-lg font-semibold">Cloud Migration</p>
+                    <p class="text-sm opacity-80 mt-2">Applications migrated to cloud platforms</p>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">AI Value Creation Roadmap</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-4">
+                        <div class="w-24 text-right font-bold text-lloyds-green">2024</div>
+                        <div class="flex-1 bg-gray-200 rounded-full h-8 relative overflow-hidden">
+                            <div class="bg-lloyds-green h-full rounded-full flex items-center justify-end pr-2 text-white text-sm" style="width: 30%">£1.5bn cost savings</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-24 text-right font-bold text-lloyds-green">2025</div>
+                        <div class="flex-1 bg-gray-200 rounded-full h-8 relative overflow-hidden">
+                            <div class="bg-lloyds-green h-full rounded-full flex items-center justify-end pr-2 text-white text-sm" style="width: 45%">£50m incremental</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-24 text-right font-bold text-lloyds-green">2026</div>
+                        <div class="flex-1 bg-gray-200 rounded-full h-8 relative overflow-hidden">
+                            <div class="bg-lloyds-green h-full rounded-full flex items-center justify-end pr-2 text-white text-sm" style="width: 100%">£150m target</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-4 grid grid-cols-3 gap-4">
+                <div class="text-center p-3 bg-blue-50 rounded border border-blue-200">
+                    <i class="fas fa-comments text-blue-600 text-2xl mb-2"></i>
+                    <p class="text-sm font-semibold">18 GenAI Systems</p>
+                    <p class="text-xs text-gray-600">In production (April 2025)</p>
+                </div>
+                <div class="text-center p-3 bg-purple-50 rounded border border-purple-200">
+                    <i class="fas fa-users-cog text-purple-600 text-2xl mb-2"></i>
+                    <p class="text-sm font-semibold">200+ Specialists</p>
+                    <p class="text-xs text-gray-600">AI Centre of Excellence</p>
+                </div>
+                <div class="text-center p-3 bg-green-50 rounded border border-green-200">
+                    <i class="fas fa-leaf text-green-600 text-2xl mb-2"></i>
+                    <p class="text-sm font-semibold">27 Tonnes</p>
+                    <p class="text-xs text-gray-600">CO2 saved via ML (Google Cloud)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <h3 class="text-xl font-bold text-gray-900">Strategic AI Initiatives</h3>
+            
+            <div class="bg-white border-2 border-gray-200 p-4 rounded-lg shadow-sm">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="fas fa-check-circle text-lloyds-green"></i>
+                    <p class="font-bold text-gray-900">Aveni Investment</p>
+                </div>
+                <p class="text-sm text-gray-600">Investment in FinLLM - financial services specific LLM</p>
+            </div>
+            
+            <div class="bg-white border-2 border-gray-200 p-4 rounded-lg shadow-sm">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="fas fa-check-circle text-lloyds-green"></i>
+                    <p class="font-bold text-gray-900">Responsible AI</p>
+                </div>
+                <p class="text-sm text-gray-600">Head of Responsible AI appointed Feb 2025</p>
+            </div>
+            
+            <div class="bg-white border-2 border-gray-200 p-4 rounded-lg shadow-sm">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="fas fa-check-circle text-lloyds-green"></i>
+                    <p class="font-bold text-gray-900">Launch Innovation</p>
+                </div>
+                <p class="text-sm text-gray-600">Partnership with Doshi for financial education</p>
+            </div>
+            
+            <div class="bg-white border-2 border-gray-200 p-4 rounded-lg shadow-sm">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="fas fa-check-circle text-lloyds-green"></i>
+                    <p class="font-bold text-gray-900">Mortgage AI</p>
+                </div>
+                <p class="text-sm text-gray-600">Income verification reduced from days to seconds</p>
+            </div>
+            
+            <div class="bg-lloyds-green bg-opacity-10 p-4 rounded-lg border border-lloyds-green mt-6">
+                <p class="text-sm font-semibold text-lloyds-green mb-2">Key Insight</p>
+                <p class="text-sm text-gray-700">76% of UK businesses using AI report increased profitability, validating Lloyds' £4bn digital investment strategy.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 7: Competitive Landscape -->
+<div class="slide bg-white p-16 flex flex-col">
+    <div class="flex justify-between items-end mb-8 border-b-2 border-lloyds-green pb-4">
+        <div>
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-1">Competitive Analysis</p>
+            <h2 class="text-5xl font-bold text-gray-900">Competitive Landscape</h2>
+        </div>
+        <div class="text-right text-gray-500">
+            <p class="text-sm">UK Banking Market</p>
+            <p class="text-2xl font-bold text-gray-900">£180bn+</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-8 flex-grow">
+        <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Market Share Comparison (Dec 2024)</h3>
+            <div class="chart-container" style="height: 300px;">
+                <canvas id="competitorChart"></canvas>
+            </div>
+            
+            <div class="mt-4 bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-bold text-gray-900 mb-2">Big Four Banks</h4>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                        <span>HSBC</span>
+                        <span class="font-bold">£132.6bn (41M customers)</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Barclays</span>
+                        <span class="font-bold">£55.3bn (48M customers)</span>
+                    </div>
+                    <div class="flex justify-between text-lloyds-green font-semibold">
+                        <span>Lloyds Banking Group</span>
+                        <span>£32.4bn (27M customers)</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>NatWest Group</span>
+                        <span class="font-bold">£46.6bn (19M customers)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Competitive Threats & Opportunities</h3>
+            
+            <div class="space-y-4">
+                <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                    <h4 class="font-bold text-red-700 mb-2">Challenger Bank Pressure</h4>
+                    <p class="text-sm text-gray-700">Digital banks (Monzo, Starling, Revolut) now serve 50% of UK adults. Challengers account for 60% of SME lending growth.</p>
+                </div>
+                
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                    <h4 class="font-bold text-blue-700 mb-2">Fintech Disruption</h4>
+                    <p class="text-sm text-gray-700">Revolut valued at $45bn (March 2025). BNPL providers (Klarna) and tech giants (Apple) entering financial services.</p>
+                </div>
+                
+                <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded">
+                    <h4 class="font-bold text-green-700 mb-2">Lloyds' Defensive Moat</h4>
+                    <p class="text-sm text-gray-700">#1 mortgage lender position, 22.7M digital users, comprehensive brand portfolio, and £900bn asset scale provide defensive advantages.</p>
+                </div>
+                
+                <div class="bg-purple-50 border-l-4 border-purple-500 p-4 rounded">
+                    <h4 class="font-bold text-purple-700 mb-2">Consolidation Activity</h4>
+                    <p class="text-sm text-gray-700">Nationwide's acquisition of Virgin Money reshaping competitive dynamics. Regulatory pressure on banking sector concentration.</p>
+                </div>
+            </div>
+            
+            <div class="mt-4 grid grid-cols-3 gap-3 text-center">
+                <div class="bg-gray-100 p-3 rounded">
+                    <p class="text-2xl font-bold text-gray-900">40%</p>
+                    <p class="text-xs text-gray-600">UK adults with digital-only accounts</p>
+                </div>
+                <div class="bg-gray-100 p-3 rounded">
+                    <p class="text-2xl font-bold text-gray-900">9%</p>
+                    <p class="text-xs text-gray-600">Main debit cards held at neobanks</p>
+                </div>
+                <div class="bg-gray-100 p-3 rounded">
+                    <p class="text-2xl font-bold text-gray-900">3-4%</p>
+                    <p class="text-xs text-gray-600">UK retail banking CAGR (5-year)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 8: Strategic Growth Initiatives -->
+<div class="slide bg-white p-16 flex flex-col">
+    <div class="flex justify-between items-end mb-8 border-b-2 border-lloyds-green pb-4">
+        <div>
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-1">Strategic Roadmap</p>
+            <h2 class="text-5xl font-bold text-gray-900">Growth Initiatives</h2>
+        </div>
+        <div class="text-lloyds-green text-right">
+            <p class="text-3xl font-bold">£1.5bn+</p>
+            <p class="text-sm">Additional Income Target 2026</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-6 flex-grow">
+        <div class="col-span-2">
+            <div class="mb-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Strategic Transformation Progress</h3>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-lloyds-green">
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="font-bold text-gray-900">Phase 1 Complete (2022-2024)</p>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-bold">ACHIEVED</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">Exceeded £0.7bn revenue target, delivering £0.8bn in additional strategic revenues</p>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-lloyds-green h-2 rounded-full" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="font-bold text-gray-900">Phase 2 Execution (2025-2026)</p>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-bold">IN PROGRESS</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">Targeting £1.5bn additional income from strategic initiatives by 2026</p>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-500 h-2 rounded-full" style="width: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-gradient-to-br from-lloyds-green to-green-800 text-white p-5 rounded-lg">
+                    <i class="fas fa-chart-line text-3xl mb-3"></i>
+                    <h4 class="font-bold text-lg mb-2">Wealth Management Expansion</h4>
+                    <p class="text-sm opacity-90">Growing high-net-worth segment, cross-selling investment products through Embark platform</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 text-white p-5 rounded-lg">
+                    <i class="fas fa-leaf text-3xl mb-3"></i>
+                    <h4 class="font-bold text-lg mb-2">Sustainable Finance</h4>
+                    <p class="text-sm opacity-90">£10.7bn in commercial sustainable financing (2024), £20bn social housing funding since 2018</p>
+                </div>
+                
+                <div class="bg-gray-100 p-5 rounded-lg border-2 border-gray-200">
+                    <i class="fas fa-mobile-alt text-3xl mb-3 text-lloyds-green"></i>
+                    <h4 class="font-bold text-lg mb-2 text-gray-900">Digital Propositions</h4>
+                    <p class="text-sm text-gray-600">Your Credit Score, Ready-Made Investments, refreshed mobile app with 6bn+ logins</p>
+                </div>
+                
+                <div class="bg-gray-100 p-5 rounded-lg border-2 border-gray-200">
+                    <i class="fas fa-handshake text-3xl mb-3 text-lloyds-green"></i>
+                    <h4 class="font-bold text-lg mb-2 text-gray-900">SME Banking Growth</h4>
+                    <p class="text-sm text-gray-600">60% automation of new business lending decisions, Amanda Murphy appointment (ex-HSBC)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <h3 class="text-xl font-bold text-gray-900">Key Performance Targets</h3>
+            
+            <div class="bg-white border-2 border-lloyds-green p-4 rounded-lg shadow-sm">
+                <p class="text-sm text-gray-500 uppercase">2026 ROTE Target</p>
+                <p class="text-4xl font-bold text-lloyds-green">>15%</p>
+                <p class="text-xs text-gray-500 mt-1">vs 12.3% (2024)</p>
+            </div>
+            
+            <div class="bg-white border-2 border-gray-300 p-4 rounded-lg shadow-sm">
+                <p class="text-sm text-gray-500 uppercase">Strategic Income</p>
+                <p class="text-4xl font-bold text-gray-900">£1.5bn+</p>
+                <p class="text-xs text-gray-500 mt-1">Additional by 2026</p>
+            </div>
+            
+            <div class="bg-white border-2 border-gray-300 p-4 rounded-lg shadow-sm">
+                <p class="text-sm text-gray-500 uppercase">Cost Savings</p>
+                <p class="text-4xl font-bold text-gray-900">£1.5bn</p>
+                <p class="text-xs text-gray-500 mt-1">Gross savings since 2021</p>
+            </div>
+            
+            <div class="bg-white border-2 border-gray-300 p-4 rounded-lg shadow-sm">
+                <p class="text-sm text-gray-500 uppercase">NII Guidance 2025</p>
+                <p class="text-4xl font-bold text-gray-900">£13.5bn</p>
+                <p class="text-xs text-gray-500 mt-1">Underlying net interest income</p>
+            </div>
+
+            <div class="bg-lloyds-green bg-opacity-10 p-4 rounded-lg mt-4">
+                <p class="text-xs text-lloyds-green font-semibold mb-1">Strategic Priority</p>
+                <p class="text-sm text-gray-700">"Help Britain Prosper" - focusing on infrastructure, energy transition, housing and pensions</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 9: Risk & Regulatory Environment -->
+<div class="slide bg-white p-16 flex flex-col">
+    <div class="flex justify-between items-end mb-8 border-b-2 border-lloyds-green pb-4">
+        <div>
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-1">Risk Management</p>
+            <h2 class="text-5xl font-bold text-gray-900">Risk & Regulatory Environment</h2>
+        </div>
+        <div class="text-red-600 text-right">
+            <p class="text-3xl font-bold">£899m</p>
+            <p class="text-sm">Remediation Costs 2024</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-8 flex-grow">
+        <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Key Risk Factors</h3>
+            
+            <div class="space-y-4">
+                <div class="bg-red-50 border-l-4 border-red-600 p-4 rounded-lg">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold text-red-700 mb-1">Motor Finance Commission</h4>
+                            <p class="text-sm text-gray-700">£700m provision in Q4 2024 following Court of Appeal judgment (Wrench, Johnson, Hopcraft cases)</p>
+                        </div>
+                        <span class="px-2 py-1 bg-red-200 text-red-800 text-xs rounded font-bold">HIGH</span>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">Supreme Court hearing scheduled April 2025</p>
+                </div>
+                
+                <div class="bg-orange-50 border-l-4 border-orange-500 p-4 rounded-lg">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold text-orange-700 mb-1">Interest Rate Sensitivity</h4>
+                            <p class="text-sm text-gray-700">NIM pressure from rate cuts (BoE expected to cut to 3.25-3.50%). Asset-sensitive balance sheet exposed to declining rates.</p>
+                        </div>
+                        <span class="px-2 py-1 bg-orange-200 text-orange-800 text-xs rounded font-bold">MED</span>
+                    </div>
+                </div>
+                
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-lg">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold text-yellow-700 mb-1">Competition & Margin Pressure</h4>
+                            <p class="text-sm text-gray-700">Intense competition in mortgages and savings eroding NIM. Challenger banks gaining market share in key segments.</p>
+                        </div>
+                        <span class="px-2 py-1 bg-yellow-200 text-yellow-800 text-xs rounded font-bold">MED</span>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold text-blue-700 mb-1">Regulatory Capital Requirements</h4>
+                            <p class="text-sm text-gray-700">Ongoing Basel III implementation and potential increases in capital requirements. CET1 ratio 13.5% provides buffer.</p>
+                        </div>
+                        <span class="px-2 py-1 bg-blue-200 text-blue-800 text-xs rounded font-bold">LOW</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Asset Quality & Impairments</h3>
+            
+            <div class="bg-gray-50 p-5 rounded-lg mb-4">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-gray-600">Asset Quality Ratio</span>
+                    <span class="text-3xl font-bold text-lloyds-green">10bps</span>
+                </div>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-gray-600">Underlying Impairments</span>
+                    <span class="text-3xl font-bold text-gray-900">£433m</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600">Non-Performing Loans</span>
+                    <span class="text-3xl font-bold text-gray-900">1.42%</span>
+                </div>
+                <p class="text-xs text-gray-500 mt-3">19bps excluding economic outlook improvements. Strong portfolio positioning with improved credit performance.</p>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Regulatory Focus Areas</h3>
+            <div class="space-y-2">
+                <div class="flex items-center gap-3 p-3 bg-gray-100 rounded">
+                    <i class="fas fa-shield-alt text-lloyds-green"></i>
+                    <span class="text-sm">Consumer Duty implementation</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-gray-100 rounded">
+                    <i class="fas fa-shield-alt text-lloyds-green"></i>
+                    <span class="text-sm">Operational resilience requirements</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-gray-100 rounded">
+                    <i class="fas fa-shield-alt text-lloyds-green"></i>
+                    <span class="text-sm">Digital fraud prevention (£15m invested)</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-gray-100 rounded">
+                    <i class="fas fa-shield-alt text-lloyds-green"></i>
+                    <span class="text-sm">Climate risk stress testing</span>
+                </div>
+            </div>
+
+            <div class="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <p class="text-sm font-semibold text-green-800 mb-1">Risk Mitigation</p>
+                <p class="text-xs text-gray-700">Strong capital generation (148bps pro forma), conservative lending criteria, and diversified portfolio provide resilience against economic uncertainty.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 10: Executive Leadership Team -->
+<div class="slide bg-white p-16 flex flex-col">
+    <div class="flex justify-between items-end mb-8 border-b-2 border-lloyds-green pb-4">
+        <div>
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-1">Governance</p>
+            <h2 class="text-5xl font-bold text-gray-900">Executive Leadership Team</h2>
+        </div>
+        <div class="text-right text-gray-500">
+            <p class="text-sm">Group CEO</p>
+            <p class="text-xl font-bold text-gray-900">Charlie Nunn</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-4 flex-grow">
+        <div class="executive-card bg-gray-50 p-5 rounded-lg border border-gray-200">
+            <div class="w-16 h-16 bg-lloyds-green rounded-full flex items-center justify-center text-white text-2xl font-bold mb-3">CN</div>
+            <h4 class="font-bold text-gray-900 text-lg">Charlie Nunn</h4>
+            <p class="text-sm text-lloyds-green font-semibold mb-2">Group Chief Executive</p>
+            <p class="text-xs text-gray-600">Since Aug 2021. Ex-HSBC Wealth & Personal Banking CEO, McKinsey & Accenture partner.</p>
+        </div>
+        
+        <div class="executive-card bg-gray-50 p-5 rounded-lg border border-gray-200">
+            <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-3">WC</div>
+            <h4 class="font-bold text-gray-900 text-lg">William Chalmers</h4>
+            <p class="text-sm text-lloyds-green font-semibold mb-2">Chief Financial Officer</p>
+            <p class="text-xs text-gray-600">Since Aug 2019. Ex-Morgan Stanley & JP Morgan. Interim Group CEO May-Aug 2021.</p>
+        </div>
+        
+        <div class="executive-card bg-gray-50 p-5 rounded-lg border border-gray-200">
+            <div class="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-3">RvK</div>
+            <h4 class="font-bold text-gray-900 text-lg">Ron van Kemenade</h4>
+            <p class="text-sm text-lloyds-green font-semibold mb-2">Chief Operating Officer</p>
+            <p class="text-xs text-gray-600">Since June 2023. Ex-ING CTO (20 years). Leading technology & data transformation.</p>
+        </div>
+        
+        <div class="executive-card bg-gray-50 p-5 rounded-lg border border-gray-200">
+            <div class="w-16 h-16 bg-blue-800 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-3">CB</div>
+            <h4 class="font-bold text-gray-900 text-lg">Chirantan Barua</h4>
+            <p class="text-sm text-lloyds-green font-semibold mb-2">CEO, Scottish Widows & IPI</p>
+            <p class="text-xs text-gray-600">Since May 2023. Ex-HSBC Global Head of Strategy, McKinsey partner. 10M+ customers.</p>
+        </div>
+        
+        <div class="executive-card bg-gray-50 p-5 rounded-lg border border-gray-200">
+            <div class="w-16 h-16 bg-purple-800 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-3">EC</div>
+            <h4 class="font-bold text-gray-900 text-lg">Elyn Corfield</h4>
+            <p class="text-sm text-lloyds-green font-semibold mb-2">CEO, Business & Commercial</p>
+            <p class="text-xs text-gray-600">Since July 2022. Ex-MBNA CFO. Leaving 2026, replaced by Amanda Murphy (ex-HSBC).</p>
+        </div>
+        
+        <div class="executive-card bg-gray-50 p-5 rounded-lg border border-gray-200">
+            <div class="w-16 h-16 bg-red-800 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-3">JO</div>
+            <h4 class="font-bold text-gray-900 text-lg">Jayne Opperman</h4>
+            <p class="text-sm text-lloyds-green font-semibold mb-2">CEO, Consumer Lending</p>
+            <p class="text-xs text-gray-600">Since 2024. Ex-Barclays, Citi, Westpac. Leading mortgage, cards & motor finance.</p>
+        </div>
+        
+        <div class="executive-card bg-gray-50 p-5 rounded-lg border border-gray-200">
+            <div class="w-16 h-16 bg-indigo-800 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-3">JS</div>
+            <h4 class="font-bold text-gray-900 text-lg">Jasjyot Singh OBE</h4>
+            <p class="text-sm text-lloyds-green font-semibold mb-2">CEO, Consumer Relationships</p>
+            <p class="text-xs text-gray-600">16 years at Lloyds. OBE for COVID-19 financial services contribution. Digital & branches.</p>
+        </div>
+        
+        <div class="executive-card bg-gray-50 p-5 rounded-lg border border-gray-200">
+            <div class="w-16 h-16 bg-teal-800 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-3">SS</div>
+            <h4 class="font-bold text-gray-900 text-lg">Stephen Shelley</h4>
+            <p class="text-sm text-lloyds-green font-semibold mb-2">Chief Risk Officer</p>
+            <p class="text-xs text-gray-600">Since Sept 2017. Ex-Barclays Corporate CRO. Credit & risk management expertise.</p>
+        </div>
+    </div>
+
+    <div class="mt-4 flex gap-4 text-sm">
+        <div class="flex items-center gap-2">
+            <div class="w-3 h-3 bg-lloyds-green rounded-full"></div>
+            <span class="text-gray-600">Executive Committee: 14 members</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <div class="w-3 h-3 bg-gray-400 rounded-full"></div>
+            <span class="text-gray-600">Board Chair: Sir Robin Budenberg CBE</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <div class="w-3 h-3 bg-gray-400 rounded-full"></div>
+            <span class="text-gray-600">Employees: ~63,000</span>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 11: 2025-2026 Outlook -->
+<div class="slide bg-white p-16 flex flex-col">
+    <div class="flex justify-between items-end mb-8 border-b-2 border-lloyds-green pb-4">
+        <div>
+            <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-1">Forward Guidance</p>
+            <h2 class="text-5xl font-bold text-gray-900">2025-2026 Outlook</h2>
+        </div>
+        <div class="text-lloyds-green text-right">
+            <p class="text-3xl font-bold">13.5%</p>
+            <p class="text-sm">ROTE Target 2025</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-8 flex-grow">
+        <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">2025 Financial Guidance</h3>
+            <div class="space-y-3 mb-6">
+                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg border-l-4 border-lloyds-green">
+                    <span class="font-semibold text-gray-700">Underlying Net Interest Income</span>
+                    <span class="text-2xl font-bold text-gray-900">~£13.5bn</span>
+                </div>
+                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg border-l-4 border-gray-400">
+                    <span class="font-semibold text-gray-700">Operating Costs</span>
+                    <span class="text-2xl font-bold text-gray-900">~£9.7bn</span>
+                </div>
+                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+                    <span class="font-semibold text-gray-700">Asset Quality Ratio</span>
+                    <span class="text-2xl font-bold text-gray-900">~25bps</span>
+                </div>
+                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg border-l-4 border-purple-500">
+                    <span class="font-semibold text-gray-700">Return on Tangible Equity</span>
+                    <span class="text-2xl font-bold text-gray-900">~13.5%</span>
+                </div>
+                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg border-l-4 border-green-500">
+                    <span class="font-semibold text-gray-700">Capital Generation</span>
+                    <span class="text-2xl font-bold text-gray-900">~175bps</span>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-900 mb-3">2026 Strategic Targets</h3>
+            <div class="bg-lloyds-green bg-opacity-10 p-4 rounded-lg border border-lloyds-green">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="font-bold text-gray-900">Return on Tangible Equity</span>
+                    <span class="text-3xl font-bold text-lloyds-green">>15%</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-gray-900">Strategic Income Generation</span>
+                    <span class="text-2xl font-bold text-lloyds-green">£1.5bn+</span>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Growth Drivers & Catalysts</h3>
+            
+            <div class="space-y-4">
+                <div class="bg-white border-2 border-gray-200 p-4 rounded-lg shadow-sm">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-arrow-up text-green-500 text-xl"></i>
+                        <h4 class="font-bold text-gray-900">Net Interest Margin Expansion</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">Expected stabilization and potential expansion in NIM as rate environment settles. Asset-sensitive balance sheet benefits from rate dynamics.</p>
+                </div>
+                
+                <div class="bg-white border-2 border-gray-200 p-4 rounded-lg shadow-sm">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-robot text-blue-500 text-xl"></i>
+                        <h4 class="font-bold text-gray-900">AI-Driven Efficiency</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">£50m incremental value in 2025 scaling to £150m. Automation of lending decisions and customer service reducing cost-to-income ratio.</p>
+                </div>
+                
+                <div class="bg-white border-2 border-gray-200 p-4 rounded-lg shadow-sm">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-chart-pie text-purple-500 text-xl"></i>
+                        <h4 class="font-bold text-gray-900">Wealth & Insurance Growth</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">Expansion of Scottish Widows propositions and cross-selling through retail banking channels. Higher-margin revenue diversification.</p>
+                </div>
+                
+                <div class="bg-white border-2 border-gray-200 p-4 rounded-lg shadow-sm">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-home text-orange-500 text-xl"></i>
+                        <h4 class="font-bold text-gray-900">Mortgage Market Recovery</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">Largest UK mortgage lender positioned for market share gains as housing market stabilizes. £6.1bn mortgage growth in 2024.</p>
+                </div>
+            </div>
+
+            <div class="mt-4 bg-yellow-50 border border-yellow-300 p-4 rounded-lg">
+                <p class="text-sm font-semibold text-yellow-800 mb-1">Key Assumption</p>
+                <p class="text-xs text-gray-700">Guidance based on current macroeconomic assumptions including Bank of England rate cuts to 3.25-3.50% and stable UK economic growth.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 12: Strategic Recommendations -->
+<div class="slide bg-gradient-to-br from-gray-900 to-black p-16 flex flex-col text-white">
+    <div class="flex justify-between items-end mb-8 border-b-2 border-green-400 pb-4">
+        <div>
+            <p class="text-sm font-bold text-green-400 uppercase tracking-wider mb-1">Strategic Assessment</p>
+            <h2 class="text-5xl font-bold">Key Takeaways & Recommendations</h2>
+        </div>
+        <div class="text-right">
+            <i class="fas fa-lightbulb text-4xl text-green-400"></i>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-6 flex-grow">
+        <div class="col-span-2 space-y-4">
+            <div class="bg-white bg-opacity-10 backdrop-blur p-5 rounded-lg border border-green-400 border-opacity-30">
+                <h3 class="text-xl font-bold text-green-400 mb-3">1. Accelerate Digital-First Transformation</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    With 22.7M digital users and 800+ AI models deployed, Lloyds should continue aggressive cloud migration beyond the 20% target. The £4bn tech investment through 2026 positions the bank well, but faster legacy decommissioning (currently 10% complete) is critical to reduce technical debt and improve agility against fintech challengers.
+                </p>
+            </div>
+            
+            <div class="bg-white bg-opacity-10 backdrop-blur p-5 rounded-lg border border-green-400 border-opacity-30">
+                <h3 class="text-xl font-bold text-green-400 mb-3">2. Defend Mortgage Leadership Amid Rate Volatility</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    As the UK's #1 mortgage lender (£300bn+ portfolio), Lloyds must leverage its AI-driven income verification capabilities (reducing processing from days to seconds) to maintain market share during expected rate cuts. The 60% automation of lending decisions provides cost advantage in competitive refinancing market.
+                </p>
+            </div>
+            
+            <div class="bg-white bg-opacity-10 backdrop-blur p-5 rounded-lg border border-green-400 border-opacity-30">
+                <h3 class="text-xl font-bold text-green-400 mb-3">3. Resolve Motor Finance Uncertainty</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    The £700m provision for motor finance commission arrangements represents significant overhang. Proactive engagement with Supreme Court process (hearing April 2025) and potential settlement strategy needed to remove uncertainty and protect the 14.0% ROTE (ex-motor finance) from 12.3% reported.
+                </p>
+            </div>
+            
+            <div class="bg-white bg-opacity-10 backdrop-blur p-5 rounded-lg border border-green-400 border-opacity-30">
+                <h3 class="text-xl font-bold text-green-400 mb-3">4. Capitalize on Wealth Management Opportunity</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    With £10.2bn wealth deposits and Embark platform integration, Lloyds should aggressively cross-sell investment products to its 27M customer base. The £1.5bn strategic income target by 2026 depends heavily on wealth management expansion and Scottish Widows pension proposition growth.
+                </p>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <div class="bg-green-400 bg-opacity-20 p-5 rounded-lg border border-green-400">
+                <h4 class="font-bold text-green-400 mb-3">Investment Thesis</h4>
+                <div class="space-y-3 text-sm">
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-check text-green-400 mt-1"></i>
+                        <span>Market leadership position in UK retail banking</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-check text-green-400 mt-1"></i>
+                        <span>Strong capital return policy (£3.6bn in 2024)</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-check text-green-400 mt-1"></i>
+                        <span>Digital transformation delivering measurable ROI</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-exclamation-triangle text-yellow-400 mt-1"></i>
+                        <span>Monitor motor finance provision uncertainty</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-exclamation-triangle text-yellow-400 mt-1"></i>
+                        <span>Interest rate sensitivity requires hedging</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white bg-opacity-10 p-5 rounded-lg">
+                <h4 class="font-bold text-white mb-3">Key Metrics to Watch</h4>
+                <div class="space-y-2 text-sm text-gray-300">
+                    <div class="flex justify-between">
+                        <span>NIM Quarterly Trend</span>
+                        <span class="text-green-400">2.95% → 3.03%</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Cost-to-Income Ratio</span>
+                        <span class="text-yellow-400">60.4% target ↓</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Digital Adoption</span>
+                        <span class="text-green-400">22.7M users</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>CET1 Ratio</span>
+                        <span class="text-green-400">13.5%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-6">
+                <p class="text-3xl font-bold text-green-400">BUY</p>
+                <p class="text-sm text-gray-400 mt-1">Long-term Value Proposition</p>
+                <p class="text-xs text-gray-500 mt-2">Target: >15% ROTE by 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-6 text-center text-gray-500 text-sm">
+        <p>Data sources: Lloyds Banking Group Annual Report 2024, Q1 2025 Trading Update, Regulatory Filings</p>
+        <p class="mt-1">Analysis date: January 2025 | For strategic planning purposes</p>
+    </div>
+</div>
+
+<script>
+    // Market Share Chart
+    new Chart(document.getElementById('marketShareChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['HSBC', 'Barclays', 'Lloyds', 'NatWest', 'Santander', 'Others'],
+            datasets: [{
+                data: [132.6, 55.3, 32.4, 46.6, 25, 40],
+                backgroundColor: ['#1e3a8a', '#3b82f6', '#006A4A', '#f59e0b', '#ef4444', '#9ca3af'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } }
+            }
+        }
+    });
+
+    // Financial Performance Chart
+    new Chart(document.getElementById('financialChart'), {
+        type: 'bar',
+        data: {
+            labels: ['2022', '2023', '2024'],
+            datasets: [{
+                label: 'Statutory Profit (£bn)',
+                data: [6.9, 5.5, 4.5],
+                backgroundColor: '#006A4A',
+                borderRadius: 4
+            }, {
+                label: 'Net Income (£bn)',
+                data: [18.0, 18.0, 17.1],
+                backgroundColor: '#374151',
+                borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'top' }
+            },
+            scales: {
+                y: { beginAtZero: true, grid: { display: false } },
+                x: { grid: { display: false } }
+            }
+        }
+    });
+
+    // IT Spend Chart
+    new Chart(document.getElementById('itSpendChart'), {
+        type: 'pie',
+        data: {
+            labels: ['Software', 'ICT Services', 'Network Infrastructure', 'Hardware', 'Consulting'],
+            datasets: [{
+                data: [35, 25, 20, 12, 8],
+                backgroundColor: ['#006A4A', '#059669', '#10b981', '#6b7280', '#9ca3af'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'right', labels: { boxWidth: 12, font: { size: 10 } } }
+            }
+        }
+    });
+
+    // Competitor Chart
+    new Chart(document.getElementById('competitorChart'), {
+        type: 'bar',
+        data: {
+            labels: ['HSBC', 'Barclays', 'NatWest', 'Lloyds', 'Santander'],
+            datasets: [{
+                label: 'Market Cap (£bn)',
+                data: [132.6, 55.3, 46.6, 32.4, 25],
+                backgroundColor: ['#1e3a8a', '#3b82f6', '#f59e0b', '#006A4A', '#ef4444'],
+                borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                x: { beginAtZero: true, grid: { display: false } },
+                y: { grid: { display: false } }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

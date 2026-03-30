@@ -1,0 +1,713 @@
+<style>
+.ppt-slide {
+    width: 100%;
+    height: 100%;
+    padding: 60px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    position: relative;
+}
+
+/* Cover Slide */
+.cover-slide {
+    background: linear-gradient(135deg, #0d4a3a 0%, #1a6b52 50%, #2d8b6b 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.cover-logo {
+    font-size: 64px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: -2px;
+}
+.cover-title {
+    font-size: 48px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.cover-subtitle {
+    font-size: 24px;
+    color: #e2e8f0;
+    margin-bottom: 60px;
+    font-weight: 300;
+}
+.cover-meta {
+    font-size: 16px;
+    color: #cbd5e0;
+    line-height: 2;
+}
+.cover-badge {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    background: rgba(255,255,255,0.1);
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* Content Slides */
+.content-slide {
+    background: #fafafa;
+}
+.slide-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #0d4a3a;
+    margin-bottom: 40px;
+    padding-bottom: 15px;
+    border-bottom: 4px solid #0d4a3a;
+}
+.slide-subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 25px;
+}
+
+/* Metrics */
+.metrics-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+}
+.metric-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+    border-top: 4px solid #0d4a3a;
+}
+.metric-value {
+    font-size: 42px;
+    font-weight: 700;
+    color: #0d4a3a;
+    margin-bottom: 10px;
+}
+.metric-label {
+    font-size: 14px;
+    color: #718096;
+}
+
+/* Highlight Box */
+.highlight-box {
+    background: #e6fffa;
+    border-left: 5px solid #38b2ac;
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 8px;
+}
+.highlight-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #285e61;
+    margin-bottom: 15px;
+}
+
+/* Tables */
+.table-container {
+    margin: 25px 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.table-title {
+    background: #0d4a3a;
+    color: white;
+    padding: 15px 20px;
+    font-weight: 600;
+    font-size: 16px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th {
+    background: #f7fafc;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #2d3748;
+    border-bottom: 2px solid #e2e8f0;
+}
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e2e8f0;
+}
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Division Cards */
+.division-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 25px 0;
+}
+.division-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.division-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0d4a3a;
+    margin-bottom: 10px;
+}
+.division-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #4a5568;
+}
+
+/* Acquisitions Grid */
+.acquisitions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 25px 0;
+}
+.acquisition-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.acquisition-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0d4a3a;
+    margin-bottom: 10px;
+}
+.acquisition-label {
+    font-size: 14px;
+    color: #718096;
+}
+
+/* Sustainability Grid */
+.sustainability-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 25px 0;
+}
+.sustainability-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.sustainability-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0d4a3a;
+    margin-bottom: 10px;
+}
+.sustainability-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #38b2ac;
+    margin-bottom: 5px;
+}
+.sustainability-desc {
+    font-size: 14px;
+    color: #4a5568;
+}
+
+/* Lists */
+.content-list {
+    margin: 20px 0;
+    padding-left: 25px;
+}
+.content-list li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Text Styles */
+.body-text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #2d3748;
+    margin: 20px 0;
+}
+.strong {
+    font-weight: 700;
+    color: #0d4a3a;
+}
+
+/* Section Divider */
+.section-divider {
+    height: 4px;
+    background: linear-gradient(90deg, #0d4a3a, #38b2ac);
+    margin: 40px 0;
+}
+</style>
+
+<!-- Slide 1: Cover -->
+<div class="ppt-slide cover-slide">
+    <div class="cover-badge">Strategic Analysis Series<br>Swedish Companies 2024</div>
+    <div class="cover-logo">ASSA ABLOY</div>
+    <div class="cover-title">Strategic Analysis Report 2024</div>
+    <div class="cover-subtitle">Global Leader in Access Solutions<br>Innovation-Driven Growth Strategy</div>
+    <div class="cover-meta">
+        <p><strong>Company:</strong> ASSA ABLOY AB (publ)</p>
+        <p><strong>Headquarters:</strong> Stockholm, Sweden</p>
+        <p><strong>Sector:</strong> Security & Access Solutions</p>
+        <p><strong>Analysis Date:</strong> January 2026</p>
+    </div>
+</div>
+
+<!-- Slide 2: Executive Summary -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Executive Summary</div>
+    <div class="body-text">ASSA ABLOY is the <strong class="strong">global leader in access solutions</strong>, helping billions of people experience a more open world every day. Founded in 1994 through the merger of ASSA (Sweden) and Abloy (Finland), the company has grown from a regional player into an international group with over <strong class="strong">63,000 employees</strong> and operations in more than <strong class="strong">70 countries</strong>.</div>
+    
+    <div class="metrics-row">
+        <div class="metric-card">
+            <div class="metric-value">SEK 150.2B</div>
+            <div class="metric-label">Total Revenue 2024</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">16.2%</div>
+            <div class="metric-label">Operating Margin 2024</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">63,000</div>
+            <div class="metric-label">Employees Globally</div>
+        </div>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">30th Anniversary Milestone</div>
+        <div class="body-text">In 2024, ASSA ABLOY celebrated its 30th anniversary and achieved its <strong class="strong">Scope 1 & 2 carbon emission reduction target one year ahead of plan</strong>. The company delivered record earnings with operating margin within the target range of 16-17%.</div>
+    </div>
+    
+    <div class="body-text">The company's strategy centers on four pillars: <strong class="strong">growth through customer relevance</strong>, <strong class="strong">product leadership through innovation</strong>, <strong class="strong">cost-efficiency in everything</strong>, and <strong class="strong">evolution through people</strong>.</div>
+</div>
+
+<!-- Slide 3: Company Overview -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Company Overview</div>
+    <div class="slide-subtitle">Business Model & Global Presence</div>
+    
+    <div class="body-text">ASSA ABLOY operates with a <strong class="strong">decentralized business model</strong> that enables quick response to customer needs while leveraging global scale advantages. The company has operations in more than <strong class="strong">70 countries</strong> and sales in over <strong class="strong">180 countries</strong>.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Key Business Metrics 2024</div>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>Value</th>
+                <th>Details</th>
+            </tr>
+            <tr>
+                <td><strong>Sites</strong></td>
+                <td>1,000+</td>
+                <td>Incl. 195 R&D sites, 200+ production facilities</td>
+            </tr>
+            <tr>
+                <td><strong>Acquisitions (30 years)</strong></td>
+                <td>~400</td>
+                <td>Leading access businesses integrated</td>
+            </tr>
+            <tr>
+                <td><strong>Brands</strong></td>
+                <td>190</td>
+                <td>Including ASSA ABLOY, Yale, HID, ABLOY</td>
+            </tr>
+            <tr>
+                <td><strong>Patents</strong></td>
+                <td>4,500+</td>
+                <td>Active patents globally</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="body-text"><strong class="strong">Revenue Geography:</strong> North America 54% | Europe 31% | Asia 7% | Oceania 4% | South America 3% | Africa 1%</div>
+</div>
+
+<!-- Slide 4: Organizational Structure -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Organizational Structure</div>
+    <div class="slide-subtitle">Five Global Divisions</div>
+    
+    <div class="body-text">ASSA ABLOY's operations are organizationally divided into five divisions: three regional and two global, each serving specific markets and customer needs.</div>
+    
+    <div class="division-grid">
+        <div class="division-card">
+            <div class="division-name">EMEIA</div>
+            <div class="division-desc">Europe, Middle East, India & Africa. Manufactures and sells mechanical, electromechanical and electronic locks, cylinders, security doors and fittings. Key brands: ABLOY, Mul-T-Lock, TESA, Vachette, Yale.</div>
+        </div>
+        <div class="division-card">
+            <div class="division-name">Americas</div>
+            <div class="division-desc">North & South America. Mechanical and electro-mechanical locks, cylinders, security doors and frames. Key brands: Sargent, Corbin Russwin, Curries, Medeco, Yale, Level Lock.</div>
+        </div>
+        <div class="division-card">
+            <div class="division-name">Asia Pacific</div>
+            <div class="division-desc">Asia & Oceania. Mechanical and electro-mechanical locks, digital door locks, high security doors. Key brands: Guli, Pan Pan, King, Lockwood, Yale.</div>
+        </div>
+        <div class="division-card">
+            <div class="division-name">Global Technologies</div>
+            <div class="division-desc">Worldwide electronic security solutions. Access control systems, secure card issuance, identification technology. Key brands: HID Global, ASSA ABLOY Global Solutions.</div>
+        </div>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Entrance Systems Division</div>
+        <div class="body-text">Global supplier of entrance automation products, components and service. Key brands: <strong class="strong">Besam, Crawford, Megadoor, Albany</strong>. Provides pedestrian doors, high-performance doors, hangar door solutions.</div>
+    </div>
+</div>
+
+<!-- Slide 5: Financial Performance -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Financial Performance 2024</div>
+    <div class="slide-subtitle">Record Earnings Achievement</div>
+    
+    <div class="body-text">ASSA ABLOY delivered strong financial performance in 2024, with record earnings and operating margin within the target range of 16-17%.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Financial Performance Summary (SEK Million)</div>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>2024</th>
+                <th>2023</th>
+                <th>Growth</th>
+            </tr>
+            <tr>
+                <td><strong>Net Sales</strong></td>
+                <td>150,162</td>
+                <td>140,716</td>
+                <td>+6.7%</td>
+            </tr>
+            <tr>
+                <td><strong>Operating Income (EBIT)</strong></td>
+                <td>24,296</td>
+                <td>22,185</td>
+                <td>+9.5%</td>
+            </tr>
+            <tr>
+                <td><strong>Operating Margin</strong></td>
+                <td>16.2%</td>
+                <td>15.8%</td>
+                <td>+0.4pp</td>
+            </tr>
+            <tr>
+                <td><strong>Net Income</strong></td>
+                <td>15,636</td>
+                <td>15,049</td>
+                <td>+3.9%</td>
+            </tr>
+            <tr>
+                <td><strong>EPS (SEK)</strong></td>
+                <td>14.09</td>
+                <td>13.54</td>
+                <td>+4.1%</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Growth Drivers 2024</div>
+        <div class="body-text"><strong class="strong">Organic Growth:</strong> -1% | <strong class="strong">Acquisitions:</strong> +8% | <strong class="strong">Currency Effects:</strong> 0%. Acquisitions contributed significantly with 26 companies added, representing approximately SEK 8 billion in annualized revenue.</div>
+    </div>
+</div>
+
+<!-- Slide 6: Q1 2025 Performance -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Q1 2025 Performance</div>
+    <div class="slide-subtitle">Continued Growth Momentum</div>
+    
+    <div class="body-text">ASSA ABLOY continued its growth trajectory in Q1 2025 with strong sales growth of 8%, demonstrating resilience in challenging market conditions.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Q1 2025 vs Q1 2024 Performance (SEK Million)</div>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>Q1 2025</th>
+                <th>Q1 2024</th>
+                <th>Growth</th>
+            </tr>
+            <tr>
+                <td><strong>Net Sales</strong></td>
+                <td>37,940</td>
+                <td>35,100</td>
+                <td>+8.1%</td>
+            </tr>
+            <tr>
+                <td><strong>Operating Income (EBIT)*</strong></td>
+                <td>5,653</td>
+                <td>5,409</td>
+                <td>+4.5%</td>
+            </tr>
+            <tr>
+                <td><strong>Operating Margin*</strong></td>
+                <td>14.9%</td>
+                <td>15.4%</td>
+                <td>-0.5pp</td>
+            </tr>
+            <tr>
+                <td><strong>Operating Cash Flow</strong></td>
+                <td>1,960</td>
+                <td>1,850</td>
+                <td>+5.9%</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Divisional Performance Q1 2025</div>
+        <div class="body-text"><strong class="strong">Americas:</strong> Good organic growth (+2%) | <strong class="strong">EMEIA:</strong> Stable (0%) | <strong class="strong">Global Technologies:</strong> Strong (+5%) | <strong class="strong">Entrance Systems:</strong> Decline (-2%) | <strong class="strong">Asia Pacific:</strong> Significant decline (-11%)</div>
+    </div>
+</div>
+
+<!-- Slide 7: Strategic Acquisitions -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Strategic Acquisitions</div>
+    <div class="slide-subtitle">Growth Through M&A</div>
+    
+    <div class="body-text">Acquisitions are a cornerstone of ASSA ABLOY's growth strategy. In 2024, the company completed <strong class="strong">26 acquisitions</strong>, adding approximately SEK 8 billion in annualized revenue.</div>
+    
+    <div class="acquisitions-grid">
+        <div class="acquisition-card">
+            <div class="acquisition-value">26</div>
+            <div class="acquisition-label">Acquisitions 2024</div>
+        </div>
+        <div class="acquisition-card">
+            <div class="acquisition-value">11</div>
+            <div class="acquisition-label">Acquisitions H1 2025</div>
+        </div>
+        <div class="acquisition-card">
+            <div class="acquisition-value">SEK 8B</div>
+            <div class="acquisition-label">2024 Annualized Revenue</div>
+        </div>
+    </div>
+    
+    <div class="table-container">
+        <div class="table-title">Recent Strategic Acquisitions</div>
+        <table>
+            <tr>
+                <th>Company</th>
+                <th>Focus Area</th>
+                <th>Strategic Rationale</th>
+            </tr>
+            <tr>
+                <td><strong>Level Lock</strong></td>
+                <td>Smart locks (US)</td>
+                <td>Strengthens digital offering, residential market</td>
+            </tr>
+            <tr>
+                <td><strong>Norshield Security</strong></td>
+                <td>Security products (US)</td>
+                <td>Physical access control expansion</td>
+            </tr>
+            <tr>
+                <td><strong>TeleAlarm Group</strong></td>
+                <td>Remote care (Switzerland)</td>
+                <td>Senior care technology entry</td>
+            </tr>
+            <tr>
+                <td><strong>3millID Corporation</strong></td>
+                <td>Physical access control (US)</td>
+                <td>US market strengthening</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- Slide 8: Innovation & Technology -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Innovation & Technology</div>
+    <div class="slide-subtitle">Product Leadership Through Innovation</div>
+    
+    <div class="body-text">ASSA ABLOY invests approximately <strong class="strong">4% of annual sales</strong> in research and development, driving the transition from mechanical to electromechanical and digital solutions.</div>
+    
+    <div class="metrics-row">
+        <div class="metric-card">
+            <div class="metric-value">4%</div>
+            <div class="metric-label">R&D Investment (% Sales)</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">550</div>
+            <div class="metric-label">New Products 2024</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">30%</div>
+            <div class="metric-label">Digital Solutions Revenue</div>
+        </div>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Electromechanical Growth Driver</div>
+        <div class="body-text">Electromechanical products represent the portfolio's most important growth driver, with <strong class="strong">8% currency-adjusted growth in 2024</strong> and a <strong class="strong">9% annual growth rate</strong> over the last 10 years in regional divisions.</div>
+    </div>
+    
+    <div class="content-list">
+        <li><strong>Aperio Technology:</strong> Wireless locking for cost-effective access control</li>
+        <li><strong>CLIQ Technology:</strong> Key-based access control with multiple management options</li>
+        <li><strong>SMARTair:</strong> Access control system with multiple credentials</li>
+        <li><strong>ecoLOGIC:</strong> AI-powered solution for automatic doors</li>
+        <li><strong>Mobile Access:</strong> Smart credentials stored on smartphones</li>
+    </div>
+</div>
+
+<!-- Slide 9: Sustainability Leadership -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Sustainability Leadership</div>
+    <div class="slide-subtitle">Science-Based Targets & Net Zero Commitment</div>
+    
+    <div class="body-text">ASSA ABLOY has committed to reaching <strong class="strong">net zero no later than 2050</strong>, with science-based targets aligned to a 1.5°C trajectory. The company achieved its Scope 1 & 2 carbon emission reduction target one year ahead of plan.</div>
+    
+    <div class="sustainability-grid">
+        <div class="sustainability-card">
+            <div class="sustainability-title">Carbon Footprint</div>
+            <div class="sustainability-value">-36%</div>
+            <div class="sustainability-desc">Scope 1 & 2 reduction vs 2019 baseline</div>
+        </div>
+        <div class="sustainability-card">
+            <div class="sustainability-title">Water Intensity</div>
+            <div class="sustainability-value">-56%</div>
+            <div class="sustainability-desc">Reduction vs 2019 baseline</div>
+        </div>
+        <div class="sustainability-card">
+            <div class="sustainability-title">Waste Reduction</div>
+            <div class="sustainability-value">-29%</div>
+            <div class="sustainability-desc">Non-hazardous waste intensity vs 2019</div>
+        </div>
+        <div class="sustainability-card">
+            <div class="sustainability-title">Supplier Audits</div>
+            <div class="sustainability-value">701</div>
+            <div class="sustainability-desc">Sustainability audits in 2024</div>
+        </div>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">2030 Science-Based Targets</div>
+        <div class="body-text"><strong class="strong">Scope 1 & 2:</strong> 50% reduction | <strong class="strong">Scope 3:</strong> 28% reduction | <strong class="strong">Net Zero:</strong> 2050 or earlier</div>
+    </div>
+</div>
+
+<!-- Slide 10: Manufacturing Footprint Programs -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Manufacturing Footprint Programs</div>
+    <div class="slide-subtitle">Operational Excellence Through MFP</div>
+    
+    <div class="body-text">Since 2006, ASSA ABLOY has been working with Manufacturing Footprint Programs (MFP) to capture cost savings and optimize manufacturing footprint. The 10th MFP was launched in Q1 2025.</div>
+    
+    <div class="table-container">
+        <div class="table-title">MFP Performance (2006-2025)</div>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>Cumulative Achievement</th>
+            </tr>
+            <tr>
+                <td><strong>Annual Savings (Realized)</strong></td>
+                <td>SEK 8.5 billion</td>
+            </tr>
+            <tr>
+                <td><strong>Restructuring Costs</strong></td>
+                <td>SEK 12.7 billion</td>
+            </tr>
+            <tr>
+                <td><strong>Factory Closures</strong></td>
+                <td>126</td>
+            </tr>
+            <tr>
+                <td><strong>Office/Warehouse Closures</strong></td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td><strong>Manning Reductions</strong></td>
+                <td>~24,500</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">10th Manufacturing Footprint Program (Q1 2025)</div>
+        <div class="body-text"><strong class="strong">Scope:</strong> 10 factory closures, 16 office/warehouse closures, 27 "conversion to assembly" projects | <strong class="strong">Investment:</strong> SEK 1,332M restructuring costs | <strong class="strong">Returns:</strong> SEK ~1B annualized savings by end 2027, payback <2 years, ~1,300 manning reduction</div>
+    </div>
+</div>
+
+<!-- Slide 11: Strategic Outlook -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Strategic Outlook & 2030 Vision</div>
+    
+    <div class="body-text">ASSA ABLOY has set ambitious financial targets, aiming to reach <strong class="strong">sales of SEK 250 billion in 2030</strong> while maintaining a 16-17% EBIT margin.</div>
+    
+    <div class="metrics-row">
+        <div class="metric-card">
+            <div class="metric-value">SEK 250B</div>
+            <div class="metric-label">Sales Target 2030</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">16-17%</div>
+            <div class="metric-label">EBIT Margin Target</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">SEK 150B</div>
+            <div class="metric-label">LTM 2025 Base</div>
+        </div>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Key Growth Drivers to 2030</div>
+        <div class="body-text"><strong class="strong">Organic Growth:</strong> Digital transformation, electromechanical solutions, smart buildings | <strong class="strong">M&A:</strong> Continued acquisition strategy | <strong class="strong">Innovation:</strong> New product launches, technology leadership | <strong class="strong">Sustainability:</strong> Sustainable solutions demand</div>
+    </div>
+    
+    <div class="content-list">
+        <li><strong>Digital Transformation:</strong> Accelerating shift to electromechanical and connected solutions</li>
+        <li><strong>Market Leadership:</strong> Strengthening position in access control and identification</li>
+        <li><strong>Operational Excellence:</strong> Continuous improvement through MFP and automation</li>
+        <li><strong>Sustainability Focus:</strong> Meeting growing demand for sustainable solutions</li>
+    </div>
+</div>
+
+<!-- Slide 12: Strategic Recommendations -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Strategic Outlook & Recommendations</div>
+    <div class="slide-subtitle">Strategic Recommendations</div>
+    
+    <div class="content-list">
+        <li><strong>Accelerate Digital Transformation:</strong> Continue investing in electromechanical and connected solutions to capture the shift from mechanical to digital access control</li>
+        <li><strong>Expand Recurring Revenue:</strong> Grow subscription-based models and software platforms to increase predictable revenue streams</li>
+        <li><strong>Strengthen M&A Capabilities:</strong> Continue strategic acquisitions to enter new markets and technologies while maintaining integration discipline</li>
+        <li><strong>Enhance Sustainability Leadership:</strong> Leverage sustainability achievements as competitive advantage and meet growing customer demand</li>
+        <li><strong>Invest in AI & Automation:</strong> Deploy AI-based solutions like ecoLOGIC across product portfolio for energy efficiency and customer value</li>
+        <li><strong>Focus on Emerging Markets:</strong> Expand presence in high-growth regions while strengthening positions in mature markets</li>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Investment Thesis</div>
+        <div class="body-text">ASSA ABLOY offers compelling investment opportunity as global leader in access solutions with proven M&A strategy, strong innovation pipeline, and clear path to continued profitable growth. The company's focus on digital transformation and sustainability positions it well for long-term value creation.</div>
+    </div>
+</div>
+
+<!-- Slide 13: Final Slide -->
+<div class="ppt-slide cover-slide">
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+        <div style="font-size: 48px; font-weight: 700; margin-bottom: 30px;">Thank You</div>
+        <div style="font-size: 24px; color: #e2e8f0; margin-bottom: 60px;">ASSA ABLOY Strategic Analysis 2024</div>
+        <div style="font-size: 16px; color: #cbd5e0; text-align: center; line-height: 2;">
+            <p><strong>Sources:</strong> ASSA ABLOY Annual Report 2024; Q1 2025 Report</p>
+            <p>Capital Markets Day 2025; Sustainability Summary 2024</p>
+            <p><strong>Analysis Date:</strong> January 2026</p>
+        </div>
+    </div>
+</div>

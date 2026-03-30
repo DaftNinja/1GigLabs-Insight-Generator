@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boeing - Strategic Analysis 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --boeing-blue: #0033A0;
+            --boeing-blue-light: #0056D6;
+            --boeing-blue-dark: #002266;
+            --boeing-silver: #A7A9AC;
+            --boeing-white: #FFFFFF;
+            --boeing-gray: #F5F7FA;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--boeing-gray);
+            overflow-x: hidden;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            width: 100%;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+        
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(0,51,160,0.95) 0%, rgba(0,34,102,0.9) 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,51,160,0.15);
+        }
+        
+        .stat-number {
+            background: linear-gradient(135deg, var(--boeing-blue) 0%, var(--boeing-blue-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .animate-fade-up {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .nav-dots {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(0,51,160,0.3);
+            margin: 0.75rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: var(--boeing-blue);
+            transform: scale(1.3);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-dots { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="https://www.1giglabs.com" target="_blank" rel="noopener noreferrer">
+                <img src="logo.png" alt="1GigLabs" class="h-10">
+            </a>
+            <div class="flex items-center gap-6">
+                <span class="text-sm text-gray-500">Strategic Analysis 2025</span>
+                <a href="index.html" class="px-4 py-2 bg-[#0033A0] text-white rounded-lg text-sm font-medium hover:bg-[#0056D6] transition-colors">
+                    All Reports
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="nav-dots">
+        <div class="nav-dot active" data-slide="0"></div>
+        <div class="nav-dot" data-slide="1"></div>
+        <div class="nav-dot" data-slide="2"></div>
+        <div class="nav-dot" data-slide="3"></div>
+        <div class="nav-dot" data-slide="4"></div>
+        <div class="nav-dot" data-slide="5"></div>
+    </div>
+
+    <div class="slide active" id="slide-0">
+        <div class="w-full min-h-screen gradient-overlay flex items-center justify-center pt-20 pb-12">
+            <div class="max-w-6xl mx-auto px-6 text-center">
+                <div class="animate-fade-up">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/80 text-sm mb-8">
+                        <i data-lucide="plane" class="w-4 h-4"></i>
+                        <span>Strategic Intelligence Profile</span>
+                    </div>
+                    <h1 class="text-6xl md:text-7xl font-bold text-white mb-6">The Boeing Company</h1>
+                    <p class="text-xl md:text-2xl text-white/80 mb-4">Strategic Analysis 2025</p>
+                    <div class="flex flex-wrap justify-center gap-4 mt-8 mb-12">
+                        <div class="px-6 py-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                            <p class="text-3xl font-bold text-white">$77.8B</p>
+                            <p class="text-sm text-white/70">Revenue 2024</p>
+                        </div>
+                        <div class="px-6 py-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                            <p class="text-3xl font-bold text-white">170K+</p>
+                            <p class="text-sm text-white/70">Employees</p>
+                        </div>
+                        <div class="px-6 py-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                            <p class="text-3xl font-bold text-white">528</p>
+                            <p class="text-sm text-white/70">Aircraft Delivered</p>
+                        </div>
+                        <div class="px-6 py-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                            <p class="text-3xl font-bold text-white">107</p>
+                            <p class="text-sm text-white/70">Years Legacy</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <span class="px-3 py-1 bg-white/20 text-white rounded-full text-sm">Commercial Aviation</span>
+                        <span class="px-3 py-1 bg-white/20 text-white rounded-full text-sm">Defence</span>
+                        <span class="px-3 py-1 bg-white/20 text-white rounded-full text-sm">Space</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-1">
+        <div class="w-full min-h-screen bg-white pt-24 pb-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Financial Performance</h2>
+                    <p class="text-gray-600 text-lg">Navigating transformation and recovery</p>
+                </div>
+                
+                <div class="grid md:grid-cols-4 gap-6 mb-12">
+                    <div class="bg-gradient-to-br from-[#0033A0] to-[#0056D6] p-6 rounded-2xl text-white">
+                        <i data-lucide="trending-up" class="w-8 h-8 mb-4 opacity-80"></i>
+                        <p class="text-3xl font-bold">$77.8B</p>
+                        <p class="text-sm opacity-80">Revenue 2024</p>
+                        <p class="text-xs text-blue-200 mt-2">+3% YoY</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-[#0033A0] to-[#0056D6] p-6 rounded-2xl text-white">
+                        <i data-lucide="briefcase" class="w-8 h-8 mb-4 opacity-80"></i>
+                        <p class="text-3xl font-bold">$520B</p>
+                        <p class="text-sm opacity-80">Order Backlog</p>
+                        <p class="text-xs text-blue-200 mt-2">5,600+ Aircraft</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-[#0033A0] to-[#0056D6] p-6 rounded-2xl text-white">
+                        <i data-lucide="shield" class="w-8 h-8 mb-4 opacity-80"></i>
+                        <p class="text-3xl font-bold">$24.9B</p>
+                        <p class="text-sm opacity-80">Defence Revenue</p>
+                        <p class="text-xs text-blue-200 mt-2">32% of Total</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-[#0033A0] to-[#0056D6] p-6 rounded-2xl text-white">
+                        <i data-lucide="wrench" class="w-8 h-8 mb-4 opacity-80"></i>
+                        <p class="text-3xl font-bold">$19.3B</p>
+                        <p class="text-sm opacity-80">Services Revenue</p>
+                        <p class="text-xs text-blue-200 mt-2">High Margin</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Revenue Trend (2020-2024)</h3>
+                        <canvas id="revenueChart" height="200"></canvas>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Revenue by Segment 2024</h3>
+                        <canvas id="segmentChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-2">
+        <div class="w-full min-h-screen bg-gray-50 pt-24 pb-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Business Segments</h2>
+                    <p class="text-gray-600 text-lg">Aerospace, defence, and services portfolio</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover border-t-4 border-[#0033A0]">
+                        <div class="w-14 h-14 bg-[#0033A0]/10 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="plane" class="w-7 h-7 text-[#0033A0]"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Commercial Airplanes</h3>
+                        <p class="text-4xl font-bold stat-number mb-4">$33.6B</p>
+                        <p class="text-gray-600 mb-6">43% of revenue. 737 MAX, 787 Dreamliner, 777X families serving global airlines.</p>
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">737 Family</span>
+                                <span class="font-semibold text-gray-900">Bestseller</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">787 Dreamliner</span>
+                                <span class="font-semibold text-gray-900">Wide-body Leader</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">777X</span>
+                                <span class="font-semibold text-gray-900">Next-Gen Launch</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover border-t-4 border-[#0056D6]">
+                        <div class="w-14 h-14 bg-[#0056D6]/10 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="shield" class="w-7 h-7 text-[#0056D6]"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Defence, Space & Security</h3>
+                        <p class="text-4xl font-bold stat-number mb-4">$24.9B</p>
+                        <p class="text-gray-600 mb-6">32% of revenue. Military aircraft, satellites, autonomous systems, and cyber security.</p>
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">F-15EX</span>
+                                <span class="font-semibold text-gray-900">Fighter Program</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">KC-46 Tanker</span>
+                                <span class="font-semibold text-gray-900">Refueling Fleet</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Satellites</span>
+                                <span class="font-semibold text-gray-900">Space Systems</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover border-t-4 border-[#A7A9AC]">
+                        <div class="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="wrench" class="w-7 h-7 text-gray-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Global Services</h3>
+                        <p class="text-4xl font-bold stat-number mb-4">$19.3B</p>
+                        <p class="text-gray-600 mb-6">25% of revenue. Parts, maintenance, training, digital solutions, and fleet support.</p>
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Aftermarket Parts</span>
+                                <span class="font-semibold text-gray-900">High Margin</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Training</span>
+                                <span class="font-semibold text-gray-900">Pilot Programs</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Digital Services</span>
+                                <span class="font-semibold text-gray-900">Growing Focus</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-3">
+        <div class="w-full min-h-screen bg-white pt-24 pb-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Technology & Innovation</h2>
+                    <p class="text-gray-600 text-lg">Engineering excellence and sustainable aviation</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-gradient-to-br from-[#0033A0] to-[#0056D6] rounded-2xl p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-6">R&D Investment</h3>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <p class="text-4xl font-bold">$3.1B</p>
+                                <p class="text-sm opacity-80">Annual R&D Spend</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl font-bold">4%</p>
+                                <p class="text-sm opacity-80">Of Revenue</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl font-bold">45K+</p>
+                                <p class="text-sm opacity-80">Engineers</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl font-bold">16K+</p>
+                                <p class="text-sm opacity-80">Active Patents</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Technology Focus Areas</h3>
+                        <canvas id="techSpendChart" height="180"></canvas>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="bg-gray-50 rounded-xl p-6 text-center card-hover">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="leaf" class="w-6 h-6 text-green-600"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">SAF Ready</h4>
+                        <p class="text-sm text-gray-600">100% SAF certified fleet</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-6 text-center card-hover">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="cpu" class="w-6 h-6 text-blue-600"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Digital Thread</h4>
+                        <p class="text-sm text-gray-600">End-to-end digital manufacturing</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-6 text-center card-hover">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="radio" class="w-6 h-6 text-purple-600"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Autonomous Systems</h4>
+                        <p class="text-sm text-gray-600">MQ-25, Loyal Wingman</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-6 text-center card-hover">
+                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="rocket" class="w-6 h-6 text-orange-600"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Space Launch</h4>
+                        <p class="text-sm text-gray-600">SLS, Starliner programs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-4">
+        <div class="w-full min-h-screen bg-gray-50 pt-24 pb-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Market Position</h2>
+                    <p class="text-gray-600 text-lg">Global aerospace and defence leader</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Market Share - Commercial Aircraft</h3>
+                        <canvas id="marketShareChart" height="200"></canvas>
+                    </div>
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Global Operations</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-gray-50 rounded-xl p-4">
+                                <p class="text-2xl font-bold text-[#0033A0]">65+</p>
+                                <p class="text-sm text-gray-600">Countries</p>
+                            </div>
+                            <div class="bg-gray-50 rounded-xl p-4">
+                                <p class="text-2xl font-bold text-[#0033A0]">140+</p>
+                                <p class="text-sm text-gray-600">Facilities</p>
+                            </div>
+                            <div class="bg-gray-50 rounded-xl p-4">
+                                <p class="text-2xl font-bold text-[#0033A0]">12K+</p>
+                                <p class="text-sm text-gray-600">Suppliers</p>
+                            </div>
+                            <div class="bg-gray-50 rounded-xl p-4">
+                                <p class="text-2xl font-bold text-[#0033A0]">150+</p>
+                                <p class="text-sm text-gray-600">Airline Customers</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 space-y-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-3 h-3 bg-[#0033A0] rounded-full"></div>
+                                <span class="text-sm text-gray-700">Seattle HQ - 737 & 777 Production</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-3 h-3 bg-[#0056D6] rounded-full"></div>
+                                <span class="text-sm text-gray-700">South Carolina - 787 Dreamliner</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-3 h-3 bg-[#A7A9AC] rounded-full"></div>
+                                <span class="text-sm text-gray-700">St. Louis - Defence Operations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-6">Key Partners & Suppliers</h3>
+                    <div class="grid md:grid-cols-5 gap-6">
+                        <div class="text-center p-4 bg-gray-50 rounded-xl">
+                            <p class="font-semibold text-gray-900">GE Aerospace</p>
+                            <p class="text-xs text-gray-500">Engine Partner</p>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-xl">
+                            <p class="font-semibold text-gray-900">Raytheon</p>
+                            <p class="text-xs text-gray-500">Defense Systems</p>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-xl">
+                            <p class="font-semibold text-gray-900">Spirit AeroSystems</p>
+                            <p class="text-xs text-gray-500">Aerostructures</p>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-xl">
+                            <p class="font-semibold text-gray-900">Honeywell</p>
+                            <p class="text-xs text-gray-500">Avionics</p>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-xl">
+                            <p class="font-semibold text-gray-900">Safran</p>
+                            <p class="text-xs text-gray-500">CFM Engines</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-5">
+        <div class="w-full min-h-screen gradient-overlay pt-24 pb-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-white mb-4">Strategic Outlook 2025-2030</h2>
+                    <p class="text-white/80 text-lg">Recovery, innovation, and sustainable growth</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-white">
+                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="trending-up" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Production Recovery</h3>
+                        <ul class="space-y-2 text-white/80 text-sm">
+                            <li>737 MAX: Target 50+/month</li>
+                            <li>787: Ramp to 10/month</li>
+                            <li>777X certification 2025</li>
+                            <li>Supply chain stabilization</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-white">
+                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="shield" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Defence Growth</h3>
+                        <ul class="space-y-2 text-white/80 text-sm">
+                            <li>F-15EX deliveries continue</li>
+                            <li>KC-46 tanker program</li>
+                            <li>Next-gen fighter competition</li>
+                            <li>Space exploration contracts</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-white">
+                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="leaf" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Sustainability</h3>
+                        <ul class="space-y-2 text-white/80 text-sm">
+                            <li>Net zero by 2050</li>
+                            <li>100% SAF capable fleet</li>
+                            <li>ecoDemonstrator program</li>
+                            <li>Sustainable manufacturing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-6">Strategic Milestones</h3>
+                    <div class="grid md:grid-cols-5 gap-4">
+                        <div class="text-center p-4 border-l-4 border-[#0033A0]">
+                            <p class="font-bold text-[#0033A0]">2025</p>
+                            <p class="text-sm text-gray-600">777X Entry into Service</p>
+                        </div>
+                        <div class="text-center p-4 border-l-4 border-[#0033A0]">
+                            <p class="font-bold text-[#0033A0]">2026</p>
+                            <p class="text-sm text-gray-600">737 MAX 50/month Rate</p>
+                        </div>
+                        <div class="text-center p-4 border-l-4 border-[#0033A0]">
+                            <p class="font-bold text-[#0033A0]">2028</p>
+                            <p class="text-sm text-gray-600">Next-Gen Narrowbody Decision</p>
+                        </div>
+                        <div class="text-center p-4 border-l-4 border-[#0033A0]">
+                            <p class="font-bold text-[#0033A0]">2030</p>
+                            <p class="text-sm text-gray-600">Positive Free Cash Flow</p>
+                        </div>
+                        <div class="text-center p-4 border-l-4 border-[#0056D6]">
+                            <p class="font-bold text-[#0033A0]">2050</p>
+                            <p class="text-sm text-gray-600">Net Zero Emissions</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <p class="text-white/60 text-sm">Prepared by 1GigLabs Strategic Research | January 2025</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.nav-dot');
+        let currentSlide = 0;
+        let isScrolling = false;
+
+        function showSlide(index) {
+            if (index < 0 || index >= slides.length) return;
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showSlide(index));
+        });
+
+        window.addEventListener('wheel', (e) => {
+            if (isScrolling) return;
+            isScrolling = true;
+            if (e.deltaY > 0 && currentSlide < slides.length - 1) {
+                showSlide(currentSlide + 1);
+            } else if (e.deltaY < 0 && currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+            setTimeout(() => { isScrolling = false; }, 800);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') showSlide(currentSlide + 1);
+            else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') showSlide(currentSlide - 1);
+        });
+
+        const revenueCtx = document.getElementById('revenueChart')?.getContext('2d');
+        if (revenueCtx) {
+            new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2020', '2021', '2022', '2023', '2024'],
+                    datasets: [{
+                        label: 'Revenue ($B)',
+                        data: [58.2, 62.3, 66.6, 77.8, 77.8],
+                        borderColor: '#0033A0',
+                        backgroundColor: 'rgba(0,51,160,0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        const segmentCtx = document.getElementById('segmentChart')?.getContext('2d');
+        if (segmentCtx) {
+            new Chart(segmentCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Commercial Airplanes', 'Defence, Space & Security', 'Global Services'],
+                    datasets: [{
+                        data: [43, 32, 25],
+                        backgroundColor: ['#0033A0', '#0056D6', '#A7A9AC'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+        }
+
+        const techCtx = document.getElementById('techSpendChart')?.getContext('2d');
+        if (techCtx) {
+            new Chart(techCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Sustainable Aviation', 'Digital Manufacturing', 'Defense Tech', 'Autonomous Systems', 'Space'],
+                    datasets: [{
+                        data: [30, 25, 22, 13, 10],
+                        backgroundColor: ['#0033A0', '#0056D6', '#3B82F6', '#60A5FA', '#A7A9AC']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    indexAxis: 'y',
+                    plugins: { legend: { display: false } },
+                    scales: { x: { beginAtZero: true, max: 35 } }
+                }
+            });
+        }
+
+        const marketCtx = document.getElementById('marketShareChart')?.getContext('2d');
+        if (marketCtx) {
+            new Chart(marketCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Boeing', 'Airbus', 'Others'],
+                    datasets: [{
+                        data: [42, 53, 5],
+                        backgroundColor: ['#0033A0', '#00205B', '#A7A9AC']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

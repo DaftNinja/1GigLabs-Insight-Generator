@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviva - Strategic Analysis 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --aviva-yellow: #FFCD00;
+            --aviva-yellow-dark: #E6B800;
+            --aviva-navy: #002855;
+            --aviva-navy-light: #003B7A;
+            --aviva-white: #FFFFFF;
+            --aviva-gray: #F5F7FA;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--aviva-gray);
+            overflow-x: hidden;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            width: 100%;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+        
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(0,40,85,0.95) 0%, rgba(0,59,122,0.9) 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,40,85,0.15);
+        }
+        
+        .stat-number {
+            background: linear-gradient(135deg, var(--aviva-navy) 0%, var(--aviva-yellow) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .animate-fade-up {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .nav-dots {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(0,40,85,0.3);
+            margin: 0.75rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: var(--aviva-yellow);
+            transform: scale(1.3);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-dots { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="https://www.1giglabs.com" target="_blank" rel="noopener noreferrer">
+                <img src="logo.png" alt="1GigLabs" class="h-10">
+            </a>
+            <div class="flex items-center gap-6">
+                <span class="text-sm text-gray-500">Strategic Analysis 2025</span>
+                <a href="index.html" class="px-4 py-2 bg-[#002855] text-white rounded-lg text-sm font-medium hover:bg-[#003B7A] transition-colors">
+                    All Reports
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="nav-dots">
+        <div class="nav-dot active" data-slide="0"></div>
+        <div class="nav-dot" data-slide="1"></div>
+        <div class="nav-dot" data-slide="2"></div>
+        <div class="nav-dot" data-slide="3"></div>
+        <div class="nav-dot" data-slide="4"></div>
+        <div class="nav-dot" data-slide="5"></div>
+    </div>
+
+    <div class="slide active" id="slide-0">
+        <div class="w-full min-h-screen gradient-overlay flex items-center justify-center pt-20 pb-12">
+            <div class="max-w-6xl mx-auto px-6 text-center">
+                <div class="animate-fade-up">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#FFCD00]/20 rounded-full text-[#FFCD00] text-sm mb-8">
+                        <i data-lucide="shield" class="w-4 h-4"></i>
+                        <span>Strategic Intelligence Profile</span>
+                    </div>
+                    <h1 class="text-6xl md:text-7xl font-bold text-white mb-6">Aviva plc</h1>
+                    <p class="text-xl md:text-2xl text-white/80 mb-4">Strategic Analysis 2025</p>
+                    <div class="flex flex-wrap justify-center gap-4 mt-8 mb-12">
+                        <div class="px-6 py-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                            <p class="text-3xl font-bold text-white">£47.2B</p>
+                            <p class="text-sm text-white/70">GWP 2024</p>
+                        </div>
+                        <div class="px-6 py-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                            <p class="text-3xl font-bold text-white">22K+</p>
+                            <p class="text-sm text-white/70">Employees</p>
+                        </div>
+                        <div class="px-6 py-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                            <p class="text-3xl font-bold text-white">18M+</p>
+                            <p class="text-sm text-white/70">Customers</p>
+                        </div>
+                        <div class="px-6 py-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                            <p class="text-3xl font-bold text-white">#1</p>
+                            <p class="text-sm text-white/70">UK Insurer</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <span class="px-3 py-1 bg-[#FFCD00]/20 text-[#FFCD00] rounded-full text-sm">Insurance</span>
+                        <span class="px-3 py-1 bg-[#FFCD00]/20 text-[#FFCD00] rounded-full text-sm">Wealth Management</span>
+                        <span class="px-3 py-1 bg-[#FFCD00]/20 text-[#FFCD00] rounded-full text-sm">Retirement</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-1">
+        <div class="w-full min-h-screen bg-white pt-24 pb-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Financial Performance</h2>
+                    <p class="text-gray-600 text-lg">Strong growth across all segments</p>
+                </div>
+                
+                <div class="grid md:grid-cols-4 gap-6 mb-12">
+                    <div class="bg-gradient-to-br from-[#002855] to-[#003B7A] p-6 rounded-2xl text-white">
+                        <i data-lucide="trending-up" class="w-8 h-8 mb-4 opacity-80"></i>
+                        <p class="text-3xl font-bold">£47.2B</p>
+                        <p class="text-sm opacity-80">Gross Written Premium</p>
+                        <p class="text-xs text-[#FFCD00] mt-2">+8% YoY</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-[#002855] to-[#003B7A] p-6 rounded-2xl text-white">
+                        <i data-lucide="pie-chart" class="w-8 h-8 mb-4 opacity-80"></i>
+                        <p class="text-3xl font-bold">£1.8B</p>
+                        <p class="text-sm opacity-80">Operating Profit</p>
+                        <p class="text-xs text-[#FFCD00] mt-2">+12% YoY</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-[#002855] to-[#003B7A] p-6 rounded-2xl text-white">
+                        <i data-lucide="wallet" class="w-8 h-8 mb-4 opacity-80"></i>
+                        <p class="text-3xl font-bold">205%</p>
+                        <p class="text-sm opacity-80">Solvency II Ratio</p>
+                        <p class="text-xs text-[#FFCD00] mt-2">Strong Capital</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-[#002855] to-[#003B7A] p-6 rounded-2xl text-white">
+                        <i data-lucide="coins" class="w-8 h-8 mb-4 opacity-80"></i>
+                        <p class="text-3xl font-bold">35.4p</p>
+                        <p class="text-sm opacity-80">Dividend per Share</p>
+                        <p class="text-xs text-[#FFCD00] mt-2">+8% Increase</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Revenue Trend (2020-2024)</h3>
+                        <canvas id="revenueChart" height="200"></canvas>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Revenue by Segment 2024</h3>
+                        <canvas id="segmentChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-2">
+        <div class="w-full min-h-screen bg-gray-50 pt-24 pb-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Business Segments</h2>
+                    <p class="text-gray-600 text-lg">Diversified insurance and wealth portfolio</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover border-t-4 border-[#002855]">
+                        <div class="w-14 h-14 bg-[#002855]/10 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="shield" class="w-7 h-7 text-[#002855]"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">General Insurance</h3>
+                        <p class="text-4xl font-bold stat-number mb-4">£10.8B</p>
+                        <p class="text-gray-600 mb-6">UK's #1 general insurer covering personal, commercial, and specialty lines.</p>
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Motor</span>
+                                <span class="font-semibold text-gray-900">4.5M policies</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Home</span>
+                                <span class="font-semibold text-gray-900">3.8M policies</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Commercial</span>
+                                <span class="font-semibold text-gray-900">1M+ SMEs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover border-t-4 border-[#FFCD00]">
+                        <div class="w-14 h-14 bg-[#FFCD00]/20 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="heart" class="w-7 h-7 text-[#002855]"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Life & Health</h3>
+                        <p class="text-4xl font-bold stat-number mb-4">£24.6B</p>
+                        <p class="text-gray-600 mb-6">Protection, annuities, and health insurance for individuals and groups.</p>
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Protection</span>
+                                <span class="font-semibold text-gray-900">UK Leader</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Annuities</span>
+                                <span class="font-semibold text-gray-900">£8B+ sales</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Health</span>
+                                <span class="font-semibold text-gray-900">Growing Segment</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover border-t-4 border-[#003B7A]">
+                        <div class="w-14 h-14 bg-[#003B7A]/10 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="landmark" class="w-7 h-7 text-[#003B7A]"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Wealth & Retirement</h3>
+                        <p class="text-4xl font-bold stat-number mb-4">£11.8B</p>
+                        <p class="text-gray-600 mb-6">Workplace pensions, platform services, and financial planning.</p>
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">AUM</span>
+                                <span class="font-semibold text-gray-900">£186B</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Platform Users</span>
+                                <span class="font-semibold text-gray-900">1.5M+</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Workplace Schemes</span>
+                                <span class="font-semibold text-gray-900">4M+ members</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-3">
+        <div class="w-full min-h-screen bg-white pt-24 pb-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Technology & Digital</h2>
+                    <p class="text-gray-600 text-lg">Investing in digital transformation</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-gradient-to-br from-[#002855] to-[#003B7A] rounded-2xl p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-6">Technology Investment</h3>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <p class="text-4xl font-bold">£650M</p>
+                                <p class="text-sm opacity-80">Annual Tech Spend</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl font-bold">4.5%</p>
+                                <p class="text-sm opacity-80">Of Revenue</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl font-bold">3,500+</p>
+                                <p class="text-sm opacity-80">Tech Staff</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl font-bold">85%</p>
+                                <p class="text-sm opacity-80">Cloud Migration</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Tech Spend Allocation</h3>
+                        <canvas id="techSpendChart" height="180"></canvas>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="bg-gray-50 rounded-xl p-6 text-center card-hover">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="smartphone" class="w-6 h-6 text-blue-600"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">MyAviva App</h4>
+                        <p class="text-sm text-gray-600">5M+ active users, 4.7 rating</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-6 text-center card-hover">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="brain" class="w-6 h-6 text-purple-600"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">AI Claims</h4>
+                        <p class="text-sm text-gray-600">40% faster processing</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-6 text-center card-hover">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="cloud" class="w-6 h-6 text-green-600"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Cloud First</h4>
+                        <p class="text-sm text-gray-600">AWS & Azure partnership</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-6 text-center card-hover">
+                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="shield-check" class="w-6 h-6 text-orange-600"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Cyber Security</h4>
+                        <p class="text-sm text-gray-600">ISO 27001 certified</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-4">
+        <div class="w-full min-h-screen bg-gray-50 pt-24 pb-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Market Position</h2>
+                    <p class="text-gray-600 text-lg">UK's leading diversified insurer</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-6">UK Market Share</h3>
+                        <canvas id="marketShareChart" height="200"></canvas>
+                    </div>
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Competitive Strengths</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl">
+                                <div class="w-10 h-10 bg-[#FFCD00] rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="users" class="w-5 h-5 text-[#002855]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Brand Recognition</h4>
+                                    <p class="text-sm text-gray-600">Top 3 most trusted UK insurance brand</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl">
+                                <div class="w-10 h-10 bg-[#FFCD00] rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="building" class="w-5 h-5 text-[#002855]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Distribution Scale</h4>
+                                    <p class="text-sm text-gray-600">Direct, broker, and partnership channels</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl">
+                                <div class="w-10 h-10 bg-[#FFCD00] rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="globe" class="w-5 h-5 text-[#002855]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Canada & Ireland</h4>
+                                    <p class="text-sm text-gray-600">Strong positions in key international markets</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-6">Key Partners</h3>
+                    <div class="grid md:grid-cols-5 gap-6">
+                        <div class="text-center p-4 bg-gray-50 rounded-xl">
+                            <p class="font-semibold text-gray-900">Accenture</p>
+                            <p class="text-xs text-gray-500">Digital Transformation</p>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-xl">
+                            <p class="font-semibold text-gray-900">AWS</p>
+                            <p class="text-xs text-gray-500">Cloud Infrastructure</p>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-xl">
+                            <p class="font-semibold text-gray-900">Tesco</p>
+                            <p class="text-xs text-gray-500">Bancassurance</p>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-xl">
+                            <p class="font-semibold text-gray-900">Guidewire</p>
+                            <p class="text-xs text-gray-500">Core Systems</p>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-xl">
+                            <p class="font-semibold text-gray-900">FNZ</p>
+                            <p class="text-xs text-gray-500">Platform Technology</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide-5">
+        <div class="w-full min-h-screen gradient-overlay pt-24 pb-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-white mb-4">Strategic Outlook 2025-2028</h2>
+                    <p class="text-white/80 text-lg">Growth, simplification, and sustainability</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-white">
+                        <div class="w-12 h-12 bg-[#FFCD00]/20 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="trending-up" class="w-6 h-6 text-[#FFCD00]"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Growth Priorities</h3>
+                        <ul class="space-y-2 text-white/80 text-sm">
+                            <li>Expand wealth & workplace pensions</li>
+                            <li>Grow bulk purchase annuities</li>
+                            <li>Commercial insurance expansion</li>
+                            <li>Canada market share growth</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-white">
+                        <div class="w-12 h-12 bg-[#FFCD00]/20 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="target" class="w-6 h-6 text-[#FFCD00]"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Financial Targets</h3>
+                        <ul class="space-y-2 text-white/80 text-sm">
+                            <li>12-14% operating profit CAGR</li>
+                            <li>£1.8B cash remittance target</li>
+                            <li>COR &lt;95% general insurance</li>
+                            <li>£300M cost savings by 2026</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-white">
+                        <div class="w-12 h-12 bg-[#FFCD00]/20 rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="leaf" class="w-6 h-6 text-[#FFCD00]"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Sustainability Goals</h3>
+                        <ul class="space-y-2 text-white/80 text-sm">
+                            <li>Net zero operations by 2030</li>
+                            <li>Net zero investments by 2040</li>
+                            <li>£10B climate transition investment</li>
+                            <li>100% renewable energy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-6">Strategic Timeline</h3>
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div class="text-center p-4 border-l-4 border-[#002855]">
+                            <p class="font-bold text-[#002855]">2025</p>
+                            <p class="text-sm text-gray-600">Complete platform modernization</p>
+                        </div>
+                        <div class="text-center p-4 border-l-4 border-[#002855]">
+                            <p class="font-bold text-[#002855]">2026</p>
+                            <p class="text-sm text-gray-600">£300M cost savings achieved</p>
+                        </div>
+                        <div class="text-center p-4 border-l-4 border-[#002855]">
+                            <p class="font-bold text-[#002855]">2028</p>
+                            <p class="text-sm text-gray-600">£2.5B operating profit target</p>
+                        </div>
+                        <div class="text-center p-4 border-l-4 border-[#FFCD00]">
+                            <p class="font-bold text-[#002855]">2030</p>
+                            <p class="text-sm text-gray-600">Net zero operations achieved</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <p class="text-white/60 text-sm">Prepared by 1GigLabs Strategic Research | January 2025</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.nav-dot');
+        let currentSlide = 0;
+        let isScrolling = false;
+
+        function showSlide(index) {
+            if (index < 0 || index >= slides.length) return;
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showSlide(index));
+        });
+
+        window.addEventListener('wheel', (e) => {
+            if (isScrolling) return;
+            isScrolling = true;
+            if (e.deltaY > 0 && currentSlide < slides.length - 1) {
+                showSlide(currentSlide + 1);
+            } else if (e.deltaY < 0 && currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+            setTimeout(() => { isScrolling = false; }, 800);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') showSlide(currentSlide + 1);
+            else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') showSlide(currentSlide - 1);
+        });
+
+        const revenueCtx = document.getElementById('revenueChart')?.getContext('2d');
+        if (revenueCtx) {
+            new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2020', '2021', '2022', '2023', '2024'],
+                    datasets: [{
+                        label: 'GWP (£B)',
+                        data: [36.2, 38.5, 41.3, 43.8, 47.2],
+                        borderColor: '#002855',
+                        backgroundColor: 'rgba(0,40,85,0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        const segmentCtx = document.getElementById('segmentChart')?.getContext('2d');
+        if (segmentCtx) {
+            new Chart(segmentCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Life & Health', 'Wealth & Retirement', 'General Insurance'],
+                    datasets: [{
+                        data: [52, 25, 23],
+                        backgroundColor: ['#002855', '#FFCD00', '#003B7A'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+        }
+
+        const techCtx = document.getElementById('techSpendChart')?.getContext('2d');
+        if (techCtx) {
+            new Chart(techCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Digital & Customer', 'Cloud & Infrastructure', 'Data & Analytics', 'Core Systems', 'Security'],
+                    datasets: [{
+                        data: [30, 25, 20, 15, 10],
+                        backgroundColor: ['#002855', '#003B7A', '#FFCD00', '#0066CC', '#333']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    indexAxis: 'y',
+                    plugins: { legend: { display: false } },
+                    scales: { x: { beginAtZero: true, max: 35 } }
+                }
+            });
+        }
+
+        const marketCtx = document.getElementById('marketShareChart')?.getContext('2d');
+        if (marketCtx) {
+            new Chart(marketCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['GI Personal', 'GI Commercial', 'Life Protection', 'Workplace Pensions'],
+                    datasets: [{
+                        label: 'Market Share %',
+                        data: [12, 8, 18, 15],
+                        backgroundColor: ['#002855', '#003B7A', '#FFCD00', '#0066CC']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, max: 25 } }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

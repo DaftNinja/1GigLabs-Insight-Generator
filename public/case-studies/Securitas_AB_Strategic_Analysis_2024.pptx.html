@@ -1,0 +1,629 @@
+<style>
+.ppt-slide {
+    width: 100%;
+    height: 100%;
+    padding: 50px 60px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Cover Slide */
+.cover-slide {
+    background: linear-gradient(135deg, #1a365d 0%, #2d5a87 50%, #3d7ab5 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.cover-logo {
+    font-size: 64px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    letter-spacing: -2px;
+}
+.cover-title {
+    font-size: 42px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+.cover-subtitle {
+    font-size: 22px;
+    color: #e2e8f0;
+    margin-bottom: 50px;
+    font-weight: 300;
+}
+.cover-meta {
+    font-size: 15px;
+    color: #cbd5e0;
+    line-height: 1.8;
+}
+.cover-badge {
+    position: absolute;
+    top: 45px;
+    right: 55px;
+    background: rgba(255,255,255,0.1);
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+/* Content Slides */
+.content-slide {
+    background: #fafafa;
+}
+.slide-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 30px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #1a365d;
+}
+.slide-subtitle {
+    font-size: 22px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 20px;
+}
+
+/* Metrics */
+.metrics-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 25px 0;
+}
+.metric-card {
+    background: white;
+    padding: 25px 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    text-align: center;
+    flex: 1;
+    margin: 0 8px;
+    border-top: 3px solid #1a365d;
+}
+.metric-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 8px;
+}
+.metric-label {
+    font-size: 13px;
+    color: #718096;
+}
+
+/* Highlight Box */
+.highlight-box {
+    background: #e8f4fd;
+    border-left: 4px solid #3182ce;
+    padding: 20px 22px;
+    margin: 20px 0;
+    border-radius: 6px;
+}
+.highlight-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2c5282;
+    margin-bottom: 12px;
+}
+
+/* Tables */
+.table-container {
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+.table-title {
+    background: #1a365d;
+    color: white;
+    padding: 12px 18px;
+    font-weight: 600;
+    font-size: 15px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th {
+    background: #f7fafc;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    color: #2d3748;
+    border-bottom: 2px solid #e2e8f0;
+    font-size: 14px;
+}
+td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 14px;
+}
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Division Cards */
+.division-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 20px 0;
+}
+.division-card {
+    background: white;
+    padding: 22px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+.division-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 8px;
+}
+.division-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #4a5568;
+    margin-bottom: 10px;
+}
+.division-revenue {
+    font-size: 14px;
+    font-weight: 600;
+    color: #dd6b20;
+}
+
+/* Sustainability Grid */
+.sustainability-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin: 20px 0;
+}
+.sustainability-card {
+    background: white;
+    padding: 22px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+.sustainability-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 8px;
+}
+.sustainability-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: #38a169;
+    margin-bottom: 4px;
+}
+.sustainability-desc {
+    font-size: 13px;
+    color: #4a5568;
+}
+
+/* Lists */
+.content-list {
+    margin: 15px 0;
+    padding-left: 22px;
+}
+.content-list li {
+    margin-bottom: 8px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* Text Styles */
+.body-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #2d3748;
+    margin: 15px 0;
+}
+.strong {
+    font-weight: 700;
+    color: #1a365d;
+}
+
+/* Image Styles */
+.slide-image {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+.image-caption {
+    font-size: 12px;
+    color: #718096;
+    text-align: center;
+    margin-top: 8px;
+}
+
+/* Two Column Layout */
+.two-column {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+.two-column .column {
+    flex: 1;
+}
+</style>
+
+<!-- Slide 1: Cover -->
+<div class="ppt-slide cover-slide">
+    <div class="cover-badge">Strategic Analysis Series<br>Swedish Companies 2024</div>
+    <div class="cover-logo">Securitas</div>
+    <div class="cover-title">Strategic Analysis Report 2024</div>
+    <div class="cover-subtitle">Intelligent Security Solutions Partner<br>Transforming the Security Industry</div>
+    <div class="cover-meta">
+        <p><strong>Company:</strong> Securitas AB (publ)</p>
+        <p><strong>Headquarters:</strong> Stockholm, Sweden</p>
+        <p><strong>Sector:</strong> Security Services & Technology</p>
+        <p><strong>Founded:</strong> 1934 | <strong>Analysis Date:</strong> January 2026</p>
+    </div>
+</div>
+
+<!-- Slide 2: Executive Summary -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Executive Summary</div>
+    <div class="body-text">Securitas is a <strong class="strong">world-leading safety and security solutions partner</strong> that helps make the world a safer place. With nine decades of deep experience, the company leverages technology and an innovative, holistic approach to transform the security industry.</div>
+    
+    <div class="metrics-row">
+        <div class="metric-card">
+            <div class="metric-value">SEK 162B</div>
+            <div class="metric-label">Total Sales 2024</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">336,000</div>
+            <div class="metric-label">Employees Globally</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">44</div>
+            <div class="metric-label">Markets Worldwide</div>
+        </div>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">2024 Strong Performance</div>
+        <div class="body-text">Securitas achieved <strong class="strong">5% organic sales growth</strong> in 2024 with an <strong class="strong">operating margin of 6.9%</strong> (vs 6.5% in 2023). The company strengthened its operating margin to <strong class="strong">7.3% in Q4 2024</strong>, demonstrating successful strategic execution.</div>
+    </div>
+</div>
+
+<!-- Slide 3: Company Overview -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Company Overview</div>
+    <div class="slide-subtitle">Global Security Solutions Leader</div>
+    
+    <div class="body-text">Founded in 1934, Securitas has evolved from a traditional guarding company into a technology-enabled security solutions provider. The company's transformation accelerated under CEO Magnus Ahlqvist since 2018.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Key Business Metrics 2024</div>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>Value</th>
+                <th>Details</th>
+            </tr>
+            <tr>
+                <td><strong>Branch Offices</strong></td>
+                <td>~1,800</td>
+                <td>Local presence globally</td>
+            </tr>
+            <tr>
+                <td><strong>Net Debt/EBITDA</strong></td>
+                <td>2.5</td>
+                <td>Strong balance sheet</td>
+            </tr>
+            <tr>
+                <td><strong>Operating Cash Flow</strong></td>
+                <td>84%</td>
+                <td>Strong cash generation</td>
+            </tr>
+            <tr>
+                <td><strong>Technology & Solutions</strong></td>
+                <td>33%</td>
+                <td>Share of total sales</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- Slide 4: Business Segments -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Business Segments</div>
+    <div class="slide-subtitle">Three Regional Divisions</div>
+    
+    <div class="body-text">Securitas is organized into three main business segments: North America, Europe, and Ibero-America, complemented by an AMEA (Africa, Middle East, Asia, Australia) division.</div>
+    
+    <div class="division-grid">
+        <div class="division-card">
+            <div class="division-name">Securitas North America</div>
+            <div class="division-desc">Operations in US, Canada, and Mexico. Organized in three units: Guarding, Technology, and Pinkerton Corporate Risk Management.</div>
+            <div class="division-revenue">40% of Group sales | 9.1% operating margin</div>
+        </div>
+        <div class="division-card">
+            <div class="division-name">Securitas Europe</div>
+            <div class="division-desc">Operations across 21 European countries. Major markets include Germany (20%), France (16%), Sweden (11%), Belgium (8%), and UK (7%).</div>
+            <div class="division-revenue">43% of Group sales | Leading European position</div>
+        </div>
+        <div class="division-card">
+            <div class="division-name">Securitas Ibero-America</div>
+            <div class="division-desc">Operations in Spain, Portugal, and Latin America. Spain represents 61% of regional sales with strong growth potential.</div>
+            <div class="division-revenue">9% of Group sales | Highest regional margins</div>
+        </div>
+        <div class="division-card">
+            <div class="division-name">AMEA & Other</div>
+            <div class="division-desc">Operations across 11 countries including Australia, China, India, and South Africa. Includes Securitas Critical Infrastructure Services.</div>
+            <div class="division-revenue">8% of Group sales | Strategic growth areas</div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 5: Financial Performance 2024 -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Financial Performance 2024</div>
+    <div class="slide-subtitle">Strong Growth & Margin Improvement</div>
+    
+    <div class="body-text">Securitas delivered strong financial performance in 2024 with improved margins, robust cash flow, and successful strategic execution across all business segments.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Financial Performance Summary (SEK Million)</div>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>2024</th>
+                <th>2023</th>
+                <th>Growth</th>
+            </tr>
+            <tr>
+                <td><strong>Total Sales</strong></td>
+                <td>161,921</td>
+                <td>157,249</td>
+                <td>+3.0%</td>
+            </tr>
+            <tr>
+                <td><strong>Operating Income</strong></td>
+                <td>11,200</td>
+                <td>10,247</td>
+                <td>+9.3%</td>
+            </tr>
+            <tr>
+                <td><strong>Operating Margin</strong></td>
+                <td>6.9%</td>
+                <td>6.5%</td>
+                <td>+0.4pp</td>
+            </tr>
+            <tr>
+                <td><strong>EPS (SEK)</strong></td>
+                <td>9.01</td>
+                <td>2.24</td>
+                <td>+302%</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Q4 2024 Strong Finish</div>
+        <div class="body-text">Q4 2024 delivered <strong class="strong">4% organic growth</strong> with operating margin improving to <strong class="strong">7.3%</strong>. Cash flow was strong at 153% of operating income, supporting accelerated deleveraging.</div>
+    </div>
+</div>
+
+<!-- Slide 6: Technology & Solutions -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Technology & Solutions</div>
+    <div class="slide-subtitle">Intelligent Security Platform</div>
+    
+    <div class="body-text">Securitas is transforming the security industry through technology integration, AI-powered analytics, and digital solutions that provide comprehensive protection for clients.</div>
+    
+    <div class="content-list">
+        <li><strong>Global Security Operation Centers (GSOCs):</strong> Centralized command hubs monitoring thousands of sites with real-time incident response</li>
+        <li><strong>AI-Powered Video Analytics:</strong> Intelligent cameras and software detecting anomalies, intrusions, and behavioral patterns</li>
+        <li><strong>Integrated Access Control:</strong> Design, installation, and management of electronic access paired with intrusion detection</li>
+        <li><strong>Security-as-a-Service:</strong> Subscription models where clients pay for outcomes rather than hours or devices</li>
+        <li><strong>Remote Monitoring:</strong> 24/7 surveillance with automated alerts and rapid response capabilities</li>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Technology Growth Strategy</div>
+        <div class="body-text">Securitas targets <strong class="strong">8-10% annual real sales growth</strong> in Technology & Solutions. The segment represented <strong class="strong">33% of total sales</strong> in 2024 and achieved <strong class="strong">6% real growth</strong>.</div>
+    </div>
+</div>
+
+<!-- Slide 7: STANLEY Security Acquisition -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">STANLEY Security Acquisition</div>
+    <div class="slide-subtitle">Transformative Strategic Move</div>
+    
+    <div class="body-text">In 2022, Securitas completed the transformative acquisition of STANLEY Security for USD 3.2 billion, significantly strengthening its technology capabilities and market position.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Acquisition Impact & Synergies</div>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td><strong>Purchase Price</strong></td>
+                <td>USD 3.2 billion</td>
+            </tr>
+            <tr>
+                <td><strong>2021 STANLEY Sales</strong></td>
+                <td>~USD 1.7 billion</td>
+            </tr>
+            <tr>
+                <td><strong>Recurring Revenue</strong></td>
+                <td>40% of STANLEY sales</td>
+            </tr>
+            <tr>
+                <td><strong>Cost Synergies Target</strong></td>
+                <td>USD 50 million (achieved)</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Strategic Benefits</div>
+        <div class="body-text">The acquisition more than <strong class="strong">doubled Securitas' electronic security business</strong>. Going forward, approximately <strong class="strong">50% of profit contribution</strong> is generated from higher-margin technology and solutions sales.</div>
+    </div>
+</div>
+
+<!-- Slide 8: Sustainability Leadership -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Sustainability Leadership</div>
+    <div class="slide-subtitle">Science-Based Climate Targets</div>
+    
+    <div class="body-text">Securitas became the <strong class="strong">first global security company</strong> to have its climate targets validated by the Science Based Targets Initiative (SBTi), committing to reduce absolute Scope 1, 2, and 3 emissions by 42% by 2030.</div>
+    
+    <div class="sustainability-grid">
+        <div class="sustainability-card">
+            <div class="sustainability-title">Emission Reduction Target</div>
+            <div class="sustainability-value">42%</div>
+            <div class="sustainability-desc">By 2030 (vs 2022 baseline)</div>
+        </div>
+        <div class="sustainability-card">
+            <div class="sustainability-title">Climate Recognition</div>
+            <div class="sustainability-value">Top 40</div>
+            <div class="sustainability-desc">US government suppliers</div>
+        </div>
+        <div class="sustainability-card">
+            <div class="sustainability-title">Electric Vehicle Fleet</div>
+            <div class="sustainability-value">25%</div>
+            <div class="sustainability-desc">Target by 2025</div>
+        </div>
+        <div class="sustainability-card">
+            <div class="sustainability-title">CDP Score</div>
+            <div class="sustainability-value">B</div>
+            <div class="sustainability-desc">Above peer average</div>
+        </div>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">New Sustainability Strategy (2025)</div>
+        <div class="body-text">Built on three pillars: <strong class="strong">Develop People</strong>, <strong class="strong">Decarbonize Business</strong>, and <strong class="strong">Demonstrate Integrity</strong>. By 2027, Securitas will expand carbon data to services.</div>
+    </div>
+</div>
+
+<!-- Slide 9: Strategic Transformation -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Strategic Transformation</div>
+    <div class="slide-subtitle">Five-Year Journey (2018-2023)</div>
+    
+    <div class="body-text">Under CEO Magnus Ahlqvist, Securitas embarked on a comprehensive five-year transformation to become an intelligent protective solutions partner, moving beyond traditional guarding services.</div>
+    
+    <div class="content-list">
+        <li><strong>Strategic Reset:</strong> Formulated new five-year strategy with IMD Business School partnership</li>
+        <li><strong>Technology Integration:</strong> Shifted from "boots-on-the-ground" to tech-enabled solutions</li>
+        <li><strong>Digital Capabilities:</strong> Developed global client platform and AI-powered analytics</li>
+        <li><strong>Portfolio Management:</strong> Divested non-core assets and optimized contract portfolio</li>
+        <li><strong>Cultural Transformation:</strong> Built winning culture focused on innovation and client value</li>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Transformation Results</div>
+        <div class="body-text">The transformation delivered <strong class="strong">19 consecutive quarters of operating margin improvement</strong> by Q3 2025. Securitas achieved record-high operating margin and 19% EPS growth in Q3 2025.</div>
+    </div>
+</div>
+
+<!-- Slide 10: Business Optimization -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Business Optimization</div>
+    <div class="slide-subtitle">Cost Efficiency & Portfolio Management</div>
+    
+    <div class="body-text">Securitas continues to optimize its business portfolio and operations to achieve structurally lower cost levels and improve long-term profitability.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Optimization Initiatives</div>
+        <table>
+            <tr>
+                <th>Initiative</th>
+                <th>Target</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td><strong>Business Optimization Program</strong></td>
+                <td>MSEK 200 annual savings</td>
+                <td>Completed Q3 2025</td>
+            </tr>
+            <tr>
+                <td><strong>Non-Performing Contracts</strong></td>
+                <td>Address majority in Europe & Ibero-America</td>
+                <td>In progress</td>
+            </tr>
+            <tr>
+                <td><strong>SCIS Government Business</strong></td>
+                <td>Close-down by end 2026</td>
+                <td>Started Q3 2025</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Portfolio Refinement</div>
+        <div class="body-text">Securitas is assessing its business mix to enhance long-term performance. The close-down of SCIS government business will <strong class="strong">positively impact Group profitability and cash generation</strong>.</div>
+    </div>
+</div>
+
+<!-- Slide 11: Strategic Outlook -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Strategic Outlook</div>
+    <div class="slide-subtitle">Future Growth Drivers</div>
+    
+    <div class="body-text">Securitas is well-positioned for continued growth, supported by increasing security threats, technology adoption, and the company's strategic initiatives.</div>
+    
+    <div class="content-list">
+        <li><strong>Technology & Solutions Growth:</strong> Target 8-10% annual real sales growth in higher-margin tech-enabled services</li>
+        <li><strong>Operating Margin Target:</strong> Achieve 8% operating margin by end of 2025</li>
+        <li><strong>Organic Sales Growth:</strong> Target 5-7% average annual organic growth</li>
+        <li><strong>AI & Automation:</strong> Leverage AI-powered analytics and automation for efficiency</li>
+        <li><strong>Global Platform:</strong> Scale operations through global client platform and data insights</li>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Resilient Business Model</div>
+        <div class="body-text">Securitas' focus on <strong class="strong">local security services</strong> provides resilience against global trade shifts. The company's transformation into a technology-enabled partner positions it to capture growing demand for intelligent security solutions.</div>
+    </div>
+</div>
+
+<!-- Slide 12: Strategic Recommendations -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Strategic Recommendations</div>
+    <div class="slide-subtitle">Building on Strong Foundation</div>
+    
+    <div class="content-list">
+        <li><strong>Accelerate Technology Integration:</strong> Continue expanding AI-powered analytics and connected technology solutions</li>
+        <li><strong>Focus on High-Margin Segments:</strong> Prioritize Technology & Solutions growth to improve overall profitability</li>
+        <li><strong>Optimize Portfolio:</strong> Complete portfolio refinement and address remaining non-performing contracts</li>
+        <li><strong>Leverage Sustainability Leadership:</strong> Use SBTi-validated targets and climate recognition as competitive advantages</li>
+        <li><strong>Expand Recurring Revenue:</strong> Grow subscription-based services and long-term contracts</li>
+        <li><strong>Strengthen Digital Capabilities:</strong> Invest in global platform and automation to scale operations efficiently</li>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Investment Thesis</div>
+        <div class="body-text">Securitas offers compelling investment opportunity as a transformed security leader with strong technology capabilities, proven margin improvement, and clear path to continued growth. The company's resilient business model positions it well for long-term value creation.</div>
+    </div>
+</div>
+
+<!-- Slide 13: Final Slide -->
+<div class="ppt-slide cover-slide">
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+        <div style="font-size: 48px; font-weight: 700; margin-bottom: 30px;">Thank You</div>
+        <div style="font-size: 24px; color: #e2e8f0; margin-bottom: 60px;">Securitas Strategic Analysis 2024</div>
+        <div style="font-size: 16px; color: #cbd5e0; text-align: center; line-height: 2;">
+            <p><strong>Sources:</strong> Securitas Annual Report 2024; Q1 2025 & Q3 2025 Reports</p>
+            <p>Annual and Sustainability Report 2024; Press Releases</p>
+            <p><strong>Analysis Date:</strong> January 2026</p>
+        </div>
+    </div>
+</div>

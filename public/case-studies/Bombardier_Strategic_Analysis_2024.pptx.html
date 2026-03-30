@@ -1,0 +1,594 @@
+<style>
+.ppt-slide {
+    width: 100%;
+    height: 100%;
+    padding: 60px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    position: relative;
+}
+
+/* Cover Slide */
+.cover-slide {
+    background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #2b6cb0 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.cover-logo {
+    font-size: 72px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: -2px;
+}
+.cover-title {
+    font-size: 48px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.cover-subtitle {
+    font-size: 24px;
+    color: #e2e8f0;
+    margin-bottom: 60px;
+    font-weight: 300;
+}
+.cover-meta {
+    font-size: 16px;
+    color: #cbd5e0;
+    line-height: 2;
+}
+.cover-badge {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    background: rgba(255,255,255,0.1);
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* Content Slides */
+.content-slide {
+    background: #fafafa;
+}
+.slide-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 40px;
+    padding-bottom: 15px;
+    border-bottom: 4px solid #1a365d;
+}
+.slide-subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 25px;
+}
+
+/* Metrics */
+.metrics-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+}
+.metric-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+    border-top: 4px solid #1a365d;
+}
+.metric-value {
+    font-size: 42px;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 10px;
+}
+.metric-label {
+    font-size: 14px;
+    color: #718096;
+}
+
+/* Highlight Box */
+.highlight-box {
+    background: #ebf8ff;
+    border-left: 5px solid #3182ce;
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 8px;
+}
+.highlight-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c5282;
+    margin-bottom: 15px;
+}
+
+/* Tables */
+.table-container {
+    margin: 25px 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.table-title {
+    background: #1a365d;
+    color: white;
+    padding: 15px 20px;
+    font-weight: 600;
+    font-size: 16px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th {
+    background: #f7fafc;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #2d3748;
+    border-bottom: 2px solid #e2e8f0;
+}
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e2e8f0;
+}
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Aircraft Cards */
+.aircraft-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 25px 0;
+}
+.aircraft-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.aircraft-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 5px;
+}
+.aircraft-category {
+    font-size: 14px;
+    color: #718096;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+.aircraft-specs {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4a5568;
+}
+
+/* Regional Cards */
+.regional-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 25px 0;
+}
+.region-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.region-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 10px;
+}
+.region-content {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4a5568;
+}
+
+/* Lists */
+.content-list {
+    margin: 20px 0;
+    padding-left: 25px;
+}
+.content-list li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Text Styles */
+.body-text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #2d3748;
+    margin: 20px 0;
+}
+.strong {
+    font-weight: 700;
+    color: #1a365d;
+}
+
+/* Section Divider */
+.section-divider {
+    height: 4px;
+    background: linear-gradient(90deg, #1a365d, #3182ce);
+    margin: 40px 0;
+}
+</style>
+
+<!-- Slide 1: Cover -->
+<div class="ppt-slide cover-slide">
+    <div class="cover-badge">Strategic Analysis Series<br>Canadian Companies 2024</div>
+    <div class="cover-logo">Bombardier</div>
+    <div class="cover-title">Strategic Analysis Report 2024</div>
+    <div class="cover-subtitle">Global Business Aviation Leader<br>Pure-Play Aerospace Transformation</div>
+    <div class="cover-meta">
+        <p><strong>Company:</strong> Bombardier Inc.</p>
+        <p><strong>Headquarters:</strong> Montréal, Québec, Canada</p>
+        <p><strong>Sector:</strong> Aerospace & Defense</p>
+        <p><strong>Analysis Date:</strong> January 2026</p>
+    </div>
+</div>
+
+<!-- Slide 2: Executive Summary -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Executive Summary</div>
+    <div class="body-text">Bombardier Inc. has successfully transformed from a diversified industrial conglomerate into a <strong class="strong">pure-play business aviation company</strong>, establishing itself as a global leader in the design, manufacture, and servicing of premium business jets.</div>
+    
+    <div class="metrics-row">
+        <div class="metric-card">
+            <div class="metric-value">$8.7B</div>
+            <div class="metric-label">Total Revenue 2024</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">146</div>
+            <div class="metric-label">Aircraft Deliveries</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">$14.4B</div>
+            <div class="metric-label">Order Backlog</div>
+        </div>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Record Services Achievement</div>
+        <div class="body-text">Bombardier's Services business reached <strong class="strong">$2.04 billion</strong> in revenue for 2024, achieving the company's long-term objective outlined in its 2021 Investor Day <strong class="strong">a full year ahead of schedule</strong>. Services revenues grew 16% year-over-year.</div>
+    </div>
+    
+    <div class="body-text">Bombardier's strategy centers on three pillars: <strong class="strong">premium product leadership</strong> through Challenger and Global aircraft, <strong class="strong">services growth</strong> leveraging global support network, and <strong class="strong">operational excellence</strong> through digital transformation.</div>
+</div>
+
+<!-- Slide 3: Company Overview -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Company Overview</div>
+    <div class="slide-subtitle">Business Model & Segments</div>
+    
+    <div class="body-text">Bombardier operates as a focused business aviation company with two primary segments: <strong class="strong">Manufacturing</strong> and <strong class="strong">Aftermarket Services</strong>.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Bombardier Business Segments & Revenue Mix 2024</div>
+        <table>
+            <tr>
+                <th>Business Segment</th>
+                <th>Revenue</th>
+                <th>% of Total</th>
+                <th>Strategic Focus</th>
+            </tr>
+            <tr>
+                <td><strong>Manufacturing</strong></td>
+                <td>$6.66B</td>
+                <td>77%</td>
+                <td>Challenger & Global production</td>
+            </tr>
+            <tr>
+                <td><strong>Services</strong></td>
+                <td>$2.04B</td>
+                <td>23%</td>
+                <td>Maintenance, repair, overhaul, parts</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="body-text">Bombardier's product portfolio includes the highly successful <strong class="strong">Challenger family</strong> of super-midsize business jets and the <strong class="strong">Global family</strong> of ultra-long-range aircraft. The company has delivered over <strong class="strong">5,000 aircraft</strong> globally.</div>
+</div>
+
+<!-- Slide 4: Strategic Transformation -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Strategic Transformation</div>
+    
+    <div class="body-text">Bombardier's evolution reflects a deliberate transformation from a diversified industrial conglomerate to a focused aerospace pure-play.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Key Milestones in Bombardier's Transformation</div>
+        <table>
+            <tr>
+                <th>Year</th>
+                <th>Strategic Action</th>
+                <th>Impact</th>
+            </tr>
+            <tr>
+                <td>1986</td>
+                <td>Acquired Canadair, entered aerospace</td>
+                <td>Foundation for Challenger business jets</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>Sold Transportation division to Alstom</td>
+                <td>Became pure-play business aviation company</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>Opened Global Manufacturing Centre</td>
+                <td>State-of-the-art production facility</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Transformation Impact</div>
+        <div class="body-text">The divestment of Bombardier Transportation to Alstom for <strong class="strong">$8.2 billion</strong> generated approximately <strong class="strong">$6.4 billion</strong> in net proceeds, enabling significant debt reduction and focus on core business aviation operations.</div>
+    </div>
+</div>
+
+<!-- Slide 5: Financial Performance -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Financial Performance 2024</div>
+    <div class="slide-subtitle">Revenue & Profitability</div>
+    
+    <div class="body-text">Bombardier delivered exceptional financial performance in 2024, marking the company's fourth consecutive year of diversified growth across all key metrics.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Financial Performance Summary ($ Million)</div>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>2024</th>
+                <th>2023</th>
+                <th>Growth</th>
+            </tr>
+            <tr>
+                <td>Total Revenue</td>
+                <td>$8,700</td>
+                <td>$8,050</td>
+                <td>+8.1%</td>
+            </tr>
+            <tr>
+                <td>Adjusted EBITDA</td>
+                <td>$1,360</td>
+                <td>$1,225</td>
+                <td>+11.0%</td>
+            </tr>
+            <tr>
+                <td>Adjusted Net Income</td>
+                <td>$547</td>
+                <td>$420</td>
+                <td>+30.2%</td>
+            </tr>
+            <tr>
+                <td>Free Cash Flow</td>
+                <td>$232</td>
+                <td>$180</td>
+                <td>+28.9%</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Profitability Expansion</div>
+        <div class="body-text">Bombardier achieved an adjusted EBITDA margin of <strong class="strong">15.7%</strong> in 2024. The United States remains the largest market, contributing approximately <strong class="strong">$5.57 billion</strong> (64% of total revenue).</div>
+    </div>
+</div>
+
+<!-- Slide 6: Balance Sheet Strength -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Balance Sheet Strength</div>
+    
+    <div class="body-text">Bombardier has made significant progress in de-leveraging its balance sheet, achieving a net debt to adjusted EBITDA ratio of <strong class="strong">2.9x</strong> in 2024, down from 3.3x in 2023.</div>
+    
+    <div class="table-container">
+        <div class="table-title">Balance Sheet Strength Metrics</div>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>2024</th>
+                <th>2023</th>
+                <th>Improvement</th>
+            </tr>
+            <tr>
+                <td>Net Debt/EBITDA Ratio</td>
+                <td>2.9x</td>
+                <td>3.3x</td>
+                <td>-0.4x</td>
+            </tr>
+            <tr>
+                <td>Available Liquidity</td>
+                <td>$2.1B</td>
+                <td>$2.0B</td>
+                <td>+$0.1B</td>
+            </tr>
+            <tr>
+                <td>Cash & Equivalents</td>
+                <td>$1.7B</td>
+                <td>$1.5B</td>
+                <td>+$0.2B</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Pension De-risking</div>
+        <div class="body-text">In 2024, Bombardier purchased approximately <strong class="strong">$635 million</strong> in annuities for Québec pension plan beneficiaries, further strengthening the balance sheet and reducing long-term liabilities.</div>
+    </div>
+</div>
+
+<!-- Slide 7: Aircraft Families -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Product Portfolio & Programs</div>
+    <div class="slide-subtitle">Aircraft Families</div>
+    
+    <div class="body-text">Bombardier's portfolio comprises two premium aircraft families: the Challenger series (super-midsize) and the Global series (ultra-long-range).</div>
+    
+    <div class="aircraft-grid">
+        <div class="aircraft-card">
+            <div class="aircraft-name">Challenger 3500</div>
+            <div class="aircraft-category">Super-Midsize Business Jet</div>
+            <div class="aircraft-specs"><strong>Range:</strong> 3,200 nm | <strong>Speed:</strong> Mach 0.83<br><strong>Highlights:</strong> Voice-controlled cabin, award-winning interior, industry-leading reliability</div>
+        </div>
+        <div class="aircraft-card">
+            <div class="aircraft-name">Challenger 650</div>
+            <div class="aircraft-category">Large-Cabin Business Jet</div>
+            <div class="aircraft-specs"><strong>Range:</strong> 4,000 nm | <strong>Speed:</strong> Mach 0.85<br><strong>Highlights:</strong> Spacious cabin, proven reliability, excellent short-field performance</div>
+        </div>
+        <div class="aircraft-card">
+            <div class="aircraft-name">Global 7500</div>
+            <div class="aircraft-category">Ultra-Long-Range Business Jet</div>
+            <div class="aircraft-specs"><strong>Range:</strong> 7,700 nm | <strong>Speed:</strong> Mach 0.925<br><strong>Highlights:</strong> Industry-leading range, largest cabin, 99.8% dispatch reliability</div>
+        </div>
+        <div class="aircraft-card">
+            <div class="aircraft-name">Global 8000</div>
+            <div class="aircraft-category">Ultra-Long-Range Business Jet</div>
+            <div class="aircraft-specs"><strong>Range:</strong> 8,000 nm | <strong>Speed:</strong> Mach 0.94<br><strong>Highlights:</strong> Fastest civilian aircraft since Concorde, certified 2025</div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 8: Services Business -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Services Business</div>
+    
+    <div class="body-text">Bombardier's Services business has emerged as a significant growth driver, with <strong class="strong">$2.04 billion</strong> in 2024 revenue representing 23% of total revenue.</div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Services Network Expansion</div>
+        <div class="body-text">Recent additions include the <strong class="strong">Global Manufacturing Centre in Mississauga</strong> ($525M CAD), a quadruple-sized <strong class="strong">Singapore Service Centre</strong>, and a state-of-the-art <strong class="strong">Miami-Opa Locka Service Centre</strong> that quadrupled hangar space.</div>
+    </div>
+    
+    <div class="content-list">
+        <li><strong>Maintenance & Repair:</strong> Comprehensive MRO services across 20+ global locations</li>
+        <li><strong>Parts & Logistics:</strong> 24/7 global parts distribution network</li>
+        <li><strong>Completions:</strong> Custom interior design and installation</li>
+        <li><strong>Training:</strong> Pilot and maintenance training programs</li>
+        <li><strong>Mobile Response:</strong> Worldwide AOG (Aircraft on Ground) support</li>
+    </div>
+</div>
+
+<!-- Slide 9: Technology & Digital Transformation -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Technology & Digital Transformation</div>
+    
+    <div class="body-text">Bombardier is undertaking a comprehensive digital transformation to modernize legacy systems and enhance operational efficiency.</div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">TCS Digital Transformation Partnership</div>
+        <div class="body-text">Bombardier has partnered with <strong class="strong">Tata Consultancy Services (TCS)</strong> for organization-wide IT transformation:</div>
+        <ul class="content-list">
+            <li><strong>ERP Modernization:</strong> SAP S/4 HANA deployment</li>
+            <li><strong>Cloud Journey:</strong> Accelerated migration to cloud infrastructure</li>
+            <li><strong>AI/ML Integration:</strong> Artificial intelligence capabilities</li>
+            <li><strong>Digital Thread:</strong> Connected engineering, manufacturing, services</li>
+        </ul>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Siemens Xcelerator Platform</div>
+        <div class="body-text">Expanded adoption of Siemens' industry software portfolio: <strong class="strong">NX Software</strong> (3D modeling), <strong class="strong">Capital</strong> (electrical systems), <strong class="strong">Teamcenter</strong> (PLM), and <strong class="strong">Mendix</strong> (low-code development).</div>
+    </div>
+</div>
+
+<!-- Slide 10: Regional Operations -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Regional Operations & Manufacturing</div>
+    
+    <div class="body-text">Bombardier's global footprint spans multiple continents with major facilities in Canada, the United States, and strategic international locations.</div>
+    
+    <div class="regional-grid">
+        <div class="region-card">
+            <div class="region-name">Americas</div>
+            <div class="region-content"><strong>Operations:</strong> Montréal HQ, Mississauga Global Manufacturing Centre, Wichita, Dallas, Miami-Opa Locka Service Centres.<br><strong>Investment:</strong> $525M CAD Global Manufacturing Centre, $100M CAD Dorval expansion.</div>
+        </div>
+        <div class="region-card">
+            <div class="region-name">Europe</div>
+            <div class="region-content"><strong>Operations:</strong> Berlin, Biggin Hill (London), Le Bourget.<br><strong>Focus:</strong> Customer support, completions, maintenance for European fleet.</div>
+        </div>
+        <div class="region-card">
+            <div class="region-name">Asia-Pacific</div>
+            <div class="region-content"><strong>Operations:</strong> Singapore (largest OEM facility), Melbourne.<br><strong>Growth:</strong> Expanding presence to serve growing Asian market.</div>
+        </div>
+        <div class="region-card">
+            <div class="region-name">Global Services</div>
+            <div class="region-content"><strong>20+ Locations:</strong> Worldwide service centers, mobile response teams.<br><strong>Capabilities:</strong> 24/7 AOG support, parts distribution, training, MRO.</div>
+        </div>
+    </div>
+    
+    <div class="body-text"><strong class="strong">Workforce:</strong> Bombardier employs approximately <strong class="strong">18,000 people</strong> globally, a major contributor to the Canadian aerospace sector ($22B sales, 43,000 jobs).</div>
+</div>
+
+<!-- Slide 11: Strategic Outlook -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Strategic Outlook & Recommendations</div>
+    
+    <div class="body-text">Bombardier is well-positioned to capitalize on growing global demand for business aviation, though faces near-term uncertainty regarding potential trade tariffs.</div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">2025 Outlook Considerations</div>
+        <div class="body-text">Bombardier has elected to <strong class="strong">defer providing 2025 guidance</strong> due to evolving trade policy landscape regarding tariffs on Canadian goods imported to the United States.</div>
+    </div>
+    
+    <div class="slide-subtitle">Key Growth Drivers</div>
+    <div class="content-list">
+        <li><strong>Services Business Expansion:</strong> Target of $2.5B+ by 2026</li>
+        <li><strong>Global 8000 Launch:</strong> Fastest civilian aircraft since Concorde</li>
+        <li><strong>Manufacturing Capacity:</strong> New Dorval facility and optimized production</li>
+        <li><strong>Digital Transformation:</strong> Enhanced efficiency through IT modernization</li>
+        <li><strong>Sustainability Initiatives:</strong> SAF adoption and eco-design principles</li>
+    </div>
+</div>
+
+<!-- Slide 12: Strategic Recommendations -->
+<div class="ppt-slide content-slide">
+    <div class="slide-title">Strategic Outlook & Recommendations</div>
+    <div class="slide-subtitle">Strategic Recommendations</div>
+    
+    <div class="content-list">
+        <li><strong>Accelerate Digital Transformation:</strong> Complete SAP S/4 HANA implementation for enhanced operational efficiency and data-driven decision making</li>
+        <li><strong>Expand Services Portfolio:</strong> Develop predictive maintenance capabilities and digital service offerings to capture additional aftermarket value</li>
+        <li><strong>Geographic Diversification:</strong> Continue investing in Asian markets to reduce reliance on North American demand</li>
+        <li><strong>Supply Chain Resilience:</strong> Strengthen supplier relationships and diversify sourcing to mitigate disruption risks</li>
+        <li><strong>Sustainability Leadership:</strong> Accelerate SAF adoption and develop next-generation propulsion technologies</li>
+    </div>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Investment Thesis</div>
+        <div class="body-text">Bombardier offers a compelling opportunity as a pure-play business aviation leader with strong fundamentals, growing services revenue, and clear path to profitability expansion. Focus on premium segments and operational excellence positions the company well for long-term value creation.</div>
+    </div>
+</div>
+
+<!-- Slide 13: Final Slide -->
+<div class="ppt-slide cover-slide">
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+        <div style="font-size: 48px; font-weight: 700; margin-bottom: 30px;">Thank You</div>
+        <div style="font-size: 24px; color: #e2e8f0; margin-bottom: 60px;">Bombardier Strategic Analysis 2024</div>
+        <div style="font-size: 16px; color: #cbd5e0; text-align: center; line-height: 2;">
+            <p><strong>Sources:</strong> Bombardier Annual Reports 2024; Financial Statements</p>
+            <p>TCS Digital Transformation; Siemens Partnership</p>
+            <p><strong>Analysis Date:</strong> January 2026</p>
+        </div>
+    </div>
+</div>

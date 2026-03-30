@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAE Systems Strategic Business Analysis 2025</title>
+    <style>
+        /* BAE SYSTEMS BRAND COLORS */
+        :root {
+            --bae-navy: #000080;
+            --bae-red: #ED1A3B;
+            --bae-dark-navy: #08262C;
+            --bae-blue: #003B4F;
+            --bae-teal: #088199;
+            --bae-light-gray: #F5F7FA;
+            --bae-gray: #6C757D;
+            --bae-dark-gray: #2C3E50;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Aptos', 'Segoe UI', sans-serif;
+            background: #fff;
+            color: var(--bae-dark-gray);
+            line-height: 1.6;
+            overflow: hidden;
+        }
+        
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        
+        .slide {
+            width: 100%;
+            height: 100vh;
+            padding: 60px;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: white;
+            overflow-y: auto;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        /* TYPOGRAPHY */
+        h1, h2, h3 {
+            font-family: 'Georgia', 'Quattrocento Sans', serif;
+            color: var(--bae-navy);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 3em;
+            border-bottom: 4px solid var(--bae-red);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            font-size: 2.2em;
+            margin-bottom: 30px;
+        }
+        
+        h3 {
+            font-size: 1.5em;
+            color: var(--bae-dark-navy);
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        /* TITLE SLIDE */
+        .title-slide {
+            background: linear-gradient(135deg, var(--bae-navy), var(--bae-dark-navy));
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .title-slide h1 {
+            color: white;
+            border-bottom: 4px solid var(--bae-red);
+            font-size: 4em;
+        }
+        
+        .subtitle {
+            font-size: 1.5em;
+            color: var(--bae-red);
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+        
+        .metrics-row {
+            display: flex;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .metric-item {
+            text-align: center;
+            padding: 20px;
+            min-width: 200px;
+        }
+        
+        .metric-big {
+            font-size: 3em;
+            font-weight: bold;
+            color: var(--bae-red);
+            display: block;
+            line-height: 1;
+        }
+        
+        .metric-label {
+            color: white;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+        
+        /* CONTENT LAYOUT */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+        
+        .three-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .card {
+            background: var(--bae-light-gray);
+            border-radius: 8px;
+            padding: 25px;
+            border-left: 5px solid var(--bae-navy);
+        }
+        
+        .highlight-box {
+            background: var(--bae-light-gray);
+            border-left: 5px solid var(--bae-navy);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .metric-card {
+            background: white;
+            border: 2px solid var(--bae-navy);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--bae-navy);
+            display: block;
+            line-height: 1;
+        }
+        
+        .metric-desc {
+            color: var(--bae-gray);
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        
+        /* LISTS */
+        ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        li::before {
+            content: "▸";
+            color: var(--bae-teal);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+        
+        /* NAVIGATION */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            background: var(--bae-navy);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .nav-btn:hover {
+            background: var(--bae-dark-navy);
+        }
+        
+        .slide-counter {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            z-index: 1000;
+        }
+        
+        /* TABLES FOR CHARTS */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 0.95em;
+        }
+        
+        .data-table th {
+            background: var(--bae-navy);
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .data-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: var(--bae-light-gray);
+        }
+        
+        /* PROGRESS BAR */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--bae-red);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+        
+        /* FOOTER */
+        .slide-footer {
+            position: absolute;
+            bottom: 20px;
+            left: 60px;
+            right: 60px;
+            font-size: 0.7em;
+            color: var(--bae-gray);
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+            
+            .two-columns, .three-columns {
+                grid-template-columns: 1fr;
+            }
+            
+            .metrics-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="progress-bar" id="progressBar"></div>
+        
+        <!-- SLIDE 1: TITLE -->
+        <div class="slide active title-slide">
+            <h1>BAE Systems Strategic Business Analysis</h1>
+            <div class="subtitle">Global Defense & Aerospace Leader: Market Position, Financial Performance & Strategic Outlook</div>
+            
+            <div class="metrics-row">
+                <div class="metric-item">
+                    <span class="metric-big">£26.3B</span>
+                    <div class="metric-label">Revenue (2024)</div>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-big">£77.8B</span>
+                    <div class="metric-label">Order Backlog</div>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-big">107,400</span>
+                    <div class="metric-label">Employees</div>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-big">40+</span>
+                    <div class="metric-label">Countries</div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span>Confidential - Executive Briefing</span>
+                <span>January 2025</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: MARKET POSITION -->
+        <div class="slide">
+            <h2>Market Position & Heritage</h2>
+            <h3>Global Tier 1 Defense & Aerospace Contractor</h3>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Market Leadership</h3>
+                    <ul>
+                        <li><strong>Global Ranking:</strong> #7 worldwide by revenue (Defense News Top 100)</li>
+                        <li><strong>UK Position:</strong> Largest defense contractor</li>
+                        <li><strong>US Market:</strong> #6 prime contractor (Defense Department)</li>
+                        <li><strong>Market Cap:</strong> $84.0bn (as of 2024)</li>
+                    </ul>
+                    
+                    <div class="card">
+                        <strong>Geopolitical Advantage:</strong> Prime beneficiary of NATO defense spending increases (2.5-5% GDP targets) and AUKUS alliance
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Heritage & Scale</h3>
+                    <ul>
+                        <li><strong>Founded:</strong> 1999 (British Aerospace + Marconi Electronic Systems)</li>
+                        <li><strong>Legacy:</strong> Traces back to 19th century (Royal Small Arms Factory)</li>
+                        <li><strong>Global Presence:</strong> Operations in 40+ countries</li>
+                        <li><strong>Key Markets:</strong> UK (39%), US (33%), Saudi Arabia (14%), Australia (5%), Rest of World (9%)</li>
+                    </ul>
+                    
+                    <div class="metric-card">
+                        <span class="metric-value">£77.8B</span>
+                        <div class="metric-desc">Record Order Backlog<br>(~3 years of revenue coverage)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span>Source: BAE Systems Annual Report 2024, Defense News Top 100</span>
+                <span>Page 2 of 12</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: GEOGRAPHIC FOOTPRINT -->
+        <div class="slide">
+            <h2>Geographic Footprint & Workforce</h2>
+            <h3>Global Operations: Employees & Revenue Distribution</h3>
+            
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <span class="metric-value">42,000</span>
+                    <div class="metric-desc">United Kingdom<br>(39% of revenue)</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">36,000</span>
+                    <div class="metric-desc">United States<br>(33% of revenue)</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">15,000</span>
+                    <div class="metric-desc">Saudi Arabia<br>(14% of revenue)</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">14,400</span>
+                    <div class="metric-desc">Rest of World<br>(14% of revenue)</div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <strong>Global Workforce:</strong> 107,400 employees (including equity accounted investments) | Operations in 40+ countries | Key facilities in UK, US, Australia, Sweden, India
+            </div>
+            
+            <div class="slide-footer">
+                <span>Source: BAE Systems Annual Report 2024</span>
+                <span>Page 3 of 12</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: BUSINESS PORTFOLIO -->
+        <div class="slide">
+            <h2>Business Portfolio Overview</h2>
+            <h3>Diversified Defense, Aerospace & Security Solutions</h3>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Segment Performance (2024 Sales)</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Segment</th>
+                                <th>Sales (£bn)</th>
+                                <th>Growth</th>
+                                <th>% of Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Electronic Systems</td>
+                                <td>7.2</td>
+                                <td>+35%</td>
+                                <td>25.4%</td>
+                            </tr>
+                            <tr>
+                                <td>Platforms & Services</td>
+                                <td>4.4</td>
+                                <td>+15%</td>
+                                <td>15.5%</td>
+                            </tr>
+                            <tr>
+                                <td>Air</td>
+                                <td>8.5</td>
+                                <td>+7%</td>
+                                <td>30.0%</td>
+                            </tr>
+                            <tr>
+                                <td>Maritime</td>
+                                <td>4.8</td>
+                                <td>+8%</td>
+                                <td>16.9%</td>
+                            </tr>
+                            <tr>
+                                <td>Cyber & Intelligence</td>
+                                <td>3.4</td>
+                                <td>+12%</td>
+                                <td>12.0%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div>
+                    <h3>Key Capabilities</h3>
+                    <div class="metric-card">
+                        <span class="metric-value">Electronic Systems</span>
+                        <div class="metric-desc">Electronic warfare, sensors, communications, precision guidance</div>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">Air</span>
+                        <div class="metric-desc">Typhoon, F-35, Tempest (GCAP), military aircraft support</div>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">Maritime</span>
+                        <div class="metric-desc">Submarines (AUKUS), warships, naval systems</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <strong>Portfolio Strength:</strong> Balanced across air (30%), maritime (17%), electronic systems (25%), platforms (16%), and cyber (12%) with 70% of sales from long-term support contracts
+            </div>
+            
+            <div class="slide-footer">
+                <span>Source: BAE Systems Annual Report 2024</span>
+                <span>Page 4 of 12</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: IT SPEND DEEP DIVE -->
+        <div class="slide">
+            <h2>IT Spend Deep Dive</h2>
+            <h3>Technology Investment: £400M+ Annual ICT Budget (~1.5% of Sales)</h3>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Budget Breakdown</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Amount (£m)</th>
+                                <th>Percentage</th>
+                                <th>Focus Areas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Software & Cloud</td>
+                                <td>160</td>
+                                <td>40%</td>
+                                <td>AWS, Azure, SaaS platforms</td>
+                            </tr>
+                            <tr>
+                                <td>IT Services</td>
+                                <td>140</td>
+                                <td>35%</td>
+                                <td>Managed services, consulting</td>
+                            </tr>
+                            <tr>
+                                <td>Hardware</td>
+                                <td>60</td>
+                                <td>15%</td>
+                                <td>High-performance computing</td>
+                            </tr>
+                            <tr>
+                                <td>Network/Security</td>
+                                <td>40</td>
+                                <td>10%</td>
+                                <td>Secure communications</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="card">
+                        <strong>Strategic Partners:</strong> AWS, Microsoft Azure, SAP, Oracle<br>
+                        <strong>Focus:</strong> Digital engineering, secure cloud, AI/ML, quantum computing
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Key Technology Initiatives</h3>
+                    <ul>
+                        <li><strong>Digital Engineering:</strong> £1.0bn capital expenditure in 2024 for digital transformation</li>
+                        <li><strong>AI/ML Integration:</strong> Autonomous systems, predictive maintenance, threat detection</li>
+                        <li><strong>Quantum Computing:</strong> Partnerships for defense applications</li>
+                        <li><strong>Cybersecurity:</strong> Enhanced capabilities across classified networks</li>
+                        <li><strong>Digital Twins:</strong> Virtual design and testing environments</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <strong>2024 Investment:</strong> Capital expenditure +40% YoY to £1.0bn | 20+ IT services contracts disclosed
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span>Source: BAE Systems Annual Report 2024, GlobalData IT Intelligence</span>
+                <span>Page 5 of 12</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: FINANCIAL PERFORMANCE - FY 2024 -->
+        <div class="slide">
+            <h2>Financial Performance</h2>
+            <h3>Record Results with Strong Growth Momentum - Full Year 2024</h3>
+            
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <span class="metric-value">£26.3B</span>
+                    <div class="metric-desc">Revenue<br>(+14% YoY)</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">£2.7B</span>
+                    <div class="metric-desc">Operating Profit<br>(+4% YoY)</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">65p</span>
+                    <div class="metric-desc">Basic EPS<br>(+6% YoY)</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">10.2%</span>
+                    <div class="metric-desc">Operating Margin<br>(+0.3pp YoY)</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">£2.5B</span>
+                    <div class="metric-desc">Free Cash Flow</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">33p</span>
+                    <div class="metric-desc">Dividend per Share<br>(+10% YoY)</div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <strong>Underlying Performance:</strong> Underlying EBIT +14% to £3.0bn | Underlying EPS +10% to 68.5p | ROE 17.9% | Net debt/EBITDA near zero
+            </div>
+            
+            <div class="slide-footer">
+                <span>Source: BAE Systems plc Results Announcement 2024</span>
+                <span>Page 6 of 12</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: Q3 2024 MOMENTUM -->
+        <div class="slide">
+            <h2>Momentum Through 2024</h2>
+            <h3>Strong Order Intake & Operational Excellence</h3>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Key Performance Indicators</h3>
+                    <ul>
+                        <li><strong>Order Intake:</strong> £33.7bn (2024) - strong customer demand</li>
+                        <li><strong>Order Backlog:</strong> £77.8bn record level (+11% YoY)</li>
+                        <li><strong>Book-to-Bill:</strong> 1.2x (strong growth momentum)</li>
+                        <li><strong>Cash Conversion:</strong> 146% (underlying EBIT to free cash flow)</li>
+                        <li><strong>Capital Expenditure:</strong> £1.0bn (+40% YoY)</li>
+                    </ul>
+                    
+                    <h3>Major Contract Wins</h3>
+                    <ul>
+                        <li><strong>AUKUS:</strong> Australian nuclear-powered submarine program</li>
+                        <li><strong>Hunter Class:</strong> £4.6bn for three frigates in Australia</li>
+                        <li><strong>Eurofighter:</strong> Continued production & support contracts</li>
+                        <li><strong>F-35:</strong> Additional production contracts</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>Financial Trend</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>2024</th>
+                                <th>2023</th>
+                                <th>Change</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sales</td>
+                                <td>£28.3bn</td>
+                                <td>£25.3bn</td>
+                                <td>+14%</td>
+                            </tr>
+                            <tr>
+                                <td>Underlying EBIT</td>
+                                <td>£3.0bn</td>
+                                <td>£2.7bn</td>
+                                <td>+14%</td>
+                            </tr>
+                            <tr>
+                                <td>Free Cash Flow</td>
+                                <td>£2.5bn</td>
+                                <td>£2.6bn</td>
+                                <td>-3%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="card">
+                        <strong>Momentum Drivers:</strong> NATO spending increases, AUKUS program, GCAP/Tempest, cyber warfare demand
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span>Source: BAE Systems Trading Updates 2024</span>
+                <span>Page 7 of 12</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: STRATEGIC INITIATIVES -->
+        <div class="slide">
+            <h2>Strategic Initiatives</h2>
+            <h3>Technology & Portfolio Transformation</h3>
+            
+            <div class="three-columns">
+                <div class="card">
+                    <h3>Next-Generation Platforms</h3>
+                    <ul>
+                        <li><strong>GCAP:</strong> Tempest 6th-gen fighter (Japan, Italy, UK)</li>
+                        <li><strong>AUKUS:</strong> Nuclear submarines & advanced tech sharing</li>
+                        <li><strong>Space:</strong> Ball Aerospace acquisition (Space & Mission Systems)</li>
+                    </ul>
+                    <div class="metric-value" style="font-size: 1.5em;">£3.0bn</div>
+                    <div class="metric-desc">SMS backlog contribution</div>
+                </div>
+                
+                <div class="card">
+                    <h3>Digital Transformation</h3>
+                    <ul>
+                        <li><strong>Digital Engineering:</strong> Model-based systems engineering</li>
+                        <li><strong>AI/ML:</strong> Autonomous systems, predictive analytics</li>
+                        <li><strong>Digital Twins:</strong> Virtual testing environments</li>
+                    </ul>
+                    <div class="metric-value" style="font-size: 1.5em;">£1.0bn</div>
+                    <div class="metric-desc">2024 CapEx investment</div>
+                </div>
+                
+                <div class="card">
+                    <h3>Sustainability & ESG</h3>
+                    <ul>
+                        <li><strong>Net Zero:</strong> 2030 operational, 2050 value chain</li>
+                        <li><strong>Green Tech:</strong> Hybrid-electric propulsion development</li>
+                        <li><strong>Circular Economy:</strong> Resource efficiency programs</li>
+                    </ul>
+                    <div class="metric-value" style="font-size: 1.5em;">2030</div>
+                    <div class="metric-desc">Net Zero Operations Target</div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <strong>Investment Thesis:</strong> £1.0bn capital expenditure (+40% YoY) focused on capacity expansion, digital capabilities, and next-generation technologies
+            </div>
+            
+            <div class="slide-footer">
+                <span>Source: BAE Systems Strategy & Annual Report</span>
+                <span>Page 8 of 12</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: M&A STRATEGY -->
+        <div class="slide">
+            <h2>M&A Strategy</h2>
+            <h3>Ball Aerospace Acquisition: Space & Mission Systems Expansion</h3>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Transaction Overview</h3>
+                    <ul>
+                        <li><strong>Acquisition Value:</strong> $5.5bn (£4.4bn) - February 2024</li>
+                        <li><strong>New Segment:</strong> Space & Mission Systems (SMS)</li>
+                        <li><strong>Strategic Rationale:</strong> Expand space & national security capabilities</li>
+                        <li><strong>Integration:</strong> Fully integrated by end-2024</li>
+                    </ul>
+                    
+                    <h3>Strategic Benefits</h3>
+                    <ul>
+                        <li><strong>Market Access:</strong> US classified space & intelligence community</li>
+                        <li><strong>Capabilities:</strong> Advanced sensors, optical systems, mission payloads</li>
+                        <li><strong>Growth:</strong> High-growth space sector (~$500bn market)</li>
+                        <li><strong>Synergies:</strong> Cross-selling with existing defense portfolio</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>Portfolio Impact</h3>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <span class="metric-value">$5.5B</span>
+                            <div class="metric-desc">Acquisition Value</div>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">£3.0B</span>
+                            <div class="metric-desc">SMS Order Backlog</div>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">35%</span>
+                            <div class="metric-desc">Electronic Systems Growth</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <strong>Strategic Fit:</strong> Complements BAE's core defense business with high-growth space capabilities | Enhances US market position | Provides access to classified programs
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span>Source: BAE Systems Investor Presentation</span>
+                <span>Page 9 of 12</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: SUSTAINABILITY -->
+        <div class="slide">
+            <h2>Sustainability & ESG Leadership</h2>
+            <h3>Net Zero 2030 & Responsible Defense</h3>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Environmental Commitments</h3>
+                    <ul>
+                        <li><strong>Net Zero Operations:</strong> 2030 target (20 years ahead of Paris)</li>
+                        <li><strong>Value Chain:</strong> Net zero by 2050</li>
+                        <li><strong>Green Tech:</strong> Hybrid-electric aircraft propulsion development</li>
+                        <li><strong>Energy:</strong> Renewable energy procurement at major sites</li>
+                        <li><strong>Circular Economy:</strong> Resource efficiency & waste reduction programs</li>
+                    </ul>
+                    
+                    <h3>Social Impact</h3>
+                    <ul>
+                        <li><strong>STEM Education:</strong> £multi-million annual investment</li>
+                        <li><strong>Skills Development:</strong> 850+ apprentices & graduates in 2024</li>
+                        <li><strong>Community:</strong> Charitable partnerships in operating regions</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>Governance & Ethics</h3>
+                    <ul>
+                        <li><strong>Responsible AI:</strong> Ethical framework for autonomous systems</li>
+                        <li><strong>Supply Chain:</strong> ESG standards for suppliers</li>
+                        <li><strong>Human Rights:</strong> Compliance with international conventions</li>
+                        <li><strong>Transparency:</strong> Annual sustainability reporting</li>
+                        <li><strong>Board Diversity:</strong> 40% women on Board</li>
+                    </ul>
+                    
+                    <div class="card">
+                        <div class="metric-value" style="font-size: 2em;">2030</div>
+                        <div class="metric-desc">Net Zero Operations Target<br>70% emissions reduction vs 2020 baseline</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <strong>Industry Leadership:</strong> First major defense contractor to commit to Net Zero by 2030 | Science-Based Targets initiative validated | £multi-million investment in green R&D
+            </div>
+            
+            <div class="slide-footer">
+                <span>Source: BAE Systems Sustainability Report 2024</span>
+                <span>Page 10 of 12</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: COMPETITIVE LANDSCAPE -->
+        <div class="slide">
+            <h2>Competitive Landscape & Market Challenges</h2>
+            <h3>Positioning in Global Defense Markets</h3>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Global Defense Market</h3>
+                    <ul>
+                        <li><strong>Market Size:</strong> $2.4 trillion (2024) - growing at 5-7% CAGR</li>
+                        <li><strong>Key Competitors:</strong> Lockheed Martin, RTX, Boeing, Northrop Grumman (US); Airbus, Leonardo, Thales (Europe); Rostec (Russia)</li>
+                        <li><strong>US Market:</strong> $880bn (2024) - BAE is #6 prime contractor</li>
+                        <li><strong>UK Market:</strong> £50bn - BAE is dominant domestic supplier</li>
+                    </ul>
+                    
+                    <h3>Competitive Advantages</h3>
+                    <ul>
+                        <li><strong>Geographic Diversification:</strong> Balanced US/UK/rest of world exposure</li>
+                        <li><strong>Portfolio Breadth:</strong> Air, land, sea, cyber, space capabilities</li>
+                        <li><strong>Long-term Contracts:</strong> 70% from support & services</li>
+                        <li><strong>Technology Leadership:</strong> Advanced R&D capabilities</li>
+                        <li><strong>Strategic Partnerships:</strong> Lockheed, Leonardo, Japan (GCAP)</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>Market Challenges</h3>
+                    <ul>
+                        <li><strong>Supply Chain:</strong> Critical component availability</li>
+                        <li><strong>Inflation:</strong> Cost pressures on long-term contracts</li>
+                        <li><strong>Skilled Labor:</strong> Engineering talent competition</li>
+                        <li><strong>Program Risk:</strong> Execution complexity (GCAP, AUKUS)</li>
+                        <li><strong>Regulatory:</strong> Export controls, arms regulations</li>
+                        <li><strong>ESG Pressure:</strong> Defense industry scrutiny</li>
+                    </ul>
+                    
+                    <div class="card">
+                        <strong>Competitive Moat:</strong> £77.8bn backlog provides exceptional visibility | 70% recurring revenue from support contracts | High barriers to entry in defense
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span>Source: Defense News Top 100, Industry Analysis</span>
+                <span>Page 11 of 12</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: FUTURE OUTLOOK -->
+        <div class="slide">
+            <h2>Future Outlook & Investment Thesis</h2>
+            <h3>Defense Supercycle & Technology Leadership</h3>
+            
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <span class="metric-value">7-9%</span>
+                    <div class="metric-desc">Sales Growth Target<br>(2025 Guidance)</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">8-10%</span>
+                    <div class="metric-desc">Underlying EBIT Growth<br>(2025 Guidance)</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">£1.1B+</span>
+                    <div class="metric-desc">Free Cash Flow Target<br>(2025 Minimum)</div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">£1.5B</span>
+                    <div class="metric-desc">Shareholder Returns<br>(2025 Dividends + Buybacks)</div>
+                </div>
+            </div>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Strategic Catalysts</h3>
+                    <ul>
+                        <li><strong>Defense Spending:</strong> NATO 2.5-5% GDP targets</li>
+                        <li><strong>AUKUS:</strong> Multi-decade submarine program</li>
+                        <li><strong>GCAP:</strong> 6th-gen fighter (Japan, Italy, UK)</li>
+                        <li><strong>Space:</strong> Ball Aerospace integration & growth</li>
+                        <li><strong>Cyber:</strong> Growing threat environment</li>
+                        <li><strong>Digital:</strong> AI/ML adoption across portfolio</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>Capital Management</h3>
+                    <ul>
+                        <li><strong>Dividend Policy:</strong> 20 consecutive years of growth</li>
+                        <li><strong>Buybacks:</strong> £555m in 2024 (43m shares)</li>
+                        <li><strong>Total Returns:</strong> £1.5bn to shareholders (2024)</li>
+                        <li><strong>Balance Sheet:</strong> Net debt near zero, strong liquidity</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <strong>Investment Summary:</strong> "Irreplaceable defense franchise with record backlog, technology leadership, and exposure to long-term geopolitical tailwinds"
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span>Source: BAE Systems Strategic Plan 2025-2027</span>
+                <span>Page 12 of 12</span>
+            </div>
+        </div>
+        
+        <!-- NAVIGATION CONTROLS -->
+        <div class="nav-controls">
+            <button class="nav-btn" onclick="previousSlide()">◀ Previous</button>
+            <button class="nav-btn" onclick="nextSlide()">Next ▶</button>
+        </div>
+        
+        <div class="slide-counter" id="slideCounter">1 / 12</div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const progressBar = document.getElementById('progressBar');
+        const slideCounter = document.getElementById('slideCounter');
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            if (index >= 0 && index < totalSlides) {
+                slides[index].classList.add('active');
+                currentSlide = index;
+                updateProgress();
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            progressBar.style.width = progress + '%';
+            slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                previousSlide();
+            } else if (event.key === 'Home') {
+                showSlide(0);
+            } else if (event.key === 'End') {
+                showSlide(totalSlides - 1);
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+
+        // Auto-resize for different screens
+        function adjustFontSize() {
+            const width = window.innerWidth;
+            const baseFontSize = width < 768 ? '14px' : '16px';
+            document.body.style.fontSize = baseFontSize;
+        }
+
+        window.addEventListener('resize', adjustFontSize);
+        adjustFontSize();
+    </script>
+</body>
+</html>

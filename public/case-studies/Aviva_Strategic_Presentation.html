@@ -1,0 +1,1136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviva Strategic Intelligence Profile</title>
+    <style>
+        :root {
+            --aviva-yellow: #FFEA00;
+            --aviva-blue: #004FB6;
+            --aviva-dark: #001E3C;
+            --aviva-white: #FFFFFF;
+            --aviva-gray: #F5F5F5;
+            --aviva-accent: #00C851;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--aviva-dark);
+            color: var(--aviva-dark);
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--aviva-white);
+            display: flex;
+            flex-direction: column;
+            padding: 60px;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Cover Slide */
+        .slide-cover {
+            background: linear-gradient(135deg, var(--aviva-dark) 0%, var(--aviva-blue) 100%);
+            color: var(--aviva-white);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: var(--aviva-yellow);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        .slide-cover::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: var(--aviva-yellow);
+            opacity: 0.05;
+            border-radius: 50%;
+        }
+
+        .cover-content {
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .aviva-logo {
+            font-size: 72px;
+            font-weight: 900;
+            color: var(--aviva-yellow);
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .cover-subtitle {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cover-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .cover-meta {
+            font-size: 18px;
+            opacity: 0.8;
+            margin-top: 40px;
+            border-top: 2px solid var(--aviva-yellow);
+            padding-top: 20px;
+        }
+
+        /* Content Slides */
+        .slide-header {
+            border-left: 6px solid var(--aviva-yellow);
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+
+        .slide-header h2 {
+            font-size: 42px;
+            color: var(--aviva-dark);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .slide-header p {
+            font-size: 20px;
+            color: var(--aviva-blue);
+            font-weight: 500;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .slide-full {
+            grid-template-columns: 1fr;
+        }
+
+        .content-box {
+            background: var(--aviva-gray);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--aviva-blue);
+        }
+
+        .content-box h3 {
+            color: var(--aviva-blue);
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .metric-card {
+            background: var(--aviva-white);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid var(--aviva-yellow);
+            transition: transform 0.2s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--aviva-blue);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: var(--aviva-dark);
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        .data-table th {
+            background: var(--aviva-blue);
+            color: var(--aviva-white);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: var(--aviva-gray);
+        }
+
+        .data-table tr:hover {
+            background: rgba(255, 234, 0, 0.1);
+        }
+
+        /* Lists */
+        .feature-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            border-bottom: 1px solid #eee;
+            font-size: 16px;
+        }
+
+        .feature-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--aviva-yellow);
+            font-weight: 900;
+            font-size: 20px;
+        }
+
+        /* Charts */
+        .chart-container {
+            background: var(--aviva-white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .chart-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 4px solid var(--aviva-yellow);
+            margin-left: 20px;
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: var(--aviva-blue);
+            border: 4px solid var(--aviva-yellow);
+            border-radius: 50%;
+        }
+
+        .timeline-year {
+            font-weight: 900;
+            color: var(--aviva-blue);
+            font-size: 18px;
+        }
+
+        .timeline-content {
+            font-size: 16px;
+            margin-top: 5px;
+            color: var(--aviva-dark);
+        }
+
+        /* Navigation */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: var(--aviva-blue);
+            color: var(--aviva-white);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0, 79, 182, 0.3);
+        }
+
+        .nav-btn:hover {
+            background: var(--aviva-yellow);
+            color: var(--aviva-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 234, 0, 0.4);
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--aviva-dark);
+            color: var(--aviva-white);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            z-index: 1000;
+            border: 2px solid var(--aviva-yellow);
+        }
+
+        /* Opportunity Cards */
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .opp-card {
+            background: linear-gradient(135deg, var(--aviva-white) 0%, var(--aviva-gray) 100%);
+            border: 2px solid var(--aviva-blue);
+            border-radius: 12px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .opp-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--aviva-yellow);
+        }
+
+        .opp-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .opp-card h4 {
+            color: var(--aviva-blue);
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .opp-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--aviva-yellow);
+            color: var(--aviva-dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        /* Exec Profile */
+        .exec-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--aviva-white);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--aviva-blue);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .exec-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--aviva-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--aviva-white);
+            font-weight: 900;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .exec-info h4 {
+            color: var(--aviva-dark);
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .exec-info p {
+            color: var(--aviva-blue);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .exec-info span {
+            color: #666;
+            font-size: 13px;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .slide-content {
+                grid-template-columns: 1fr;
+            }
+            .opportunity-grid {
+                grid-template-columns: 1fr;
+            }
+            .slide {
+                padding: 30px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .slide {
+                position: relative;
+                opacity: 1;
+                visibility: visible;
+                page-break-after: always;
+                height: auto;
+            }
+            .nav-controls, .slide-counter {
+                display: none;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="presentation">
+
+        <!-- Slide 1: Cover -->
+        <div class="slide slide-cover active" data-slide="1">
+            <div class="cover-content">
+                <div class="aviva-logo">AVIVA</div>
+                <div class="cover-subtitle">FTSE 100 Composite Insurer | LSE: AV.</div>
+                <h1 class="cover-title">Strategic Intelligence Profile<br>& GTM Alignment</h1>
+                <p style="font-size: 22px; opacity: 0.9; margin-top: 20px;">
+                    AI Workflow Automation & Data Center Services<br>
+                    Investment Thesis & Opportunity Assessment
+                </p>
+                <div class="cover-meta">
+                    Confidential • January 2025<br>
+                    Technology at the Core Strategy Analysis
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Executive Summary -->
+        <div class="slide" data-slide="2">
+            <div class="slide-header">
+                <h2>Executive Summary</h2>
+                <p>Strategic Overview & Investment Highlights</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-box">
+                    <h3>Company Profile</h3>
+                    <ul class="feature-list">
+                        <li><strong>Scale:</strong> £20.7bn revenue, ~25,000 employees, 25.2m customers</li>
+                        <li><strong>Structure:</strong> Composite insurer (Life, GI, Wealth, Asset Management)</li>
+                        <li><strong>HQ:</strong> 80 Fenchurch Street, London EC3M 4AE</li>
+                        <li><strong>Strategic Priority:</strong> "Technology and AI at the core"</li>
+                        <li><strong>Digital Maturity:</strong> 65% cloud-native, Snowflake data platform</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h3>Key Investment Thesis</h3>
+                    <ul class="feature-list">
+                        <li><strong>£1bn+</strong> operating free cash flow target</li>
+                        <li><strong>£840m</strong> TCS deal (2024-2039) indicates massive IT spend</li>
+                        <li><strong>40%</strong> GenAI adoption in claims (60% still manual)</li>
+                        <li><strong>35%</strong> legacy apps remain (modernization opportunity)</li>
+                        <li><strong>Recent:</strong> Indico Data investment (Oct 2025) shows AI budget</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Financial Performance -->
+        <div class="slide" data-slide="3">
+            <div class="slide-header">
+                <h2>Financial Performance & Scale</h2>
+                <p>5-Year Trajectory & Operational Metrics</p>
+            </div>
+            <div class="slide-content">
+                <div class="chart-container">
+                    <img src="aviva_financial_chart.png" alt="Aviva Financial Performance Chart">
+                    <p style="margin-top: 15px; font-size: 14px; color: #666;">Source: Aviva Annual Reports 2020-2024</p>
+                </div>
+                <div>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <span class="metric-value">£353bn</span>
+                            <span class="metric-label">Total Assets</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">£20.7bn</span>
+                            <span class="metric-label">2024 Revenue</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">25k</span>
+                            <span class="metric-label">Global Employees</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">£1.1bn</span>
+                            <span class="metric-label">Op. Cash Flow</span>
+                        </div>
+                    </div>
+                    <div class="content-box" style="margin-top: 30px;">
+                        <h3>Strategic Context</h3>
+                        <p style="line-height: 1.6;">Revenue growth of 38% since 2020, with employee count optimized for efficiency. Current focus on "operational leverage" through technology investment rather than headcount expansion.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Decision Makers -->
+        <div class="slide" data-slide="4">
+            <div class="slide-header">
+                <h2>Key Decision Makers & Org Structure</h2>
+                <p>Technology Leadership & Influence Mapping</p>
+            </div>
+            <div class="slide-content slide-full">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+                    <div>
+                        <h3 style="color: var(--aviva-blue); margin-bottom: 20px; font-size: 24px;">Primary Targets</h3>
+                        <div class="exec-card">
+                            <div class="exec-avatar">JC</div>
+                            <div class="exec-info">
+                                <h4>John Cummings</h4>
+                                <p>Group CIO (Executive Committee)</p>
+                                <span>Ex-Vodafone UK & BT Global. Drives "AI at core" strategy. 30+ years scale deployment.</span>
+                            </div>
+                        </div>
+                        <div class="exec-card">
+                            <div class="exec-avatar">DB</div>
+                            <div class="exec-info">
+                                <h4>Doug Brown</h4>
+                                <p>CEO, Insurance Wealth & Retirement</p>
+                                <span>Owns £840m TCS relationship. Focus on pension platform efficiency.</span>
+                            </div>
+                        </div>
+                        <div class="exec-card">
+                            <div class="exec-avatar">JS</div>
+                            <div class="exec-info">
+                                <h4>Jason Storah</h4>
+                                <p>CEO, UK & Ireland General Insurance</p>
+                                <span>Claims automation sponsor. Delivered 40pt NPS improvement via GenAI.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--aviva-blue); margin-bottom: 20px; font-size: 24px;">Technical Influencers</h3>
+                        <div class="exec-card">
+                            <div class="exec-avatar">AH</div>
+                            <div class="exec-info">
+                                <h4>Arslan Hannani</h4>
+                                <p>Chief Innovation Officer</p>
+                                <span>Aviva Ventures ($193m fund). Board observer at Indico Data. AI/ML champion.</span>
+                            </div>
+                        </div>
+                        <div class="exec-card">
+                            <div class="exec-avatar">NS</div>
+                            <div class="exec-info">
+                                <h4>Niall Scott</h4>
+                                <p>Head of Data Engineering</p>
+                                <span>Led 1.6PB Snowflake migration. Evaluates data infrastructure & cloud integration.</span>
+                            </div>
+                        </div>
+                        <div class="content-box" style="margin-top: 20px;">
+                            <h3>Access Strategy</h3>
+                            <p style="font-size: 14px; line-height: 1.6;"><strong>Entry:</strong> Cummings via LinkedIn/podding engagement referencing his "AI marathon" commentary. <strong>Technical:</strong> Scott via Snowflake partnership status. <strong>Business:</strong> Storah via claims optimization ROI.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Technology Architecture -->
+        <div class="slide" data-slide="5">
+            <div class="slide-header">
+                <h2>Technology Stack Architecture</h2>
+                <p>Current State & Infrastructure Landscape</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-box">
+                    <h3>Cloud & Data Platform</h3>
+                    <table class="data-table">
+                        <tr>
+                            <th>Layer</th>
+                            <th>Technology</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td>Primary Cloud</td>
+                            <td>AWS (Multi-cloud strategy)</td>
+                            <td style="color: var(--aviva-accent);">● Active</td>
+                        </tr>
+                        <tr>
+                            <td>Data Platform</td>
+                            <td>Snowflake on AWS (1.6PB)</td>
+                            <td style="color: var(--aviva-accent);">● Migrated 2024</td>
+                        </tr>
+                        <tr>
+                            <td>Legacy</td>
+                            <td>Oracle Exadata (phasing out)</td>
+                            <td style="color: orange;">● Migrating</td>
+                        </tr>
+                        <tr>
+                            <td>AI/ML Platform</td>
+                            <td>Dataiku (via TCS)</td>
+                            <td style="color: var(--aviva-accent);">● Deployed</td>
+                        </tr>
+                        <tr>
+                            <td>Data Governance</td>
+                            <td>Reltio Customer 360</td>
+                            <td style="color: var(--aviva-accent);">● Active</td>
+                        </tr>
+                        <tr>
+                            <td>Fraud Detection</td>
+                            <td>Tungsten TotalAgility</td>
+                            <td style="color: var(--aviva-accent);">● Production</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <div class="chart-container" style="margin-bottom: 20px;">
+                        <img src="https://kimi-web-img.moonshot.cn/img/static.vecteezy.com/63f84925f2c925aeb900d3023f381148f65ade69.jpg" alt="Data Center" style="width: 100%; height: 200px; object-fit: cover;">
+                    </div>
+                    <div class="content-box">
+                        <h3>Infrastructure Notes</h3>
+                        <ul class="feature-list">
+                            <li><strong>DC Consolidation:</strong> 10→2 facilities (2012), 20x space reduction</li>
+                            <li><strong>Current:</strong> Interxion Paris (DR), SunGard (legacy)</li>
+                            <li><strong>Network:</strong> Equinix connectivity (financial services)</li>
+                            <li><strong>Gap:</strong> 35% apps still non-cloud (opportunity)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Cloud Timeline -->
+        <div class="slide" data-slide="6">
+            <div class="slide-header">
+                <h2>Digital Transformation Timeline</h2>
+                <p>Cloud Maturity & Automation Journey</p>
+            </div>
+            <div class="slide-content slide-full">
+                <div class="chart-container" style="max-width: 1000px; margin: 0 auto;">
+                    <img src="aviva_timeline_chart.png" alt="Aviva Cloud Timeline">
+                </div>
+                <div class="opportunity-grid" style="margin-top: 40px;">
+                    <div class="opp-card">
+                        <h4>Phase 1: Foundation</h4>
+                        <p>2012-2020: Infrastructure consolidation, initial cloud adoption, fraud AI deployment with Tungsten.</p>
+                        <span class="tag">Complete</span>
+                    </div>
+                    <div class="opp-card">
+                        <h4>Phase 2: Acceleration</h4>
+                        <p>2021-2024: Snowflake migration, GenAI claims, TCS strategic partnership, 65% cloud-native.</p>
+                        <span class="tag">Active</span>
+                    </div>
+                    <div class="opp-card">
+                        <h4>Phase 3: Optimization</h4>
+                        <p>2025+: Remaining 35% modernization, AI workflow automation, edge computing for regional offices.</p>
+                        <span class="tag">Opportunity</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Outsourcing Ecosystem -->
+        <div class="slide" data-slide="7">
+            <div class="slide-header">
+                <h2>IT Outsourcing & Partnership Ecosystem</h2>
+                <p>Vendor Landscape & Contract Intelligence</p>
+            </div>
+            <div class="slide-content">
+                <div class="chart-container">
+                    <img src="aviva_ecosystem_chart.png" alt="Vendor Ecosystem">
+                    <p style="margin-top: 10px; font-size: 13px; color: #666;">Estimated contract values based on disclosed figures</p>
+                </div>
+                <div class="content-box">
+                    <h3>Key Vendor Relationships</h3>
+                    <table class="data-table" style="font-size: 13px;">
+                        <tr>
+                            <th>Vendor</th>
+                            <th>Scope</th>
+                            <th>Risk/Opportunity</th>
+                        </tr>
+                        <tr>
+                            <td><strong>TCS (Diligenta)</strong></td>
+                            <td>£840m, 15yr (2024-2039). Life & Pensions admin, BaNCS platform.</td>
+                            <td style="color: red;">High Lock-in</td>
+                        </tr>
+                        <tr>
+                            <td><strong>WNS</strong></td>
+                            <td>Historical $1bn+ BPO, offshore delivery (2008-2018).</td>
+                            <td style="color: orange;">Medium</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capita</strong></td>
+                            <td>Technology services. <strong>2023 cyber breach damage.</strong></td>
+                            <td style="color: var(--aviva-accent);">Opportunity</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cognizant/ICE</strong></td>
+                            <td>2025 digital insurance platform partnership.</td>
+                            <td style="color: orange;">New Entrant</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dataiku</strong></td>
+                            <td>Enterprise AI/ML platform (via TCS).</td>
+                            <td style="color: orange;">Tooling Layer</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: AI & Automation -->
+        <div class="slide" data-slide="8">
+            <div class="slide-header">
+                <h2>AI & Automation Initiatives</h2>
+                <p>Current Deployments & Strategic Framework</p>
+            </div>
+            <div class="slide-content">
+                <div>
+                    <div class="content-box" style="margin-bottom: 20px;">
+                        <h3>Deployed Capabilities</h3>
+                        <div class="timeline" style="border-left-color: var(--aviva-blue); margin-top: 20px;">
+                            <div class="timeline-item">
+                                <div class="timeline-year">Claims Summarization (GenAI)</div>
+                                <div class="timeline-content">40% of UK motor claims handlers using. 10% productivity gain. 40pt NPS improvement.</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">Underwriting Automation</div>
+                                <div class="timeline-content">Hyperexponential (hx) partnership. Pricing model build: 1hr → 10min. 23 live models.</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">Fraud Detection (Tungsten)</div>
+                                <div class="timeline-content">12,000 fraud instances detected. £113m value identified. OCR/NLP processing.</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">Document Intelligence (Indico)</div>
+                                <div class="timeline-content">Oct 2025 strategic investment. Unstructured data automation for submissions.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="content-box">
+                        <h3>Cummings' Three-Phase AI Strategy</h3>
+                        <div style="margin-top: 20px;">
+                            <div style="background: var(--aviva-white); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--aviva-yellow);">
+                                <h4 style="color: var(--aviva-blue); margin-bottom: 5px;">1. Enhance (Current)</h4>
+                                <p style="font-size: 14px;">Remove repetitive tasks. Claims summarization. "Taking the robot out of the human."</p>
+                            </div>
+                            <div style="background: var(--aviva-white); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--aviva-blue);">
+                                <h4 style="color: var(--aviva-blue); margin-bottom: 5px;">2. Transform (Emerging)</h4>
+                                <p style="font-size: 14px;">Reimagine workflows. End-to-end underwriting automation. Real-time pricing.</p>
+                            </div>
+                            <div style="background: var(--aviva-white); padding: 15px; border-radius: 8px; border-left: 4px solid var(--aviva-accent);">
+                                <h4 style="color: var(--aviva-blue); margin-bottom: 5px;">3. Reimagine (Future)</h4>
+                                <p style="font-size: 14px;">Business model innovation. Predictive risk models. Prevention over protection.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-grid" style="margin-top: 20px;">
+                        <div class="metric-card">
+                            <span class="metric-value">40%</span>
+                            <span class="metric-label">GenAI Adoption</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">60%</span>
+                            <span class="metric-label">Still Manual (Opp)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Regional Footprint -->
+        <div class="slide" data-slide="9">
+            <div class="slide-header">
+                <h2>UK Regional Footprint</h2>
+                <p>Operational Hubs & Employee Distribution</p>
+            </div>
+            <div class="slide-content">
+                <div class="chart-container">
+                    <img src="aviva_regional_chart.png" alt="Regional Distribution">
+                </div>
+                <div>
+                    <div class="content-box">
+                        <h3>Strategic Locations</h3>
+                        <table class="data-table" style="font-size: 14px;">
+                            <tr>
+                                <th>Location</th>
+                                <th>Function</th>
+                                <th>Headcount</th>
+                            </tr>
+                            <tr>
+                                <td><strong>London (HQ)</strong></td>
+                                <td>Group Exec, Aviva Investors</td>
+                                <td>5,000+</td>
+                            </tr>
+                            <tr>
+                                <td><strong>York</strong></td>
+                                <td>Life & Pensions Operations</td>
+                                <td>4,000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Norwich</strong></td>
+                                <td>Digital Hub, "Youtility" Center</td>
+                                <td>3,000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bristol</strong></td>
+                                <td>General Insurance</td>
+                                <td>1,500</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sheffield</strong></td>
+                                <td>Operations Center</td>
+                                <td>1,000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Perth, Scotland</strong></td>
+                                <td>Insurance Ltd HQ</td>
+                                <td>500</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="content-box" style="margin-top: 20px;">
+                        <h3>Offshore Presence</h3>
+                        <p style="font-size: 14px; line-height: 1.6;"><strong>India (Bangalore):</strong> Development center historically supporting UK/Canada. ~1,100 staff capacity. Hybrid model with TCS Diligenta delivery.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Strategic Opportunities -->
+        <div class="slide" data-slide="10">
+            <div class="slide-header">
+                <h2>Strategic Opportunity Assessment</h2>
+                <p>Immediate & Long-term Revenue Opportunities</p>
+            </div>
+            <div class="slide-content slide-full">
+                <div class="opportunity-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="opp-card" style="border-color: var(--aviva-accent);">
+                        <h4>🎯 AI Claims Workflow Orchestration</h4>
+                        <p><strong>Target:</strong> Jason Storah (CEO GI)<br>
+                        <strong>Pain:</strong> 60% of claims still manual after GenAI summarization<br>
+                        <strong>Value:</strong> End-to-end automation (ingestion → assessment → settlement)<br>
+                        <strong>Hook:</strong> Build on existing 40pt NPS gains, integrate with Indico Data investment</p>
+                        <span class="tag">Immediate (6-12mo)</span>
+                    </div>
+                    <div class="opp-card" style="border-color: var(--aviva-blue);">
+                        <h4>🏢 Data Center Modernization</h4>
+                        <p><strong>Target:</strong> John Cummings (CIO)<br>
+                        <strong>Pain:</strong> 2012 consolidation aging, Paris colocation dependency<br>
+                        <strong>Value:</strong> UK edge computing (Norwich/York/Bristol), hybrid cloud management<br>
+                        <strong>Hook:</strong> 35% non-cloud apps need modern infrastructure</p>
+                        <span class="tag">Strategic (12-24mo)</span>
+                    </div>
+                    <div class="opp-card" style="border-color: orange;">
+                        <h4>⚡ BPO Augmentation Layer</h4>
+                        <p><strong>Target:</strong> Doug Brown (CEO IWR)<br>
+                        <strong>Pain:</strong> £840m TCS contract needs efficiency demonstration<br>
+                        <strong>Value:</strong> AI automation to optimize SLA performance, reduce unit costs<br>
+                        <strong>Hook:</strong> "Augment not replace" TCS delivery</p>
+                        <span class="tag">Immediate (6-12mo)</span>
+                    </div>
+                    <div class="opp-card" style="border-color: var(--aviva-yellow);">
+                        <h4>📊 Underwriting Workbench</h4>
+                        <p><strong>Target:</strong> Arslan Hannani (CIO)<br>
+                        <strong>Pain:</strong> hx Renew deployed for pricing, but submission intake manual<br>
+                        <strong>Value:</strong> Full digital underwriting (submission → bind)<br>
+                        <strong>Hook:</strong> Leverage Indico Data for unstructured document processing</p>
+                        <span class="tag">Strategic (12-24mo)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: GTM Strategy -->
+        <div class="slide" data-slide="11">
+            <div class="slide-header">
+                <h2>Go-to-Market Strategy</h2>
+                <p>Account Entry & Positioning Framework</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-box">
+                    <h3>Recommended Approach</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">Phase 1: Executive Engagement</div>
+                            <div class="timeline-content"><strong>Target:</strong> John Cummings (CIO)<br>
+                            <strong>Message:</strong> "The next phase of claims automation beyond GenAI summarization"<br>
+                            <strong>Channel:</strong> LinkedIn thought leadership + Insurance Times tech coverage</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">Phase 2: Technical Validation</div>
+                            <div class="timeline-content"><strong>Target:</strong> Niall Scott (Data Eng)<br>
+                            <strong>Message:</strong> Snowflake/AWS native integration, secure data pipeline architecture<br>
+                            <strong>Action:</strong> POC on document automation workload</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">Phase 3: Business Case</div>
+                            <div class="timeline-content"><strong>Target:</strong> Jason Storah (CEO GI)<br>
+                            <strong>Message:</strong> 10x improvement on current 10% productivity gains<br>
+                            <strong>Metric:</strong> Cost per claim reduction, NPS impact</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="content-box" style="margin-bottom: 20px;">
+                        <h3>Competitive Positioning</h3>
+                        <ul class="feature-list">
+                            <li><strong>vs. TCS:</strong> Position as "augmentation layer" not replacement. Speed-to-value focus.</li>
+                            <li><strong>vs. Capita:</strong> Capitalize on 2023 cyber breach. Position as secure next-gen alternative.</li>
+                            <li><strong>Differentiator:</strong> UK data sovereignty (post-Brexit), insurance-specific ROI models.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box">
+                        <h3>Required Proof Points</h3>
+                        <ul class="feature-list">
+                            <li>Insurance-specific ROI (expense ratios, cost/claim)</li>
+                            <li>Scale references (FTSE 100 insurers, £20bn+ AUM)</li>
+                            <li>Snowflake/AWS partner status</li>
+                            <li>FCA/PRA regulatory compliance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Next Steps -->
+        <div class="slide" data-slide="12">
+            <div class="slide-header">
+                <h2>Strategic Recommendations</h2>
+                <p>Immediate Actions & Success Metrics</p>
+            </div>
+            <div class="slide-content slide-full">
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px;">
+                    <div>
+                        <div class="content-box">
+                            <h3>90-Day Action Plan</h3>
+                            <table class="data-table">
+                                <tr>
+                                    <th>Week</th>
+                                    <th>Action</th>
+                                    <th>Target</th>
+                                    <th>Success Metric</th>
+                                </tr>
+                                <tr>
+                                    <td>1-2</td>
+                                    <td>LinkedIn engagement with Cummings' AI content</td>
+                                    <td>CIO Office</td>
+                                    <td>Profile view + connection</td>
+                                </tr>
+                                <tr>
+                                    <td>3-4</td>
+                                    <td>Reference case study: Claims automation ROI</td>
+                                    <td>Innovation Team</td>
+                                    <td>Meeting booked</td>
+                                </tr>
+                                <tr>
+                                    <td>5-8</td>
+                                    <td>Technical workshop: Snowflake integration</td>
+                                    <td>Data Engineering</td>
+                                    <td>POC scope defined</td>
+                                </tr>
+                                <tr>
+                                    <td>9-12</td>
+                                    <td>Executive presentation: Business case</td>
+                                    <td>Group CIO</td>
+                                    <td>Budget approval path</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="metric-grid" style="grid-template-columns: 1fr;">
+                            <div class="metric-card" style="background: var(--aviva-blue); color: white;">
+                                <span class="metric-value" style="color: var(--aviva-yellow);">£840m</span>
+                                <span class="metric-label" style="color: white;">TCS Contract Reference</span>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-value">35%</span>
+                                <span class="metric-label">Legacy App Opportunity</span>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-value">60%</span>
+                                <span class="metric-label">Manual Claims (Target)</span>
+                            </div>
+                            <div class="metric-card" style="background: var(--aviva-yellow);">
+                                <span class="metric-value" style="color: var(--aviva-dark);">High</span>
+                                <span class="metric-label">Deal Probability</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 40px; text-align: center; padding: 30px; background: var(--aviva-gray); border-radius: 12px;">
+                    <h3 style="color: var(--aviva-blue); margin-bottom: 15px;">Key Insight</h3>
+                    <p style="font-size: 18px; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+                        <em>"Aviva is not looking for rip-and-replace. They need an <strong>augmentation strategy</strong> that demonstrates 
+                        10x productivity gains on their existing £840m TCS investment while modernizing the 35% legacy estate. 
+                        The Indico Data investment proves budget availability for AI workflow automation."</em>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="nav-controls">
+            <button class="nav-btn" onclick="prevSlide()">← Previous</button>
+            <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        </div>
+
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">12</span>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 12;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            if (n > totalSlides) currentSlide = 1;
+            if (n < 1) currentSlide = totalSlides;
+
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            document.querySelector(`[data-slide="${currentSlide}"]`).classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Touch support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) nextSlide();
+            if (touchEndX - touchStartX > 50) prevSlide();
+        });
+    </script>
+</body>
+</html>

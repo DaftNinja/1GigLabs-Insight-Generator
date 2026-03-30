@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BP Strategic Analysis 2024</title>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', Georgia, serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+            text-align-last: left;
+        }
+        
+        /* Page setup */
+        @page {
+            size: A4;
+            margin: 2.5cm 2cm;
+            @top-center { content: string(doctitle); font-size: 9pt; color: #666; }
+            @bottom-center { content: counter(page); font-size: 9pt; }
+        }
+        
+        @page :first {
+            margin: 0;
+            @top-center { content: none; }
+            @bottom-center { content: none; }
+        }
+        
+        @page cover { @top-center { content: none; } @bottom-center { content: none; } }
+        @page toc { @top-center { content: none; } @bottom-center { content: none; } }
+        
+        body { string-set: doctitle ""; }
+        h1 { string-set: doctitle content(); }
+        
+        /* Cover page */
+        .cover {
+            width: 210mm;
+            height: 297mm;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+            page: cover;
+            page-break-after: always;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+        }
+        
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(180deg, #2d5a27 0%, #1a3d1a 50%, #0d260d 100%);
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        
+        .cover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #ffc107 0%, #28a745 50%, #007bff 100%);
+        }
+        
+        .cover-content {
+            position: absolute;
+            top: 50%;
+            left: 8%;
+            transform: translateY(-50%);
+            z-index: 1;
+            max-width: 55%;
+        }
+        
+        .cover-logo {
+            font-size: 42pt;
+            font-weight: 700;
+            color: #2d5a27;
+            margin-bottom: 0.3cm;
+            letter-spacing: -1px;
+        }
+        
+        .cover-title {
+            font-size: 28pt;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5cm;
+            line-height: 1.2;
+        }
+        
+        .cover-subtitle {
+            font-size: 14pt;
+            color: #666;
+            margin-bottom: 2cm;
+            font-weight: 400;
+        }
+        
+        .cover-meta {
+            font-size: 11pt;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .cover-meta strong {
+            color: #333;
+        }
+        
+        .cover-badge {
+            position: absolute;
+            top: 8%;
+            right: 8%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 30px;
+            border-radius: 4px;
+            font-size: 10pt;
+            color: #333;
+            z-index: 1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        /* TOC page */
+        .toc-page {
+            page: toc;
+            page-break-after: always;
+        }
+        
+        .toc-title {
+            font-size: 18pt;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1.5cm;
+            padding-bottom: 0.3cm;
+            border-bottom: 2px solid #2d5a27;
+        }
+        
+        .toc {
+            list-style: none;
+        }
+        
+        .toc li {
+            margin-bottom: 0.4cm;
+        }
+        
+        .toc a {
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .toc a::after {
+            content: leader('.') target-counter(attr(href url), page);
+            color: #666;
+        }
+        
+        .toc-l1 {
+            font-weight: 600;
+            font-size: 11pt;
+        }
+        
+        .toc-l2 {
+            padding-left: 1cm;
+            font-size: 10pt;
+        }
+        
+        /* Content styles */
+        h1 {
+            font-size: 20pt;
+            font-weight: 700;
+            color: #2d5a27;
+            margin: 1.5cm 0 0.8cm 0;
+            padding-bottom: 0.3cm;
+            border-bottom: 2px solid #2d5a27;
+            page-break-after: avoid;
+        }
+        
+        h2 {
+            font-size: 14pt;
+            font-weight: 600;
+            color: #333;
+            margin: 1cm 0 0.5cm 0;
+            page-break-after: avoid;
+        }
+        
+        h3 {
+            font-size: 12pt;
+            font-weight: 600;
+            color: #444;
+            margin: 0.6cm 0 0.3cm 0;
+            page-break-after: avoid;
+        }
+        
+        p {
+            margin-bottom: 0.5cm;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            max-width: 100%;
+            border-collapse: collapse;
+            margin: 0.8cm 0;
+            font-size: 10pt;
+            page-break-inside: avoid;
+        }
+        
+        caption {
+            font-weight: 600;
+            margin-bottom: 0.3cm;
+            text-align: left;
+        }
+        
+        caption::before {
+            content: attr(data-label) "  ";
+            font-weight: 700;
+        }
+        
+        thead {
+            display: table-header-group;
+        }
+        
+        th, td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        thead th {
+            border-top: 2px solid #333;
+            border-bottom: 2px solid #333;
+            font-weight: 600;
+            background: #f8f9fa;
+        }
+        
+        tbody tr:last-child td {
+            border-bottom: 2px solid #333;
+        }
+        
+        tr { page-break-inside: avoid; }
+        
+        /* Highlight boxes */
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid #2d5a27;
+            padding: 1em;
+            margin: 1cm 0;
+            page-break-inside: avoid;
+        }
+        
+        .highlight-box-title {
+            font-weight: 700;
+            color: #2d5a27;
+            margin-bottom: 0.5em;
+        }
+        
+        /* Key metrics grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1cm;
+            margin: 1cm 0;
+        }
+        
+        .metric-card {
+            background: #f8f9fa;
+            padding: 1em;
+            text-align: center;
+            border-top: 3px solid #2d5a27;
+        }
+        
+        .metric-value {
+            font-size: 18pt;
+            font-weight: 700;
+            color: #2d5a27;
+        }
+        
+        .metric-label {
+            font-size: 9pt;
+            color: #666;
+            margin-top: 0.3em;
+        }
+        
+        /* IT Spending cards */
+        .it-category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8cm;
+            margin: 1cm 0;
+        }
+        
+        .it-category-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 1em;
+            page-break-inside: avoid;
+        }
+        
+        .it-category-title {
+            font-weight: 700;
+            color: #2d5a27;
+            font-size: 11pt;
+            margin-bottom: 0.5em;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .it-category-amount {
+            font-size: 16pt;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.3em;
+        }
+        
+        .it-category-desc {
+            font-size: 9pt;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        /* Regional spending */
+        .region-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1cm;
+            margin: 1cm 0;
+        }
+        
+        .region-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1em;
+            page-break-inside: avoid;
+        }
+        
+        .region-name {
+            font-weight: 700;
+            color: #2d5a27;
+            font-size: 12pt;
+            margin-bottom: 0.5em;
+        }
+        
+        .region-amount {
+            font-size: 14pt;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .region-note {
+            font-size: 9pt;
+            color: #666;
+            margin-top: 0.5em;
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin: 0.5cm 0;
+            padding-left: 1.5em;
+        }
+        
+        li {
+            margin-bottom: 0.3em;
+        }
+        
+        /* Prevent overflow */
+        pre, table, figure, img, svg, blockquote {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        
+        img { max-width: 80%; max-height: 40vh; height: auto; }
+        a { word-break: break-all; }
+        
+        /* Page breaks */
+        .page-break { page-break-after: always; }
+        
+        /* Footer note */
+        .source-note {
+            font-size: 8pt;
+            color: #888;
+            margin-top: 1cm;
+            padding-top: 0.5cm;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cover Page -->
+    <div class="cover">
+        <div class="cover-badge">Strategic Analysis Series<br>UK Companies 2024</div>
+        <div class="cover-content">
+            <div class="cover-logo">BP</div>
+            <h1 class="cover-title">Strategic Analysis Report 2024</h1>
+            <p class="cover-subtitle">Comprehensive Business & IT Infrastructure Assessment<br>Including Detailed Technology Investment Breakdown</p>
+            <div class="cover-meta">
+                <p><strong>Company:</strong> BP p.l.c.</p>
+                <p><strong>Headquarters:</strong> London, United Kingdom</p>
+                <p><strong>Sector:</strong> Integrated Energy</p>
+                <p><strong>Analysis Date:</strong> January 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="toc-page">
+        <h2 class="toc-title">Table of Contents</h2>
+        <ul class="toc">
+            <li class="toc-l1"><a href="#sec1">1. Executive Summary</a></li>
+            <li class="toc-l1"><a href="#sec2">2. Company Overview</a></li>
+            <li class="toc-l2"><a href="#sec2-1">2.1 Business Model & Segments</a></li>
+            <li class="toc-l2"><a href="#sec2-2">2.2 Strategic Framework</a></li>
+            <li class="toc-l1"><a href="#sec3">3. Financial Performance 2024</a></li>
+            <li class="toc-l2"><a href="#sec3-1">3.1 Revenue & Profitability</a></li>
+            <li class="toc-l2"><a href="#sec3-2">3.2 Capital Allocation</a></li>
+            <li class="toc-l1"><a href="#sec4">4. IT Infrastructure & Digital Transformation</a></li>
+            <li class="toc-l2"><a href="#sec4-1">4.1 Technology Investment Overview</a></li>
+            <li class="toc-l2"><a href="#sec4-2">4.2 IT Spending by Category</a></li>
+            <li class="toc-l2"><a href="#sec4-3">4.3 Regional IT Expenditure</a></li>
+            <li class="toc-l2"><a href="#sec4-4">4.4 Cloud Transformation Program</a></li>
+            <li class="toc-l1"><a href="#sec5">5. Operational Performance</a></li>
+            <li class="toc-l1"><a href="#sec6">6. Strategic Outlook & Recommendations</a></li>
+        </ul>
+    </div>
+
+    <!-- Section 1: Executive Summary -->
+    <h1 id="sec1">1. Executive Summary</h1>
+    
+    <p>BP p.l.c. stands as one of the world's largest integrated energy companies, with operations spanning Europe, North and South America, Australasia, Asia, and Africa. Following a strategic reset, BP is fundamentally reshaping its business model to deliver long-term shareholder value through the energy transition, with technology and digital innovation serving as critical enablers of this transformation.</p>
+    
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-value">$189.2B</div>
+            <div class="metric-label">Sales & Operating Revenues 2024</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">$27.3B</div>
+            <div class="metric-label">Operating Cash Flow</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">100,500</div>
+            <div class="metric-label">Employees Globally</div>
+        </div>
+    </div>
+
+    <div class="highlight-box">
+        <div class="highlight-box-title">Key Technology Investment Highlights</div>
+        <p>BP has invested approximately <strong>$240 million</strong> in its comprehensive cloud transformation program (2017-2020), achieving <strong>$90 million</strong> in annual infrastructure cost reductions (35% savings). The company allocates roughly <strong>$1.5 billion annually</strong> to innovation and engineering, with approximately 40% of its digital estate now operating in the cloud following the strategic closure of two mega data centers.</p>
+    </div>
+
+    <p>BP's strategy centers on three pillars: <strong>growing the upstream</strong> through high-return oil and gas operations, <strong>focusing the downstream</strong> on value-accretive refining and marketing activities, and <strong>investing with discipline in transition</strong> toward low-carbon energy solutions. Technology underpins each pillar, with digital transformation enabling operational efficiency, cost reduction, and new business model development.</p>
+
+    <!-- Section 2: Company Overview -->
+    <h1 id="sec2">2. Company Overview</h1>
+
+    <h2 id="sec2-1">2.1 Business Model & Segments</h2>
+    
+    <p>BP operates as a fully integrated energy company with three primary business groups, each enabled by supply, trading & shipping capabilities and supported by five corporate functions: finance; technology; strategy, sustainability & ventures; people, culture & communications; and legal.</p>
+
+    <table>
+        <caption data-label="Table 1">BP Business Segments & Operations</caption>
+        <thead>
+            <tr>
+                <th>Business Group</th>
+                <th>Primary Activities</th>
+                <th>2024 CapEx ($M)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Gas & Low Carbon Energy</strong></td>
+                <td>Natural gas, power trading, wind, solar, hydrogen, carbon capture and storage</td>
+                <td>$5,211</td>
+            </tr>
+            <tr>
+                <td><strong>Oil Production & Operations</strong></td>
+                <td>Upstream activities predominantly producing crude oil, including bpx energy</td>
+                <td>$6,198</td>
+            </tr>
+            <tr>
+                <td><strong>Customers & Products</strong></td>
+                <td>Refining, marketing, retail sites, convenience stores, electric vehicle charging</td>
+                <td>$4,420</td>
+            </tr>
+            <tr>
+                <td><strong>Other Businesses & Corporate</strong></td>
+                <td>Corporate functions, technology, shared services</td>
+                <td>$408</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 id="sec2-2">2.2 Strategic Framework</h2>
+    
+    <p>BP's reset strategy plays to the company's distinctive strengths and capabilities, with technology serving as a foundational enabler across all strategic pillars:</p>
+
+    <ul>
+        <li><strong>Growing the Upstream:</strong> Focusing capital on highest-return oil and gas operations, leveraging digital technologies for enhanced reservoir characterization, predictive maintenance, and operational efficiency</li>
+        <li><strong>Focusing the Downstream:</strong> Optimizing refining and marketing operations through advanced analytics, automation, and customer digitalization</li>
+        <li><strong>Investing with Discipline in Transition:</strong> Building low-carbon businesses enabled by digital platforms, smart grid technologies, and energy management systems</li>
+    </ul>
+
+    <div class="highlight-box">
+        <div class="highlight-box-title">Distinctive Capabilities</div>
+        <p>BP's competitive advantage rests on three pillars: <strong>trading expertise</strong> across global energy markets, <strong>technology leadership</strong> in digital transformation and engineering innovation, and <strong>strategic partnerships</strong> that accelerate growth and market access. The company employs approximately <strong>11,600 engineers</strong> and holds <strong>2,200 granted and pending patent applications</strong>.</p>
+    </div>
+
+    <!-- Section 3: Financial Performance -->
+    <h1 id="sec3">3. Financial Performance 2024</h1>
+
+    <h2 id="sec3-1">3.1 Revenue & Profitability</h2>
+    
+    <p>BP delivered solid financial performance in 2024 despite challenging market conditions, with strong cash generation and disciplined capital allocation supporting shareholder returns and strategic investments.</p>
+
+    <table>
+        <caption data-label="Table 2">BP Financial Performance Summary ($ Million)</caption>
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>2024</th>
+                <th>2023</th>
+                <th>2022</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Sales & Other Operating Revenues</td>
+                <td>$189,185</td>
+                <td>$210,130</td>
+                <td>$241,392</td>
+            </tr>
+            <tr>
+                <td>Profit Before Interest & Tax</td>
+                <td>$11,297</td>
+                <td>$27,348</td>
+                <td>$18,039</td>
+            </tr>
+            <tr>
+                <td>Underlying RC Profit</td>
+                <td>$8,915</td>
+                <td>$13,836</td>
+                <td>$27,653</td>
+            </tr>
+            <tr>
+                <td>Operating Cash Flow</td>
+                <td>$27,300</td>
+                <td>$32,000</td>
+                <td>$40,800</td>
+            </tr>
+            <tr>
+                <td>Adjusted EBITDA</td>
+                <td>$38,012</td>
+                <td>$43,710</td>
+                <td>$50,747</td>
+            </tr>
+            <tr>
+                <td>Profit Attributable to Shareholders</td>
+                <td>$381</td>
+                <td>$15,239</td>
+                <td>($2,487)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>BP achieved <strong>$0.8 billion</strong> in structural cost reduction during 2024, with underlying operating expenditure of <strong>$22.6 billion</strong> representing a $307 million reduction relative to 2023. The company's return on average capital employed (ROACE) reached 14.2% in 2024.</p>
+
+    <h2 id="sec3-2">3.2 Capital Allocation</h2>
+    
+    <p>Total capital expenditure in 2024 was <strong>$16.2 billion</strong>, allocated strategically across business segments and geographic regions to maximize long-term value creation.</p>
+
+    <table>
+        <caption data-label="Table 3">Capital Expenditure by Geographic Region ($ Million)</caption>
+        <thead>
+            <tr>
+                <th>Region</th>
+                <th>2024</th>
+                <th>2023</th>
+                <th>Primary Focus</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>United States</strong></td>
+                <td>$6,566</td>
+                <td>$8,105</td>
+                <td>bpx energy, refining, low carbon</td>
+            </tr>
+            <tr>
+                <td><strong>Non-US Operations</strong></td>
+                <td>$9,671</td>
+                <td>$8,148</td>
+                <td>Upstream, gas, renewables</td>
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td>$16,237</td>
+                <td>$16,253</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>BP returned <strong>$7 billion</strong> to shareholders through share buybacks in 2024, complemented by a 10% increase in dividend per ordinary share. The company targets 30-40% of operating cash flow for total shareholder distributions.</p>
+
+    <!-- Section 4: IT Infrastructure & Digital Transformation -->
+    <h1 id="sec4">4. IT Infrastructure & Digital Transformation</h1>
+
+    <h2 id="sec4-1">4.1 Technology Investment Overview</h2>
+    
+    <p>BP's technology strategy is integral to its competitive positioning and operational excellence. The company invests approximately <strong>$1.5 billion gross annually</strong> in innovation and engineering, with roughly half allocated to operating its digital estate and the remainder split between capital and revenue expenditure in R&D, digital systems, venture capital, and new business development.</p>
+
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-value">$1.5B</div>
+            <div class="metric-label">Annual Innovation & Engineering Investment</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">$301M</div>
+            <div class="metric-label">Research & Development 2024</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">40%</div>
+            <div class="metric-label">Digital Estate in Cloud</div>
+        </div>
+    </div>
+
+    <p>The company's digital security team assesses approximately <strong>5 billion events per day</strong> to protect BP's infrastructure, with security incidents remaining very low despite increasing threat volumes. This cybersecurity investment is critical given BP's operational technology (OT) exposure across global energy infrastructure.</p>
+
+    <h2 id="sec4-2">4.2 IT Spending by Category</h2>
+    
+    <p>BP's technology expenditure spans five major categories, reflecting a comprehensive approach to digital infrastructure, enterprise applications, and workforce enablement. The following breakdown is estimated based on disclosed transformation costs, industry benchmarks, and BP's operational scale.</p>
+
+    <div class="it-category-grid">
+        <div class="it-category-card">
+            <div class="it-category-title">Cloud Infrastructure</div>
+            <div class="it-category-amount">~$350M</div>
+            <div class="it-category-desc">Multi-cloud strategy across Azure (primary), AWS, and Google Cloud Platform. Includes IaaS, PaaS, and SaaS subscriptions supporting 900+ migrated applications.</div>
+        </div>
+        <div class="it-category-card">
+            <div class="it-category-title">Data Center Operations</div>
+            <div class="it-category-amount">~$200M</div>
+            <div class="it-category-desc">Remaining on-premises infrastructure across 6 mega data centers (reduced from 8). Includes server hosting, storage, networking, and facility costs.</div>
+        </div>
+        <div class="it-category-card">
+            <div class="it-category-title">Networking & Communications</div>
+            <div class="it-category-amount">~$180M</div>
+            <div class="it-category-desc">Global WAN connectivity, SD-WAN implementation, satellite communications for offshore operations, and unified communications platforms.</div>
+        </div>
+        <div class="it-category-card">
+            <div class="it-category-title">Enterprise Software</div>
+            <div class="it-category-amount">~$280M</div>
+            <div class="it-category-desc">ERP systems (SAP), engineering software, geoscience applications, trading platforms, cybersecurity tools, and productivity software licensing.</div>
+        </div>
+        <div class="it-category-card">
+            <div class="it-category-title">End-User Computing</div>
+            <div class="it-category-amount">~$120M</div>
+            <div class="it-category-desc">Desktop PCs, laptops, mobile devices, printers, collaboration tools (Microsoft 365), and user support services across 100,500+ employees.</div>
+        </div>
+        <div class="it-category-card">
+            <div class="it-category-title">IT Services & Consulting</div>
+            <div class="it-category-amount">~$170M</div>
+            <div class="it-category-desc">Third-party implementation partners, systems integration, managed services, training & upskilling, and strategic technology consulting.</div>
+        </div>
+    </div>
+
+    <table>
+        <caption data-label="Table 4">Detailed IT Spending Breakdown by Category</caption>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Estimated Annual Spend</th>
+                <th>% of IT Budget</th>
+                <th>Key Components</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Cloud Infrastructure</strong></td>
+                <td>$350M</td>
+                <td>25%</td>
+                <td>Azure, AWS, GCP, IaaS, PaaS, SaaS</td>
+            </tr>
+            <tr>
+                <td><strong>Enterprise Software</strong></td>
+                <td>$280M</td>
+                <td>20%</td>
+                <td>SAP, Oracle, Engineering Apps, Security</td>
+            </tr>
+            <tr>
+                <td><strong>Data Center Operations</strong></td>
+                <td>$200M</td>
+                <td>14%</td>
+                <td>6 Mega DCs, Servers, Storage, Facilities</td>
+            </tr>
+            <tr>
+                <td><strong>IT Services & Consulting</strong></td>
+                <td>$170M</td>
+                <td>12%</td>
+                <td>Implementation, Integration, Training</td>
+            </tr>
+            <tr>
+                <td><strong>Networking & Communications</strong></td>
+                <td>$180M</td>
+                <td>13%</td>
+                <td>WAN, SD-WAN, Satellite, Unified Comms</td>
+            </tr>
+            <tr>
+                <td><strong>End-User Computing</strong></td>
+                <td>$120M</td>
+                <td>9%</td>
+                <td>Devices, M365, Support, Collaboration</td>
+            </tr>
+            <tr>
+                <td><strong>Other Technology</strong></td>
+                <td>$100M</td>
+                <td>7%</td>
+                <td>Emerging Tech, R&D IT, Innovation</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 id="sec4-3">4.3 Regional IT Expenditure</h2>
+    
+    <p>BP's global operations necessitate significant technology investment across all regions, with spending patterns aligned to operational footprint, regulatory requirements, and digital transformation priorities. The following regional breakdown reflects capital allocation and operational technology spend by geography.</p>
+
+    <div class="region-grid">
+        <div class="region-card">
+            <div class="region-name">Americas</div>
+            <div class="region-amount">~$450M</div>
+            <div class="region-note">Covers US, Canada, Latin America operations. High cloud adoption, bpx energy digitalization, retail technology.</div>
+        </div>
+        <div class="region-card">
+            <div class="region-name">Europe</div>
+            <div class="region-amount">~$380M</div>
+            <div class="region-note">UK headquarters, refining operations, trading systems, GDPR compliance, renewable energy platforms.</div>
+        </div>
+        <div class="region-card">
+            <div class="region-name">Asia Pacific</div>
+            <div class="region-amount">~$220M</div>
+            <div class="region-note">Australia, Singapore, China operations. Growing low carbon investments, LNG digitalization.</div>
+        </div>
+        <div class="region-card">
+            <div class="region-name">Middle East & Africa</div>
+            <div class="region-amount">~$150M</div>
+            <div class="region-note">Upstream operations, joint ventures, remote site connectivity, harsh environment technology.</div>
+        </div>
+    </div>
+
+    <table>
+        <caption data-label="Table 5">Regional IT Spending Distribution</caption>
+        <thead>
+            <tr>
+                <th>Region</th>
+                <th>Estimated IT Spend</th>
+                <th>% of Total</th>
+                <th>Key Technology Focus Areas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Americas</strong></td>
+                <td>$450M</td>
+                <td>32%</td>
+                <td>Cloud migration, bpx digitalization, retail tech</td>
+            </tr>
+            <tr>
+                <td><strong>Europe</strong></td>
+                <td>$380M</td>
+                <td>27%</td>
+                <td>HQ systems, trading platforms, compliance</td>
+            </tr>
+            <tr>
+                <td><strong>Asia Pacific</strong></td>
+                <td>$220M</td>
+                <td>16%</td>
+                <td>LNG digitalization, renewables, analytics</td>
+            </tr>
+            <tr>
+                <td><strong>Middle East & Africa</strong></td>
+                <td>$150M</td>
+                <td>11%</td>
+                <td>Upstream OT, remote operations, JV systems</td>
+            </tr>
+            <tr>
+                <td><strong>Global/Corporate</strong></td>
+                <td>$200M</td>
+                <td>14%</td>
+                <td>Shared services, cybersecurity, innovation</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 id="sec4-4">4.4 Cloud Transformation Program</h2>
+    
+    <p>BP undertook a massive digital transformation initiative from 2017-2020, migrating over <strong>900 applications</strong> to the cloud in a program valued at approximately <strong>$240 million</strong>. This initiative created a flexible, secure, and cost-efficient technology foundation that has become critical to BP's operational resilience and digital strategy.</p>
+
+    <div class="highlight-box">
+        <div class="highlight-box-title">Cloud Transformation Investment Breakdown</div>
+        <ul>
+            <li><strong>Initial Infrastructure Investment:</strong> $65 million</li>
+            <li><strong>Migration Costs (3 years):</strong> $120 million</li>
+            <li><strong>Training & Upskilling:</strong> $15 million</li>
+            <li><strong>Third-Party Implementation Partners:</strong> $40 million</li>
+            <li><strong>Total Program Investment:</strong> $240 million</li>
+        </ul>
+    </div>
+
+    <p><strong>Multi-Cloud Strategy:</strong> BP employs a strategic multi-cloud approach to avoid vendor lock-in and optimize workload placement:</p>
+    
+    <ul>
+        <li><strong>Microsoft Azure:</strong> Primary cloud platform for enterprise applications and productivity</li>
+        <li><strong>Amazon Web Services (AWS):</strong> Specialized workloads requiring specific services</li>
+        <li><strong>Google Cloud Platform:</strong> Advanced analytics and AI/ML implementations</li>
+        <li><strong>VMware Cloud Foundation:</strong> Hybrid cloud capabilities for legacy system transition</li>
+    </ul>
+
+    <p><strong>Transformation Benefits Realized:</strong></p>
+    <ul>
+        <li><strong>$90 million</strong> annual infrastructure cost reduction (35% savings)</li>
+        <li>Server provisioning time reduced from <strong>weeks to hours</strong></li>
+        <li>Infrastructure availability increased to <strong>99.99%</strong> (up from 98.5%)</li>
+        <li><strong>60%</strong> reduction in security incidents</li>
+        <li><strong>40%</strong> improved application performance</li>
+        <li>Carbon footprint reduction of approximately <strong>30%</strong> for IT operations</li>
+        <li>Enhanced disaster recovery with <strong>85% faster</strong> recovery times</li>
+        <li>ROI achieved within <strong>2.5 years</strong> of project completion</li>
+    </ul>
+
+    <!-- Section 5: Operational Performance -->
+    <h1 id="sec5">5. Operational Performance</h1>
+    
+    <p>BP delivered strong operational performance across its key business segments in 2024, with technology playing an increasingly important role in driving efficiency and reliability.</p>
+
+    <table>
+        <caption data-label="Table 6">BP Key Operational Metrics 2024</caption>
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>2024</th>
+                <th>2023</th>
+                <th>Performance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Upstream Production (mmboe/d)</td>
+                <td>2.4</td>
+                <td>2.3</td>
+                <td>+4.3%</td>
+            </tr>
+            <tr>
+                <td>BP-Operated Plant Reliability</td>
+                <td>95.2%</td>
+                <td>95.0%</td>
+                <td>+0.2pp</td>
+            </tr>
+            <tr>
+                <td>Strategic Convenience Sites</td>
+                <td>2,950</td>
+                <td>2,850</td>
+                <td>+3.5%</td>
+            </tr>
+            <tr>
+                <td>Upstream Unit Production Costs ($/boe)</td>
+                <td>$6.17</td>
+                <td>$5.78</td>
+                <td>+6.7%</td>
+            </tr>
+            <tr>
+                <td>Retail Sites</td>
+                <td>21,200</td>
+                <td>21,100</td>
+                <td>+0.5%</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>BP achieved <strong>38 Tier 1 and 2 process safety events</strong> in 2024, a significant improvement from 99 events in 2023, demonstrating the effectiveness of its safety management systems and digital monitoring capabilities.</p>
+
+    <p><strong>Digital Innovation Applications:</strong></p>
+    <ul>
+        <li><strong>Seismic Imaging:</strong> Advanced algorithms processing seismic data faster and more accurately</li>
+        <li><strong>Reservoir Simulation:</strong> High-performance computing optimizing field development planning</li>
+        <li><strong>Predictive Maintenance:</strong> IoT sensors and machine learning reducing unplanned downtime</li>
+        <li><strong>Supply Chain Optimization:</strong> AI-driven logistics and inventory management</li>
+        <li><strong>Trading Analytics:</strong> Real-time market data analysis and algorithmic trading</li>
+    </ul>
+
+    <!-- Section 6: Strategic Outlook -->
+    <h1 id="sec6">6. Strategic Outlook & Recommendations</h1>
+    
+    <p>BP is well-positioned to navigate the energy transition while delivering sustainable shareholder returns. The company's strategic reset, combined with disciplined capital allocation and technology-enabled operational improvements, provides a solid foundation for long-term value creation.</p>
+
+    <div class="highlight-box">
+        <div class="highlight-box-title">2025 Guidance & Targets</div>
+        <ul>
+            <li><strong>Capital Expenditure:</strong> Around $15 billion (down from $16.2B in 2024)</li>
+            <li><strong>ROACE Target:</strong> >16% by 2027</li>
+            <li><strong>Adjusted Free Cash Flow CAGR:</strong> >20% (2024-2027)</li>
+            <li><strong>Net Debt Target:</strong> $14-18 billion by end 2027</li>
+            <li><strong>Scope 1&2 Emissions Reduction:</strong> 45-50% by 2030 (vs 2019 baseline)</li>
+        </ul>
+    </div>
+
+    <p><strong>Strategic Recommendations:</strong></p>
+
+    <ol>
+        <li><strong>Accelerate Cloud Adoption:</strong> Complete migration of remaining 60% on-premises infrastructure to capture additional cost savings and operational flexibility</li>
+        <li><strong>Expand Digital Twin Implementation:</strong> Deploy digital twin technology across major assets to optimize performance and reduce maintenance costs</li>
+        <li><strong>Enhance Cybersecurity Investment:</strong> Continue strengthening OT security as operational systems become increasingly connected</li>
+        <li><strong>Scale AI/ML Capabilities:</strong> Expand artificial intelligence and machine learning applications in exploration, production optimization, and trading</li>
+        <li><strong>Develop Low-Carbon Technology Platforms:</strong> Invest in digital platforms supporting hydrogen, carbon capture, and renewable energy businesses</li>
+    </ol>
+
+    <p>BP's integrated approach to technology investment, combining infrastructure modernization with strategic capability building, positions the company to capitalize on opportunities across the energy transition while maintaining operational excellence in its core businesses.</p>
+
+    <div class="source-note">
+        <p><strong>Sources:</strong> BP Annual Report and Form 20-F 2024; BP Fourth Quarter 2024 Results; BP Digital Transformation Presentation; Industry Analysis</p>
+        <p><strong>Analysis Date:</strong> January 2026</p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep Research Reports | 1GigLabs Strategic Research</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      min-height: 100vh;
+      color: #1e293b;
+    }
+    .navbar {
+      background: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      padding: 0.75rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .navbar-logo {
+      height: 40px;
+      width: auto;
+    }
+    .home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #3b82f6;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.875rem;
+      transition: background 0.2s;
+    }
+    .home-btn:hover {
+      background: #2563eb;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: #64748b;
+      font-size: 1.125rem;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #0f172a;
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    }
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      background: #eff6ff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+      color: #3b82f6;
+    }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: #0f172a;
+    }
+    .card-desc {
+      color: #64748b;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      margin-top: 0.75rem;
+    }
+    .badge-insurance { background: #dbeafe; color: #1e40af; }
+    .badge-banking { background: #dcfce7; color: #166534; }
+    .badge-legal { background: #fef3c7; color: #92400e; }
+    .badge-defence { background: #fee2e2; color: #991b1b; }
+    .badge-technology { background: #e0e7ff; color: #3730a3; }
+    .badge-entertainment { background: #fce7f3; color: #9d174d; }
+    .badge-pharma { background: #ccfbf1; color: #0f766e; }
+    .badge-energy { background: #fef9c3; color: #854d0e; }
+    .badge-retail { background: #f3e8ff; color: #7c3aed; }
+    .badge-consulting { background: #e5e7eb; color: #374151; }
+    .badge-manufacturing { background: #fed7aa; color: #c2410c; }
+    .badge-telecom { background: #bfdbfe; color: #1d4ed8; }
+    .badge-aerospace { background: #d1fae5; color: #047857; }
+    .badge-fmcg { background: #fef08a; color: #a16207; }
+    .badge-luxury { background: #fbcfe8; color: #be185d; }
+    .badge-mining { background: #d6d3d1; color: #44403c; }
+    .badge-aviation { background: #a5f3fc; color: #0e7490; }
+    .badge-fintech { background: #c7d2fe; color: #4338ca; }
+    .badge-software { background: #99f6e4; color: #0d9488; }
+    @media (max-width: 640px) {
+      h1 { font-size: 1.75rem; }
+      .container { padding: 1rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="https://www.1giglabs.com" target="_blank" rel="noopener noreferrer">
+      <img src="logo.png" alt="1GigLabs" class="navbar-logo">
+    </a>
+    <a href="https://www.1giglabs.com" target="_blank" rel="noopener noreferrer" class="home-btn">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Home
+    </a>
+  </nav>
+  <div class="container">
+    <header>
+      <h1>Deep Research Reports</h1>
+      <p class="subtitle">In-depth analysis and strategic presentations for leading organizations</p>
+    </header>
+
+    <h2 class="section-title">Insurance & Financial Services</h2>
+    <div class="grid">
+      <a href="Allianz/Strategic Presentation.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5m-4 0h4"/></svg>
+        </div>
+        <h2 class="card-title">Allianz</h2>
+        <p class="card-desc">World's largest insurance and asset management company</p>
+        <span class="badge badge-insurance">Insurance</span>
+      </a>
+
+      <a href="Aviva_Strategic_Presentation.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5m-4 0h4"/></svg>
+        </div>
+        <h2 class="card-title">Aviva</h2>
+        <p class="card-desc">UK's leading insurance provider - Strategic Intelligence Profile</p>
+        <span class="badge badge-insurance">Insurance</span>
+      </a>
+
+      <a href="Aviva_Strategic_Analysis_2025.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5m-4 0h4"/></svg>
+        </div>
+        <h2 class="card-title">Aviva</h2>
+        <p class="card-desc">UK's #1 insurer - Strategic Analysis 2025</p>
+        <span class="badge badge-insurance">Insurance</span>
+      </a>
+
+      <a href="RSA.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5m-4 0h4"/></svg>
+        </div>
+        <h2 class="card-title">RSA Insurance</h2>
+        <p class="card-desc">One of the world's oldest general insurance companies</p>
+        <span class="badge badge-insurance">Insurance</span>
+      </a>
+
+      <a href="Willis_Towers_Watson_Presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5m-4 0h4"/></svg>
+        </div>
+        <h2 class="card-title">Willis Towers Watson</h2>
+        <p class="card-desc">Global advisory, broking and solutions company</p>
+        <span class="badge badge-insurance">Insurance</span>
+      </a>
+
+      <a href="Legal_General_Presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5m-4 0h4"/></svg>
+        </div>
+        <h2 class="card-title">Legal & General</h2>
+        <p class="card-desc">Major UK financial services and insurance group</p>
+        <span class="badge badge-insurance">Insurance</span>
+      </a>
+
+      <a href="Guidewire_Strategic_Analysis.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M5 12a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2M5 12a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2"/></svg>
+        </div>
+        <h2 class="card-title">Guidewire</h2>
+        <p class="card-desc">Insurance software solutions provider</p>
+        <span class="badge badge-software">Software</span>
+      </a>
+    </div>
+
+    <h2 class="section-title">Banking</h2>
+    <div class="grid">
+      <a href="NatWest/Strategic Presentation.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3"/></svg>
+        </div>
+        <h2 class="card-title">NatWest</h2>
+        <p class="card-desc">Major UK retail and commercial banking group</p>
+        <span class="badge badge-banking">Banking</span>
+      </a>
+
+      <a href="Lloyds_Banking_Group.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3"/></svg>
+        </div>
+        <h2 class="card-title">Lloyds Banking Group</h2>
+        <p class="card-desc">UK's largest retail bank - Strategic Overview 2025</p>
+        <span class="badge badge-banking">Banking</span>
+      </a>
+
+      <a href="hsbc_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3"/></svg>
+        </div>
+        <h2 class="card-title">HSBC</h2>
+        <p class="card-desc">Global banking and financial services</p>
+        <span class="badge badge-banking">Banking</span>
+      </a>
+
+      <a href="ubs_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3"/></svg>
+        </div>
+        <h2 class="card-title">UBS</h2>
+        <p class="card-desc">Swiss multinational investment bank</p>
+        <span class="badge badge-banking">Banking</span>
+      </a>
+
+      <a href="Societe_Generale_Strategic_Analysis.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3"/></svg>
+        </div>
+        <h2 class="card-title">Societe Generale</h2>
+        <p class="card-desc">French multinational banking group</p>
+        <span class="badge badge-banking">Banking</span>
+      </a>
+
+      <a href="Revolut_Presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+        </div>
+        <h2 class="card-title">Revolut</h2>
+        <p class="card-desc">Global fintech and neobank</p>
+        <span class="badge badge-fintech">Fintech</span>
+      </a>
+    </div>
+
+    <h2 class="section-title">Technology & Data Centers</h2>
+    <div class="grid">
+      <a href="equinix.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M5 12a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2M5 12a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2m-2-4h.01M17 16h.01"/></svg>
+        </div>
+        <h2 class="card-title">Equinix</h2>
+        <p class="card-desc">World's largest data center and colocation provider</p>
+        <span class="badge badge-technology">Technology</span>
+      </a>
+
+      <a href="digital-realty-analysis.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M5 12a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2M5 12a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2"/></svg>
+        </div>
+        <h2 class="card-title">Digital Realty</h2>
+        <p class="card-desc">Global data center solutions provider</p>
+        <span class="badge badge-technology">Technology</span>
+      </a>
+
+      <a href="nLighten_Strategic_Analysis.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M5 12a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2M5 12a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2"/></svg>
+        </div>
+        <h2 class="card-title">nLighten</h2>
+        <p class="card-desc">European edge data center platform</p>
+        <span class="badge badge-technology">Technology</span>
+      </a>
+
+      <a href="sap_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M5 12a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2M5 12a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2"/></svg>
+        </div>
+        <h2 class="card-title">SAP</h2>
+        <p class="card-desc">Enterprise software leader</p>
+        <span class="badge badge-software">Software</span>
+      </a>
+
+      <a href="Dataiku_Strategic_Analysis.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M5 12a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2M5 12a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2"/></svg>
+        </div>
+        <h2 class="card-title">Dataiku</h2>
+        <p class="card-desc">AI and machine learning platform</p>
+        <span class="badge badge-software">Software</span>
+      </a>
+
+      <a href="siemens_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h2 class="card-title">Siemens</h2>
+        <p class="card-desc">Global industrial technology leader</p>
+        <span class="badge badge-technology">Technology</span>
+      </a>
+
+      <a href="ericsson_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8.111 16.404a5.5 5.5 0 0 1 7.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg>
+        </div>
+        <h2 class="card-title">Ericsson</h2>
+        <p class="card-desc">Telecommunications equipment leader</p>
+        <span class="badge badge-telecom">Telecom</span>
+      </a>
+
+      <a href="Arm_Holdings_Presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4"/></svg>
+        </div>
+        <h2 class="card-title">ARM Holdings</h2>
+        <p class="card-desc">Semiconductor and software design company</p>
+        <span class="badge badge-technology">Technology</span>
+      </a>
+
+      <a href="asml_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4"/></svg>
+        </div>
+        <h2 class="card-title">ASML</h2>
+        <p class="card-desc">Semiconductor lithography equipment leader</p>
+        <span class="badge badge-technology">Technology</span>
+      </a>
+
+      <a href="relx_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        </div>
+        <h2 class="card-title">RELX</h2>
+        <p class="card-desc">Information and analytics company</p>
+        <span class="badge badge-technology">Technology</span>
+      </a>
+    </div>
+
+    <h2 class="section-title">Energy & Resources</h2>
+    <div class="grid">
+      <a href="shell_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h2 class="card-title">Shell</h2>
+        <p class="card-desc">Global energy and petrochemical company</p>
+        <span class="badge badge-energy">Energy</span>
+      </a>
+
+      <a href="bp_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h2 class="card-title">BP</h2>
+        <p class="card-desc">British multinational oil and gas</p>
+        <span class="badge badge-energy">Energy</span>
+      </a>
+
+      <a href="equinor_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h2 class="card-title">Equinor</h2>
+        <p class="card-desc">Norwegian energy company</p>
+        <span class="badge badge-energy">Energy</span>
+      </a>
+
+      <a href="riotinto_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11.933 12.8a1 1 0 0 0 0-1.6L6.6 7.2A1 1 0 0 0 5 8v8a1 1 0 0 0 1.6.8l5.333-4zM17.933 12.8a1 1 0 0 0 0-1.6l-5.333-4A1 1 0 0 0 11 8v8a1 1 0 0 0 1.6.8l5.333-4z"/></svg>
+        </div>
+        <h2 class="card-title">Rio Tinto</h2>
+        <p class="card-desc">Anglo-Australian mining corporation</p>
+        <span class="badge badge-mining">Mining</span>
+      </a>
+    </div>
+
+    <h2 class="section-title">Pharmaceuticals & Healthcare</h2>
+    <div class="grid">
+      <a href="astrazeneca_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 0 0-1.022-.547l-2.387-.477a6 6 0 0 0-3.86.517l-.318.158a6 6 0 0 1-3.86.517L6.05 15.21a2 2 0 0 1-1.806-1.741L4 12l.244-1.469A2 2 0 0 1 6.05 8.79l1.931.386a6 6 0 0 0 3.86-.517l.318-.158a6 6 0 0 1 3.86-.517l2.387.477a2 2 0 0 1 1.572 1.732L20 12l-.244 1.469a2 2 0 0 1-.328.959z"/></svg>
+        </div>
+        <h2 class="card-title">AstraZeneca</h2>
+        <p class="card-desc">British-Swedish pharmaceutical company</p>
+        <span class="badge badge-pharma">Pharma</span>
+      </a>
+
+      <a href="gsk_strategic_analysis.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 0 0-1.022-.547l-2.387-.477a6 6 0 0 0-3.86.517l-.318.158a6 6 0 0 1-3.86.517L6.05 15.21a2 2 0 0 1-1.806-1.741L4 12l.244-1.469A2 2 0 0 1 6.05 8.79l1.931.386a6 6 0 0 0 3.86-.517l.318-.158a6 6 0 0 1 3.86-.517l2.387.477a2 2 0 0 1 1.572 1.732L20 12l-.244 1.469a2 2 0 0 1-.328.959z"/></svg>
+        </div>
+        <h2 class="card-title">GSK</h2>
+        <p class="card-desc">British pharmaceutical and biotech company</p>
+        <span class="badge badge-pharma">Pharma</span>
+      </a>
+
+      <a href="novo_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 0 0-1.022-.547l-2.387-.477a6 6 0 0 0-3.86.517l-.318.158a6 6 0 0 1-3.86.517L6.05 15.21a2 2 0 0 1-1.806-1.741L4 12l.244-1.469A2 2 0 0 1 6.05 8.79l1.931.386a6 6 0 0 0 3.86-.517l.318-.158a6 6 0 0 1 3.86-.517l2.387.477a2 2 0 0 1 1.572 1.732L20 12l-.244 1.469a2 2 0 0 1-.328.959z"/></svg>
+        </div>
+        <h2 class="card-title">Novo Nordisk</h2>
+        <p class="card-desc">Danish pharmaceutical company</p>
+        <span class="badge badge-pharma">Pharma</span>
+      </a>
+    </div>
+
+    <h2 class="section-title">Aerospace & Defence</h2>
+    <div class="grid">
+      <a href="Airbus_Strategic_Analysis_2025.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h2 class="card-title">Airbus</h2>
+        <p class="card-desc">World's largest aircraft manufacturer - Strategic Analysis 2025</p>
+        <span class="badge badge-aerospace">Aerospace</span>
+      </a>
+
+      <a href="Boeing_Strategic_Analysis_2025.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h2 class="card-title">Boeing</h2>
+        <p class="card-desc">American aerospace giant - Strategic Analysis 2025</p>
+        <span class="badge badge-aerospace">Aerospace</span>
+      </a>
+
+      <a href="BAE_Systems_Presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h2 class="card-title">BAE Systems</h2>
+        <p class="card-desc">Multinational defence, security, aerospace</p>
+        <span class="badge badge-defence">Defence</span>
+      </a>
+
+      <a href="rollsroyce_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h2 class="card-title">Rolls-Royce</h2>
+        <p class="card-desc">British aerospace and defence company</p>
+        <span class="badge badge-aerospace">Aerospace</span>
+      </a>
+
+      <a href="Bombardier_Strategic_Analysis_2024.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h2 class="card-title">Bombardier</h2>
+        <p class="card-desc">Canadian aerospace manufacturer</p>
+        <span class="badge badge-aerospace">Aerospace</span>
+      </a>
+
+      <a href="airfranceklm_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h2 class="card-title">Air France-KLM</h2>
+        <p class="card-desc">Franco-Dutch airline holding company</p>
+        <span class="badge badge-aviation">Aviation</span>
+      </a>
+
+      <a href="lufthansa_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h2 class="card-title">Lufthansa</h2>
+        <p class="card-desc">German airline group</p>
+        <span class="badge badge-aviation">Aviation</span>
+      </a>
+
+      <a href="volvo_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0M5 17H3v-6l2-5h9l4 5h1a2 2 0 0 1 2 2v4h-2"/></svg>
+        </div>
+        <h2 class="card-title">Volvo</h2>
+        <p class="card-desc">Swedish multinational automotive</p>
+        <span class="badge badge-manufacturing">Manufacturing</span>
+      </a>
+    </div>
+
+    <h2 class="section-title">Retail & Consumer</h2>
+    <div class="grid">
+      <a href="tesco_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <h2 class="card-title">Tesco</h2>
+        <p class="card-desc">British multinational grocery retailer</p>
+        <span class="badge badge-retail">Retail</span>
+      </a>
+
+      <a href="sainsburys_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <h2 class="card-title">Sainsbury's</h2>
+        <p class="card-desc">British supermarket and retail chain</p>
+        <span class="badge badge-retail">Retail</span>
+      </a>
+
+      <a href="ikea_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        </div>
+        <h2 class="card-title">IKEA</h2>
+        <p class="card-desc">Swedish furniture and home goods</p>
+        <span class="badge badge-retail">Retail</span>
+      </a>
+
+      <a href="hm_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <h2 class="card-title">H&M</h2>
+        <p class="card-desc">Swedish fashion retailer</p>
+        <span class="badge badge-retail">Retail</span>
+      </a>
+
+      <a href="ICA_Gruppen_Presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <h2 class="card-title">ICA Gruppen</h2>
+        <p class="card-desc">Swedish retail and real estate group</p>
+        <span class="badge badge-retail">Retail</span>
+      </a>
+
+      <a href="Unilever_Presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        </div>
+        <h2 class="card-title">Unilever</h2>
+        <p class="card-desc">British-Dutch consumer goods</p>
+        <span class="badge badge-fmcg">FMCG</span>
+      </a>
+
+      <a href="lvmh_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h2 class="card-title">LVMH</h2>
+        <p class="card-desc">French luxury goods conglomerate</p>
+        <span class="badge badge-luxury">Luxury</span>
+      </a>
+
+      <a href="bat_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        </div>
+        <h2 class="card-title">British American Tobacco</h2>
+        <p class="card-desc">British multinational tobacco company</p>
+        <span class="badge badge-fmcg">FMCG</span>
+      </a>
+    </div>
+
+    <h2 class="section-title">Professional Services & Legal</h2>
+    <div class="grid">
+      <a href="Clifford Chance/Strategic Presentation.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        </div>
+        <h2 class="card-title">Clifford Chance</h2>
+        <p class="card-desc">Leading global law firm</p>
+        <span class="badge badge-legal">Legal</span>
+      </a>
+
+      <a href="Grant_Thornton_Presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M15 2H9a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/></svg>
+        </div>
+        <h2 class="card-title">Grant Thornton</h2>
+        <p class="card-desc">Global professional services network</p>
+        <span class="badge badge-consulting">Consulting</span>
+      </a>
+
+      <a href="elinor_presentation.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+        </div>
+        <h2 class="card-title">Elinor</h2>
+        <p class="card-desc">Strategic business services</p>
+        <span class="badge badge-consulting">Consulting</span>
+      </a>
+    </div>
+
+    <h2 class="section-title">Construction & Industrial</h2>
+    <div class="grid">
+      <a href="Skanska_Strategic_Analysis_2024.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5"/></svg>
+        </div>
+        <h2 class="card-title">Skanska</h2>
+        <p class="card-desc">Swedish construction and development</p>
+        <span class="badge badge-manufacturing">Construction</span>
+      </a>
+
+      <a href="Assa_Abloy_Strategic_Analysis_2024.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5"/></svg>
+        </div>
+        <h2 class="card-title">Assa Abloy</h2>
+        <p class="card-desc">Swedish lock and security company</p>
+        <span class="badge badge-manufacturing">Manufacturing</span>
+      </a>
+
+      <a href="Securitas_AB_Strategic_Analysis_2024.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h2 class="card-title">Securitas</h2>
+        <p class="card-desc">Swedish security services company</p>
+        <span class="badge badge-manufacturing">Security</span>
+      </a>
+
+      <a href="Essity_Strategic_Analysis_2024.pptx.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        </div>
+        <h2 class="card-title">Essity</h2>
+        <p class="card-desc">Swedish hygiene and health company</p>
+        <span class="badge badge-fmcg">FMCG</span>
+      </a>
+    </div>
+
+    <h2 class="section-title">Entertainment & Media</h2>
+    <div class="grid">
+      <a href="netflix-analysis.html" class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M5 18h8a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2z"/></svg>
+        </div>
+        <h2 class="card-title">Netflix</h2>
+        <p class="card-desc">Streaming entertainment giant</p>
+        <span class="badge badge-entertainment">Entertainment</span>
+      </a>
+    </div>
+
+  </div>
+</body>
+</html>

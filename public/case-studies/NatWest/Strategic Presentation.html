@@ -1,0 +1,1136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NatWest Strategic Intelligence Profile</title>
+    <style>
+        :root {
+            --natwest-purple: #42145F;
+            --natwest-dark: #2E0F45;
+            --natwest-light: #E8E0F0;
+            --natwest-white: #FFFFFF;
+            --natwest-gray: #F5F5F5;
+            --natwest-accent: #8B5CF6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--natwest-dark);
+            color: var(--natwest-dark);
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--natwest-white);
+            display: flex;
+            flex-direction: column;
+            padding: 60px;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Cover Slide */
+        .slide-cover {
+            background: linear-gradient(135deg, var(--natwest-dark) 0%, var(--natwest-purple) 100%);
+            color: var(--natwest-white);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: var(--natwest-accent);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        .slide-cover::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: var(--natwest-accent);
+            opacity: 0.05;
+            border-radius: 50%;
+        }
+
+        .cover-content {
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .natwest-logo {
+            font-size: 72px;
+            font-weight: 900;
+            color: var(--natwest-white);
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .cover-subtitle {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cover-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .cover-meta {
+            font-size: 18px;
+            opacity: 0.8;
+            margin-top: 40px;
+            border-top: 2px solid var(--natwest-accent);
+            padding-top: 20px;
+        }
+
+        /* Content Slides */
+        .slide-header {
+            border-left: 6px solid var(--natwest-purple);
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+
+        .slide-header h2 {
+            font-size: 42px;
+            color: var(--natwest-dark);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .slide-header p {
+            font-size: 20px;
+            color: var(--natwest-purple);
+            font-weight: 500;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .slide-full {
+            grid-template-columns: 1fr;
+        }
+
+        .content-box {
+            background: var(--natwest-gray);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--natwest-purple);
+        }
+
+        .content-box h3 {
+            color: var(--natwest-purple);
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .metric-card {
+            background: var(--natwest-white);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid var(--natwest-purple);
+            transition: transform 0.2s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--natwest-purple);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: var(--natwest-dark);
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        .data-table th {
+            background: var(--natwest-purple);
+            color: var(--natwest-white);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: var(--natwest-gray);
+        }
+
+        .data-table tr:hover {
+            background: rgba(66, 20, 95, 0.1);
+        }
+
+        /* Lists */
+        .feature-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            border-bottom: 1px solid #eee;
+            font-size: 16px;
+        }
+
+        .feature-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--natwest-purple);
+            font-weight: 900;
+            font-size: 20px;
+        }
+
+        /* Charts */
+        .chart-container {
+            background: var(--natwest-white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .chart-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 4px solid var(--natwest-purple);
+            margin-left: 20px;
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: var(--natwest-purple);
+            border: 4px solid var(--natwest-white);
+            border-radius: 50%;
+        }
+
+        .timeline-year {
+            font-weight: 900;
+            color: var(--natwest-purple);
+            font-size: 18px;
+        }
+
+        .timeline-content {
+            font-size: 16px;
+            margin-top: 5px;
+            color: var(--natwest-dark);
+        }
+
+        /* Navigation */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: var(--natwest-purple);
+            color: var(--natwest-white);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(66, 20, 95, 0.3);
+        }
+
+        .nav-btn:hover {
+            background: var(--natwest-accent);
+            color: var(--natwest-white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--natwest-dark);
+            color: var(--natwest-white);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            z-index: 1000;
+            border: 2px solid var(--natwest-purple);
+        }
+
+        /* Opportunity Cards */
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .opp-card {
+            background: linear-gradient(135deg, var(--natwest-white) 0%, var(--natwest-gray) 100%);
+            border: 2px solid var(--natwest-purple);
+            border-radius: 12px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .opp-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--natwest-purple);
+        }
+
+        .opp-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .opp-card h4 {
+            color: var(--natwest-purple);
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .opp-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--natwest-purple);
+            color: var(--natwest-white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        /* Exec Profile */
+        .exec-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--natwest-white);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--natwest-purple);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .exec-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--natwest-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--natwest-white);
+            font-weight: 900;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .exec-info h4 {
+            color: var(--natwest-dark);
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .exec-info p {
+            color: var(--natwest-purple);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .exec-info span {
+            color: #666;
+            font-size: 13px;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .slide-content {
+                grid-template-columns: 1fr;
+            }
+            .opportunity-grid {
+                grid-template-columns: 1fr;
+            }
+            .slide {
+                padding: 30px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .slide {
+                position: relative;
+                opacity: 1;
+                visibility: visible;
+                page-break-after: always;
+                height: auto;
+            }
+            .nav-controls, .slide-counter {
+                display: none;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="presentation">
+
+        <!-- Slide 1: Cover -->
+        <div class="slide slide-cover active" data-slide="1">
+            <div class="cover-content">
+                <div class="natwest-logo">NATWEST</div>
+                <div class="cover-subtitle">UK's 4th Largest Banking Group | LSE: NWG</div>
+                <h1 class="cover-title">Strategic Intelligence Profile<br>& GTM Alignment</h1>
+                <p style="font-size: 22px; opacity: 0.9; margin-top: 20px;">
+                    AI Workflow Automation & Data Center Services<br>
+                    Investment Thesis & Opportunity Assessment
+                </p>
+                <div class="cover-meta">
+                    Confidential • January 2025<br>
+                    "Bank-Wide Simplification" Strategy Analysis
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Executive Summary -->
+        <div class="slide" data-slide="2">
+            <div class="slide-header">
+                <h2>Executive Summary</h2>
+                <p>Strategic Overview & Investment Highlights</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-box">
+                    <h3>Company Profile</h3>
+                    <ul class="feature-list">
+                        <li><strong>Scale:</strong> £15.3bn revenue, 60,000 employees, 20 million customers</li>
+                        <li><strong>Structure:</strong> Retail & Business Banking, Commercial & Private Banking, NatWest Markets</li>
+                        <li><strong>HQ:</strong> Gogarburn, Edinburgh, Scotland (London: 250 Bishopsgate)</li>
+                        <li><strong>Strategic Priority:</strong> "Bank-wide simplification" through AI & data</li>
+                        <li><strong>Digital Maturity:</strong> 79% retail, 83% commercial customers bank digitally</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h3>Key Investment Thesis</h3>
+                    <ul class="feature-list">
+                        <li><strong>£500m+</strong> 5-year AWS/Accenture deal (July 2025) - massive cloud spend</li>
+                        <li><strong>First UK bank</strong> to partner with OpenAI (March 2025)</li>
+                        <li><strong>1 million hours</strong> saved through agentic AI (2025)</li>
+                        <li><strong>3,000 engineers</strong> to be hired in India by 2026</li>
+                        <li><strong>50% of tech team</strong> based in India - offshore delivery model</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Financial Performance -->
+        <div class="slide" data-slide="3">
+            <div class="slide-header">
+                <h2>Financial Performance & Scale</h2>
+                <p>5-Year Trajectory & Profitability Metrics</p>
+            </div>
+            <div class="slide-content">
+                <div class="chart-container">
+                    <img src="natwest_financial_chart.png" alt="NatWest Financial Performance Chart">
+                    <p style="margin-top: 15px; font-size: 14px; color: #666;">Source: NatWest Annual Reports 2020-2024</p>
+                </div>
+                <div>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <span class="metric-value">£15.3bn</span>
+                            <span class="metric-label">2024 Revenue</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">£4.8bn</span>
+                            <span class="metric-label">Operating Profit</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">60k</span>
+                            <span class="metric-label">Global Employees</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">20M</span>
+                            <span class="metric-label">Customers</span>
+                        </div>
+                    </div>
+                    <div class="content-box" style="margin-top: 30px;">
+                        <h3>Strategic Context</h3>
+                        <p style="line-height: 1.6;">Strong post-pandemic recovery with 41% revenue growth since 2020. "Golden Cross" achieved in 2024 - new development spending exceeds legacy maintenance for first time. £2bn cost reduction target through digital transformation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Decision Makers -->
+        <div class="slide" data-slide="4">
+            <div class="slide-header">
+                <h2>Key Decision Makers & Org Structure</h2>
+                <p>Technology Leadership & Influence Mapping</p>
+            </div>
+            <div class="slide-content slide-full">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+                    <div>
+                        <h3 style="color: var(--natwest-purple); margin-bottom: 20px; font-size: 24px;">Primary Targets</h3>
+                        <div class="exec-card">
+                            <div class="exec-avatar">SM</div>
+                            <div class="exec-info">
+                                <h4>Scott Marcar</h4>
+                                <p>Chief Information Officer (Since Sept 2022)</p>
+                                <span>Ex-Deutsche Bank CIO. Leading "bank-wide simplification". 3,000 India engineer hiring mandate. AWS/Accenture deal architect.</span>
+                            </div>
+                        </div>
+                        <div class="exec-card">
+                            <div class="exec-avatar">PT</div>
+                            <div class="exec-info">
+                                <h4>Paul Thwaite</h4>
+                                <p>Chief Executive Officer (Since July 2023)</p>
+                                <span>Former Commercial & Institutional CEO. Driving AI-first strategy. "Relationship bank for a digital world" vision.</span>
+                            </div>
+                        </div>
+                        <div class="exec-card">
+                            <div class="exec-avatar">JT</div>
+                            <div class="exec-info">
+                                <h4>Jen Tippin</h4>
+                                <p>Group Chief Operating Officer (Since 2024)</p>
+                                <span>Ex-Lloyds. Leading transformation, automation, and AI governance. "Change is human" philosophy.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--natwest-purple); margin-bottom: 20px; font-size: 24px;">Technical Influencers</h3>
+                        <div class="exec-card">
+                            <div class="exec-avatar">IP</div>
+                            <div class="exec-info">
+                                <h4>Ian Povey</h4>
+                                <p>CIO Payments Technology & SWIFT Board Member</p>
+                                <span>Overseeing payments modernization with Icon Solutions. ISO 20022 migration lead. Real-time payments architect.</span>
+                            </div>
+                        </div>
+                        <div class="exec-card">
+                            <div class="exec-avatar">MP</div>
+                            <div class="exec-info">
+                                <h4>Dr. Maja Pantic</h4>
+                                <p>Chief AI Research Officer (Since June 2025)</p>
+                                <span>Ex-Meta AI Research Director. Leading small language models initiative. Deepfake detection & biometrics focus.</span>
+                            </div>
+                        </div>
+                        <div class="content-box" style="margin-top: 20px;">
+                            <h3>Access Strategy</h3>
+                            <p style="font-size: 14px; line-height: 1.6;"><strong>Entry:</strong> Marcar via AWS/Accenture partnership ecosystem or India GCC expansion narrative. <strong>Technical:</strong> Povey via Icon Solutions payments modernization. <strong>AI:</strong> Pantic via SLM (small language models) and agentic AI research.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Technology Architecture -->
+        <div class="slide" data-slide="5">
+            <div class="slide-header">
+                <h2>Technology Stack Architecture</h2>
+                <p>Current State & Infrastructure Landscape</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-box">
+                    <h3>Cloud & Data Platform</h3>
+                    <table class="data-table">
+                        <tr>
+                            <th>Layer</th>
+                            <th>Technology</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td>Primary Cloud</td>
+                            <td>AWS (Strategic) + Multi-cloud</td>
+                            <td style="color: #00C851;">● 5-Year Deal (2025)</td>
+                        </tr>
+                        <tr>
+                            <td>AI/ML Platform</td>
+                            <td>OpenAI GPT-4 + Small Language Models</td>
+                            <td style="color: #00C851;">● Production (Cora+)</td>
+                        </tr>
+                        <tr>
+                            <td>Payments</td>
+                            <td>Icon Payments Framework (IPF)</td>
+                            <td style="color: orange;">● Modernizing</td>
+                        </tr>
+                        <tr>
+                            <td>Mainframe</td>
+                            <td>HCLTech Managed Services</td>
+                            <td style="color: orange;">● Legacy Modernization</td>
+                        </tr>
+                        <tr>
+                            <td>Data Platform</td>
+                            <td>AWS-based Unified Data Platform</td>
+                            <td style="color: #00C851;">● Rolling Out</td>
+                        </tr>
+                        <tr>
+                            <td>Dev Tools</td>
+                            <td>GitLab Duo (4,700 engineers)</td>
+                            <td style="color: #00C851;">● 90% Adoption</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <div class="chart-container" style="margin-bottom: 20px;">
+                        <img src="https://kimi-web-img.moonshot.cn/img/thumbs.dreamstime.com/5daa4b7174dbaa7eb9658bd430be950dc22ccb76.jpg" alt="Data Center" style="width: 100%; height: 200px; object-fit: cover;">
+                    </div>
+                    <div class="content-box">
+                        <h3>Infrastructure Notes</h3>
+                        <ul class="feature-list">
+                            <li><strong>India GCC:</strong> 18,000 employees (Bengaluru, Chennai, Gurugram)</li>
+                            <li><strong>Target:</strong> 21,000 India employees by 2026 (3,000 new engineers)</li>
+                            <li><strong>SLM Development:</strong> Small language models for financial crime & biometrics</li>
+                            <li><strong>AI Adoption:</strong> 19% of analytical models use AI</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: AI Timeline -->
+        <div class="slide" data-slide="6">
+            <div class="slide-header">
+                <h2>AI & Digital Transformation Timeline</h2>
+                <p>From Cora Chatbot to Agentic AI</p>
+            </div>
+            <div class="slide-content slide-full">
+                <div class="chart-container" style="max-width: 1000px; margin: 0 auto;">
+                    <img src="natwest_timeline_chart.png" alt="NatWest AI Timeline">
+                </div>
+                <div class="opportunity-grid" style="margin-top: 40px;">
+                    <div class="opp-card">
+                        <h4>Phase 1: Foundation</h4>
+                        <p>2020-2023: Cora chatbot launch (11.2M conversations), India GCC expansion, digital banking adoption (79%).</p>
+                        <span class="tag">Complete</span>
+                    </div>
+                    <div class="opp-card">
+                        <h4>Phase 2: Acceleration</h4>
+                        <p>2024-2025: Icon Solutions partnership, OpenAI deal (first UK bank), AWS/Accenture 5-year collaboration.</p>
+                        <span class="tag">Active</span>
+                    </div>
+                    <div class="opp-card">
+                        <h4>Phase 3: Agentic AI</h4>
+                        <p>2025+: 1M hours saved, agentic AI deployment, small language models, 21,000 India engineers target.</p>
+                        <span class="tag">Opportunity</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Strategic Partnerships -->
+        <div class="slide" data-slide="7">
+            <div class="slide-header">
+                <h2>Strategic Partnerships & Ecosystem</h2>
+                <p>Technology Investments & Vendor Landscape</p>
+            </div>
+            <div class="slide-content">
+                <div class="chart-container">
+                    <img src="natwest_ecosystem_chart.png" alt="Investment Ecosystem">
+                    <p style="margin-top: 10px; font-size: 13px; color: #666;">Estimated investment values 2024-2025</p>
+                </div>
+                <div class="content-box">
+                    <h3>Key Strategic Moves</h3>
+                    <table class="data-table" style="font-size: 13px;">
+                        <tr>
+                            <th>Partner</th>
+                            <th>Scope</th>
+                            <th>Strategic Impact</th>
+                        </tr>
+                        <tr>
+                            <td><strong>AWS + Accenture</strong></td>
+                            <td>5-year deal, unified data platform, AI transformation</td>
+                            <td>Bank-wide simplification, 275 AI projects</td>
+                        </tr>
+                        <tr>
+                            <td><strong>OpenAI</strong></td>
+                            <td>First UK bank partnership, GPT-4, Cora+ chatbot</td>
+                            <td>150% improvement in customer satisfaction</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Icon Solutions</strong></td>
+                            <td>Payments Framework (IPF), ISO 20022 migration</td>
+                            <td>Real-time payments, modern payment architecture</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HCLTech</strong></td>
+                            <td>Managed mainframe services, legacy modernization</td>
+                            <td>Mainframe optimization, AI Force integration</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: AI & Automation -->
+        <div class="slide" data-slide="8">
+            <div class="slide-header">
+                <h2>AI & Automation Initiatives</h2>
+                <p>Cora+, Agentic AI & 1 Million Hours Saved</p>
+            </div>
+            <div class="slide-content">
+                <div>
+                    <div class="content-box" style="margin-bottom: 20px;">
+                        <h3>Cora+ & Customer Service AI</h3>
+                        <div style="background: var(--natwest-light); padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <p style="font-size: 14px; margin-bottom: 10px;"><strong>Performance Metrics:</strong></p>
+                            <ul style="font-size: 13px; line-height: 1.8; list-style: none;">
+                                <li>💬 <strong>11.2 million</strong> conversations handled (2024)</li>
+                                <li>✓ <strong>49%</strong> required no human intervention</li>
+                                <li>📈 <strong>150%</strong> improvement in customer satisfaction</li>
+                                <li>🤖 <strong>7,000</strong> customer service staff using AI transcription</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="content-box">
+                        <h3>Agentic AI Deployment</h3>
+                        <div class="timeline" style="margin-top: 15px;">
+                            <div class="timeline-item">
+                                <div class="timeline-year">Booking Time Off</div>
+                                <div class="timeline-content">Conversational AI orchestrates across HR systems. 7-week POC proved friction reduction.</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">Appointment Rescheduling</div>
+                                <div class="timeline-content">Auto-reschedules customer appointments when colleagues are away.</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">1 Million Hours Saved</div>
+                                <div class="timeline-content">Cumulative colleague time saved through AI automation (2025).</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="content-box">
+                        <h3>Developer Productivity (GitLab Duo)</h3>
+                        <div style="margin-top: 20px;">
+                            <div style="background: var(--natwest-white); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--natwest-purple);">
+                                <h4 style="color: var(--natwest-purple); margin-bottom: 5px;">4,700 Engineers</h4>
+                                <p style="font-size: 14px;">Using GitLab Duo for code generation, test case creation, workflow automation.</p>
+                            </div>
+                            <div style="background: var(--natwest-white); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--natwest-purple);">
+                                <h4 style="color: var(--natwest-purple); margin-bottom: 5px;">90% Report Regular Use</h4>
+                                <p style="font-size: 14px;">Of code generation features. Java upgrade completed 8x faster with AI support.</p>
+                            </div>
+                            <div style="background: var(--natwest-white); padding: 15px; border-radius: 8px; border-left: 4px solid var(--natwest-purple);">
+                                <h4 style="color: var(--natwest-purple); margin-bottom: 5px;">Small Language Models</h4>
+                                <p style="font-size: 14px;">Dr. Maja Pantic leading development of proprietary SLMs for financial crime & biometrics.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-grid" style="margin-top: 20px;">
+                        <div class="metric-card">
+                            <span class="metric-value">275</span>
+                            <span class="metric-label">AI Projects Exploring</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">25</span>
+                            <span class="metric-label">AI Use Cases Live</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Regional Footprint -->
+        <div class="slide" data-slide="9">
+            <div class="slide-header">
+                <h2>Global Regional Footprint</h2>
+                <p>Operational Hubs & Employee Distribution</p>
+            </div>
+            <div class="slide-content">
+                <div class="chart-container">
+                    <img src="natwest_regional_chart.png" alt="Regional Distribution">
+                </div>
+                <div>
+                    <div class="content-box">
+                        <h3>Strategic Locations</h3>
+                        <table class="data-table" style="font-size: 14px;">
+                            <tr>
+                                <th>Location</th>
+                                <th>Function</th>
+                                <th>Headcount</th>
+                            </tr>
+                            <tr>
+                                <td><strong>UK (HQ)</strong></td>
+                                <td>Edinburgh HQ, London (250 Bishopsgate), Manchester</td>
+                                <td>35,000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>India</strong></td>
+                                <td>Bengaluru (new 370k sq ft office), Chennai, Gurugram</td>
+                                <td>18,000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Poland</strong></td>
+                                <td>Engineering hub (secondary to India)</td>
+                                <td>5,000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Other</strong></td>
+                                <td>Amsterdam, Frankfurt, Singapore, Tokyo, Stamford (US)</td>
+                                <td>2,000</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="content-box" style="margin-top: 20px;">
+                        <h3>India GCC Expansion</h3>
+                        <p style="font-size: 14px; line-height: 1.6;"><strong>Current:</strong> 18,000 employees across 3 cities.<br><br>
+                        <strong>Target:</strong> 21,000 by 2026 (3,000 new engineers).<br><br>
+                        <strong>Focus:</strong> Small language models, financial crime, biometrics, mobile development, ATM network engineering.<br><br>
+                        <strong>Significance:</strong> 50% of global tech team based in India.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Strategic Opportunities -->
+        <div class="slide" data-slide="10">
+            <div class="slide-header">
+                <h2>Strategic Opportunity Assessment</h2>
+                <p>Immediate & Long-term Revenue Opportunities</p>
+            </div>
+            <div class="slide-content slide-full">
+                <div class="opportunity-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="opp-card" style="border-color: #00C851;">
+                        <h4>🤖 Agentic AI Scale-Out</h4>
+                        <p><strong>Target:</strong> Scott Marcar (CIO) + Maja Pantic (CAIRO)<br>
+                        <strong>Pain:</strong> 1M hours saved but limited to specific use cases (time off booking)<br>
+                        <strong>Value:</strong> Expand to mortgage processing, KYC, compliance, fraud investigation<br>
+                        <strong>Hook:</strong> AWS/Accenture partnership creates platform for rapid deployment</p>
+                        <span class="tag">Immediate (6-12mo)</span>
+                    </div>
+                    <div class="opp-card" style="border-color: var(--natwest-purple);">
+                        <h4>🏢 Small Language Models (SLMs)</h4>
+                        <p><strong>Target:</strong> Dr. Maja Pantic (CAIRO)<br>
+                        <strong>Pain:</strong> Need proprietary models for financial crime & biometrics (data privacy)<br>
+                        <strong>Value:</strong> On-premise/edge AI infrastructure for sensitive workloads<br>
+                        <strong>Hook:</strong> "Completely different level" - proprietary AI differentiator</p>
+                        <span class="tag">Strategic (12-24mo)</span>
+                    </div>
+                    <div class="opp-card" style="border-color: orange;">
+                        <h4>⚡ Mainframe Modernization</h4>
+                        <p><strong>Target:</strong> Ian Povey (CIO Payments) + HCLTech relationship<br>
+                        <strong>Pain:</strong> Legacy mainframe constraints, "double bubble" maintenance costs<br>
+                        <strong>Value:</strong> AI-assisted reverse engineering, cloud-native re-architecture<br>
+                        <strong>Hook:</strong> "Modernizing through compliance" - ISO 20022 migration</p>
+                        <span class="tag">Immediate (6-12mo)</span>
+                    </div>
+                    <div class="opp-card" style="border-color: var(--natwest-accent);">
+                        <h4>📊 India GCC Infrastructure</h4>
+                        <p><strong>Target:</strong> Scott Marcar (CIO)<br>
+                        <strong>Pain:</strong> 3,000 new engineers need infrastructure (Bengaluru office expansion)<br>
+                        <strong>Value:</strong> Data center services, edge computing, hybrid cloud for India operations<br>
+                        <strong>Hook:</strong> 370,000 sq ft new office - critical infrastructure requirements</p>
+                        <span class="tag">Immediate (6-12mo)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: GTM Strategy -->
+        <div class="slide" data-slide="11">
+            <div class="slide-header">
+                <h2>Go-to-Market Strategy</h2>
+                <p>Account Entry & Positioning Framework</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-box">
+                    <h3>Recommended Approach</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">Phase 1: Executive Engagement</div>
+                            <div class="timeline-content"><strong>Target:</strong> Scott Marcar (CIO)<br>
+                            <strong>Message:</strong> "Agentic AI at scale - beyond the 1M hours to enterprise-wide automation"<br>
+                            <strong>Channel:</strong> AWS/Accenture partner ecosystem, India GCC expansion narrative</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">Phase 2: Technical Validation</div>
+                            <div class="timeline-content"><strong>Target:</strong> Dr. Maja Pantic (CAIRO)<br>
+                            <strong>Message:</strong> Small language model infrastructure - on-premise AI for financial crime<br>
+                            <strong>Action:</strong> POC on SLM deployment for biometrics or fraud detection</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">Phase 3: Business Case</div>
+                            <div class="timeline-content"><strong>Target:</strong> Paul Thwaite (CEO)<br>
+                            <strong>Message:</strong> Operational leverage - £2bn cost reduction target support<br>
+                            <strong>Metric:</strong> Cost per transaction, customer NPS, colleague productivity</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="content-box" style="margin-bottom: 20px;">
+                        <h3>Competitive Positioning</h3>
+                        <ul class="feature-list">
+                            <li><strong>vs. Accenture:</strong> Complement not compete - specialized AI infrastructure layer beneath their consulting.</li>
+                            <li><strong>vs. HCLTech:</strong> Modernization acceleration - AI-assisted mainframe migration vs. pure maintenance.</li>
+                            <li><strong>Differentiator:</strong> UK sovereign AI capabilities, financial services specialization, India GCC expertise.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box">
+                        <h3>Required Proof Points</h3>
+                        <ul class="feature-list">
+                            <li>Agentic AI case studies (multi-step workflow automation)</li>
+                            <li>Small language model deployment expertise</li>
+                            <li>AWS partnership status (critical for NatWest)</li>
+                            <li>India GCC infrastructure capabilities</li>
+                            <li>Financial crime/BIometrics AI experience</li>
+                            <li>Mainframe modernization references</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Next Steps -->
+        <div class="slide" data-slide="12">
+            <div class="slide-header">
+                <h2>Strategic Recommendations</h2>
+                <p>Immediate Actions & Success Metrics</p>
+            </div>
+            <div class="slide-content slide-full">
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px;">
+                    <div>
+                        <div class="content-box">
+                            <h3>90-Day Action Plan</h3>
+                            <table class="data-table">
+                                <tr>
+                                    <th>Week</th>
+                                    <th>Action</th>
+                                    <th>Target</th>
+                                    <th>Success Metric</th>
+                                </tr>
+                                <tr>
+                                    <td>1-2</td>
+                                    <td>Engage via AWS/Accenture partner network</td>
+                                    <td>CIO Office</td>
+                                    <td>Introduction secured</td>
+                                </tr>
+                                <tr>
+                                    <td>3-4</td>
+                                    <td>Agentic AI case study & SLM infrastructure demo</td>
+                                    <td>AI Research Team</td>
+                                    <td>Technical meeting booked</td>
+                                </tr>
+                                <tr>
+                                    <td>5-8</td>
+                                    <td>India GCC infrastructure assessment</td>
+                                    <td>India Country Head (Ruchika Panesar)</td>
+                                    <td>Bengaluru site visit</td>
+                                </tr>
+                                <tr>
+                                    <td>9-12</td>
+                                    <td>Executive presentation: £2bn cost target support</td>
+                                    <td>Group CEO</td>
+                                    <td>POC budget approval</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="metric-grid" style="grid-template-columns: 1fr;">
+                            <div class="metric-card" style="background: var(--natwest-purple); color: white;">
+                                <span class="metric-value" style="color: white;">£500m</span>
+                                <span class="metric-label" style="color: white;">AWS/Accenture Deal</span>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-value">1M</span>
+                                <span class="metric-label">Hours Saved (AI)</span>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-value">3,000</span>
+                                <span class="metric-label">New Engineers (Target)</span>
+                            </div>
+                            <div class="metric-card" style="background: var(--natwest-accent);">
+                                <span class="metric-value" style="color: white;">High</span>
+                                <span class="metric-label">Deal Probability</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 40px; text-align: center; padding: 30px; background: var(--natwest-gray); border-radius: 12px;">
+                    <h3 style="color: var(--natwest-purple); margin-bottom: 15px;">Key Insight</h3>
+                    <p style="font-size: 18px; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+                        <em>"NatWest has achieved the 'Golden Cross' - new development spending now exceeds legacy maintenance. 
+                        With 50% of their tech team in India and a mandate to hire 3,000 more engineers, they need 
+                        <strong>scalable AI infrastructure</strong> that can deploy across UK and India. 
+                        The small language model initiative (Maja Pantic) represents a unique opportunity for 
+                        on-premise AI infrastructure - a differentiated approach from the public cloud-heavy strategy."</em>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="nav-controls">
+            <button class="nav-btn" onclick="prevSlide()">← Previous</button>
+            <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        </div>
+
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">12</span>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 12;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            if (n > totalSlides) currentSlide = 1;
+            if (n < 1) currentSlide = totalSlides;
+
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            document.querySelector(`[data-slide="${currentSlide}"]`).classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Touch support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) nextSlide();
+            if (touchEndX - touchStartX > 50) prevSlide();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allianz Strategic Intelligence Profile</title>
+    <style>
+        :root {
+            --allianz-blue: #0066B3;
+            --allianz-dark: #003D6B;
+            --allianz-light: #E6F2FF;
+            --allianz-white: #FFFFFF;
+            --allianz-gray: #F5F5F5;
+            --allianz-accent: #00A4E4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--allianz-dark);
+            color: var(--allianz-dark);
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--allianz-white);
+            display: flex;
+            flex-direction: column;
+            padding: 60px;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Cover Slide */
+        .slide-cover {
+            background: linear-gradient(135deg, var(--allianz-dark) 0%, var(--allianz-blue) 100%);
+            color: var(--allianz-white);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: var(--allianz-accent);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        .slide-cover::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: var(--allianz-accent);
+            opacity: 0.05;
+            border-radius: 50%;
+        }
+
+        .cover-content {
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .allianz-logo {
+            font-size: 72px;
+            font-weight: 900;
+            color: var(--allianz-white);
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .cover-subtitle {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cover-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .cover-meta {
+            font-size: 18px;
+            opacity: 0.8;
+            margin-top: 40px;
+            border-top: 2px solid var(--allianz-accent);
+            padding-top: 20px;
+        }
+
+        /* Content Slides */
+        .slide-header {
+            border-left: 6px solid var(--allianz-blue);
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+
+        .slide-header h2 {
+            font-size: 42px;
+            color: var(--allianz-dark);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .slide-header p {
+            font-size: 20px;
+            color: var(--allianz-blue);
+            font-weight: 500;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .slide-full {
+            grid-template-columns: 1fr;
+        }
+
+        .content-box {
+            background: var(--allianz-gray);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--allianz-blue);
+        }
+
+        .content-box h3 {
+            color: var(--allianz-blue);
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .metric-card {
+            background: var(--allianz-white);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid var(--allianz-blue);
+            transition: transform 0.2s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--allianz-blue);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: var(--allianz-dark);
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        .data-table th {
+            background: var(--allianz-blue);
+            color: var(--allianz-white);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: var(--allianz-gray);
+        }
+
+        .data-table tr:hover {
+            background: rgba(0, 102, 179, 0.1);
+        }
+
+        /* Lists */
+        .feature-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            border-bottom: 1px solid #eee;
+            font-size: 16px;
+        }
+
+        .feature-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--allianz-blue);
+            font-weight: 900;
+            font-size: 20px;
+        }
+
+        /* Charts */
+        .chart-container {
+            background: var(--allianz-white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .chart-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 4px solid var(--allianz-blue);
+            margin-left: 20px;
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: var(--allianz-blue);
+            border: 4px solid var(--allianz-white);
+            border-radius: 50%;
+        }
+
+        .timeline-year {
+            font-weight: 900;
+            color: var(--allianz-blue);
+            font-size: 18px;
+        }
+
+        .timeline-content {
+            font-size: 16px;
+            margin-top: 5px;
+            color: var(--allianz-dark);
+        }
+
+        /* Navigation */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: var(--allianz-blue);
+            color: var(--allianz-white);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0, 102, 179, 0.3);
+        }
+
+        .nav-btn:hover {
+            background: var(--allianz-accent);
+            color: var(--allianz-white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 164, 228, 0.4);
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--allianz-dark);
+            color: var(--allianz-white);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            z-index: 1000;
+            border: 2px solid var(--allianz-blue);
+        }
+
+        /* Opportunity Cards */
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .opp-card {
+            background: linear-gradient(135deg, var(--allianz-white) 0%, var(--allianz-gray) 100%);
+            border: 2px solid var(--allianz-blue);
+            border-radius: 12px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .opp-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--allianz-blue);
+        }
+
+        .opp-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .opp-card h4 {
+            color: var(--allianz-blue);
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .opp-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--allianz-blue);
+            color: var(--allianz-white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        /* Exec Profile */
+        .exec-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--allianz-white);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--allianz-blue);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .exec-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--allianz-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--allianz-white);
+            font-weight: 900;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .exec-info h4 {
+            color: var(--allianz-dark);
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .exec-info p {
+            color: var(--allianz-blue);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .exec-info span {
+            color: #666;
+            font-size: 13px;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .slide-content {
+                grid-template-columns: 1fr;
+            }
+            .opportunity-grid {
+                grid-template-columns: 1fr;
+            }
+            .slide {
+                padding: 30px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .slide {
+                position: relative;
+                opacity: 1;
+                visibility: visible;
+                page-break-after: always;
+                height: auto;
+            }
+            .nav-controls, .slide-counter {
+                display: none;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="presentation">
+
+        <!-- Slide 1: Cover -->
+        <div class="slide slide-cover active" data-slide="1">
+            <div class="cover-content">
+                <div class="allianz-logo">ALLIANZ</div>
+                <div class="cover-subtitle">DAX 40 Global Insurer | ETR: ALV</div>
+                <h1 class="cover-title">Strategic Intelligence Profile<br>& GTM Alignment</h1>
+                <p style="font-size: 22px; opacity: 0.9; margin-top: 20px;">
+                    AI Workflow Automation & Data Center Services<br>
+                    Investment Thesis & Opportunity Assessment
+                </p>
+                <div class="cover-meta">
+                    Confidential • January 2025<br>
+                    "Technology with Heart" Strategy Analysis
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Executive Summary -->
+        <div class="slide" data-slide="2">
+            <div class="slide-header">
+                <h2>Executive Summary</h2>
+                <p>Strategic Overview & Investment Highlights</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-box">
+                    <h3>Company Profile</h3>
+                    <ul class="feature-list">
+                        <li><strong>Scale:</strong> €179.8bn revenue, 156,626 employees, 70+ countries</li>
+                        <li><strong>Structure:</strong> Property-Casualty, Life/Health, Asset Management (PIMCO/AGI)</li>
+                        <li><strong>HQ:</strong> Königinstrasse 28, 80802 Munich, Germany</li>
+                        <li><strong>Strategic Priority:</strong> "Technology with Heart" - Human-centric AI</li>
+                        <li><strong>Digital Maturity:</strong> 80% cloud-native, Agentic AI deployed (Project Nemo)</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h3>Key Investment Thesis</h3>
+                    <ul class="feature-list">
+                        <li><strong>€16.0bn</strong> operating profit (2024 record) - strong investment capacity</li>
+                        <li><strong>€3.5bn</strong> Viridium acquisition (Aug 2025) - platform consolidation</li>
+                        <li><strong>Anthropic partnership</strong> (Jan 2026) - Enterprise AI at scale</li>
+                        <li><strong>80% reduction</strong> in claims processing time via Project Nemo</li>
+                        <li><strong>6 strategic data centers</strong> - hybrid cloud infrastructure opportunity</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Financial Performance -->
+        <div class="slide" data-slide="3">
+            <div class="slide-header">
+                <h2>Financial Performance & Scale</h2>
+                <p>5-Year Trajectory & Profitability Metrics</p>
+            </div>
+            <div class="slide-content">
+                <div class="chart-container">
+                    <img src="allianz_financial_chart.png" alt="Allianz Financial Performance Chart">
+                    <p style="margin-top: 15px; font-size: 14px; color: #666;">Source: Allianz Annual Reports 2020-2024</p>
+                </div>
+                <div>
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <span class="metric-value">€1.09tn</span>
+                            <span class="metric-label">Total Assets</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">€179.8bn</span>
+                            <span class="metric-label">2024 Revenue</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">156k</span>
+                            <span class="metric-label">Global Employees</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">€16.0bn</span>
+                            <span class="metric-label">Operating Profit</span>
+                        </div>
+                    </div>
+                    <div class="content-box" style="margin-top: 30px;">
+                        <h3>Strategic Context</h3>
+                        <p style="line-height: 1.6;">Record financial results with 11.2% revenue growth. Strong Solvency II ratio (209%) provides capacity for technology investments. €2bn share buyback announced Feb 2025 signals capital discipline.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Decision Makers -->
+        <div class="slide" data-slide="4">
+            <div class="slide-header">
+                <h2>Key Decision Makers & Org Structure</h2>
+                <p>Technology Leadership & Influence Mapping</p>
+            </div>
+            <div class="slide-content slide-full">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+                    <div>
+                        <h3 style="color: var(--allianz-blue); margin-bottom: 20px; font-size: 24px;">Primary Targets</h3>
+                        <div class="exec-card">
+                            <div class="exec-avatar">BK</div>
+                            <div class="exec-info">
+                                <h4>Barbara Karuth-Zelle</h4>
+                                <p>COO & Board Member (Allianz SE)</p>
+                                <span>Oversees digital transformation, IT governance, Allianz Technology. Former CEO Allianz Technology (2016-2020). Health economics PhD.</span>
+                            </div>
+                        </div>
+                        <div class="exec-card">
+                            <div class="exec-avatar">OB</div>
+                            <div class="exec-info">
+                                <h4>Oliver Bäte</h4>
+                                <p>CEO (Allianz SE)</p>
+                                <span>Strategic direction, capital allocation. Former COO (2007-2014). Driving "renewed strategy" announced at Capital Markets Day 2024.</span>
+                            </div>
+                        </div>
+                        <div class="exec-card">
+                            <div class="exec-avatar">CM</div>
+                            <div class="exec-info">
+                                <h4>Christof Mascher</h4>
+                                <p>Former COO, Current Board Member</p>
+                                <span>Architect of Allianz Business System (ABS). Blockchain/Insurtech pioneer. Board oversight of technology strategy.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--allianz-blue); margin-bottom: 20px; font-size: 24px;">Technical Influencers</h3>
+                        <div class="exec-card">
+                            <div class="exec-avatar">TB</div>
+                            <div class="exec-info">
+                                <h4>Thomas Baach</h4>
+                                <p>Managing Director, Core Insurance Platforms (Allianz Technology)</p>
+                                <span>Led Project Nemo (agentic AI claims). Responsible for Business Master Platform deployment.</span>
+                            </div>
+                        </div>
+                        <div class="exec-card">
+                            <div class="exec-avatar">MJ</div>
+                            <div class="exec-info">
+                                <h4>Maria Janssen</h4>
+                                <p>Chief Transformation Officer (Allianz Services)</p>
+                                <span>Agentic AI champion. Oversees hyper-automation strategy and AI governance framework.</span>
+                            </div>
+                        </div>
+                        <div class="content-box" style="margin-top: 20px;">
+                            <h3>Access Strategy</h3>
+                            <p style="font-size: 14px; line-height: 1.6;"><strong>Entry:</strong> Karuth-Zelle via McKinsey/FT dialog engagement referencing her "human element" philosophy. <strong>Technical:</strong> Baach via Project Nemo/agentic AI case studies. <strong>Business:</strong> Bäte via capital efficiency and operational leverage messaging.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Technology Architecture -->
+        <div class="slide" data-slide="5">
+            <div class="slide-header">
+                <h2>Technology Stack Architecture</h2>
+                <p>Current State & Infrastructure Landscape</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-box">
+                    <h3>Cloud & Data Platform</h3>
+                    <table class="data-table">
+                        <tr>
+                            <th>Layer</th>
+                            <th>Technology</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td>Primary Cloud</td>
+                            <td>AWS + Microsoft Azure (Hybrid)</td>
+                            <td style="color: #00C851;">● Active</td>
+                        </tr>
+                        <tr>
+                            <td>Core Insurance System</td>
+                            <td>Allianz Business System (ABS)</td>
+                            <td style="color: #00C851;">● Deployed Globally</td>
+                        </tr>
+                        <tr>
+                            <td>Future Platform</td>
+                            <td>Business Master Platform (BMP)</td>
+                            <td style="color: orange;">● Rolling Out (Spain/Australia)</td>
+                        </tr>
+                        <tr>
+                            <td>AI/ML Platform</td>
+                            <td>Anthropic Claude (Enterprise)</td>
+                            <td style="color: #00C851;">● Jan 2026 Launch</td>
+                        </tr>
+                        <tr>
+                            <td>Internal AI</td>
+                            <td>AllianzGPT (Internal ChatGPT)</td>
+                            <td style="color: #00C851;">● 2020 Deployed</td>
+                        </tr>
+                        <tr>
+                            <td>Data Centers</td>
+                            <td>6 Strategic (Frankfurt, Paris, Phoenix, Edison, Singapore, Sydney)</td>
+                            <td style="color: #00C851;">● Private + Public Cloud</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <div class="chart-container" style="margin-bottom: 20px;">
+                        <img src="https://kimi-web-img.moonshot.cn/img/img.freepik.com/78d00e868dd8795a9cf4f205a19a9ceab07cd4d9.jpg" alt="Data Center" style="width: 100%; height: 200px; object-fit: cover;">
+                    </div>
+                    <div class="content-box">
+                        <h3>Infrastructure Notes</h3>
+                        <ul class="feature-list">
+                            <li><strong>DC Consolidation:</strong> 100+ facilities → 6 strategic (2012-2019)</li>
+                            <li><strong>Allianz Global Network:</strong> 220,000 LAN connections (AGN)</li>
+                            <li><strong>Hybrid Strategy:</strong> Public cloud + private DC for regulatory</li>
+                            <li><strong>Recent:</strong> Yondr data center investment (July 2025)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: AI Timeline -->
+        <div class="slide" data-slide="6">
+            <div class="slide-header">
+                <h2>AI & Digital Transformation Timeline</h2>
+                <p>From AllianzGPT to Agentic AI (Project Nemo)</p>
+            </div>
+            <div class="slide-content slide-full">
+                <div class="chart-container" style="max-width: 1000px; margin: 0 auto;">
+                    <img src="allianz_timeline_chart.png" alt="Allianz AI Timeline">
+                </div>
+                <div class="opportunity-grid" style="margin-top: 40px;">
+                    <div class="opp-card">
+                        <h4>Phase 1: Foundation</h4>
+                        <p>2019-2020: Microsoft strategic partnership, AllianzGPT launch, cloud infrastructure consolidation.</p>
+                        <span class="tag">Complete</span>
+                    </div>
+                    <div class="opp-card">
+                        <h4>Phase 2: Acceleration</h4>
+                        <p>2023-2024: GenAI claims processing, Business Master Platform development, 55% digital maturity.</p>
+                        <span class="tag">Active</span>
+                    </div>
+                    <div class="opp-card">
+                        <h4>Phase 3: Agentic AI</h4>
+                        <p>2025+: Anthropic partnership, Project Nemo (7 AI agents), Viridium integration, human-in-the-loop at scale.</p>
+                        <span class="tag">Opportunity</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Strategic Investments -->
+        <div class="slide" data-slide="7">
+            <div class="slide-header">
+                <h2>Strategic Investments & Ecosystem</h2>
+                <p>Technology Partnerships & M&A Activity</p>
+            </div>
+            <div class="slide-content">
+                <div class="chart-container">
+                    <img src="allianz_ecosystem_chart.png" alt="Investment Ecosystem">
+                    <p style="margin-top: 10px; font-size: 13px; color: #666;">Estimated investment values 2024-2025</p>
+                </div>
+                <div class="content-box">
+                    <h3>Key Strategic Moves</h3>
+                    <table class="data-table" style="font-size: 13px;">
+                        <tr>
+                            <th>Investment</th>
+                            <th>Value/Scope</th>
+                            <th>Strategic Impact</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Viridium Acquisition</strong></td>
+                            <td>€3.5bn (Consortium)</td>
+                            <td>3.4m policies, €68bn AUM, closed-book consolidation platform</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anthropic Partnership</strong></td>
+                            <td>Enterprise AI (Jan 2026)</td>
+                            <td>Claude models for 156k employees, AI agents, compliance framework</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Yondr Investment</strong></td>
+                            <td>Minority stake (Jul 2025)</td>
+                            <td>Data center infrastructure, 420MW capacity, DigitalBridge partnership</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Deloitte Alliance</strong></td>
+                            <td>Platform development</td>
+                            <td>Corporate insurance platform (AWS, MongoDB, Kafka)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: AI & Automation -->
+        <div class="slide" data-slide="8">
+            <div class="slide-header">
+                <h2>AI & Automation Initiatives</h2>
+                <p>Project Nemo & Enterprise AI Strategy</p>
+            </div>
+            <div class="slide-content">
+                <div>
+                    <div class="content-box" style="margin-bottom: 20px;">
+                        <h3>Project Nemo: Agentic AI in Action</h3>
+                        <p style="margin-bottom: 15px; font-size: 14px;"><strong>Launched:</strong> July 2025 (Australia)<br>
+                        <strong>Use Case:</strong> Food spoilage claims post-natural catastrophe<br>
+                        <strong>Result:</strong> 80% reduction in processing time (days → hours)</p>
+                        <div style="background: var(--allianz-light); padding: 15px; border-radius: 8px;">
+                            <h4 style="color: var(--allianz-blue); margin-bottom: 10px;">7 AI Agents Architecture:</h4>
+                            <ul style="font-size: 13px; line-height: 1.8; list-style: none;">
+                                <li>🎯 <strong>Planner Agent:</strong> Orchestrates workflow</li>
+                                <li>🔒 <strong>Cyber Agent:</strong> Data security oversight</li>
+                                <li>✓ <strong>Coverage Agent:</strong> Policy verification</li>
+                                <li>🌤 <strong>Weather Agent:</strong> Event confirmation</li>
+                                <li>🔍 <strong>Fraud Agent:</strong> Anomaly detection</li>
+                                <li>💰 <strong>Payout Agent:</strong> Amount calculation</li>
+                                <li>📋 <strong>Audit Agent:</strong> Decision logging</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="content-box">
+                        <h3>Anthropic Partnership (Jan 2026)</h3>
+                        <div style="margin-top: 20px;">
+                            <div style="background: var(--allianz-white); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--allianz-blue);">
+                                <h4 style="color: var(--allianz-blue); margin-bottom: 5px;">1. Enterprise AI Access</h4>
+                                <p style="font-size: 14px;">Claude models (including Claude Code) for all 156k employees. Thousands of developers already using for software engineering.</p>
+                            </div>
+                            <div style="background: var(--allianz-white); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--allianz-blue);">
+                                <h4 style="color: var(--allianz-blue); margin-bottom: 5px;">2. AI Agents for Workflows</h4>
+                                <p style="font-size: 14px;">Custom agents for health & motor insurance. Multi-step workflow automation with human-in-the-loop for sensitive decisions.</p>
+                            </div>
+                            <div style="background: var(--allianz-white); padding: 15px; border-radius: 8px; border-left: 4px solid var(--allianz-blue);">
+                                <h4 style="color: var(--allianz-blue); margin-bottom: 5px;">3. Compliance Framework</h4>
+                                <p style="font-size: 14px;">Full audit trails for regulatory requirements. EU AI Act alignment. Model Context Protocols for secure data handling.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-grid" style="margin-top: 20px;">
+                        <div class="metric-card">
+                            <span class="metric-value">80%</span>
+                            <span class="metric-label">Time Reduction</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">7</span>
+                            <span class="metric-label">AI Agents</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Regional Footprint -->
+        <div class="slide" data-slide="9">
+            <div class="slide-header">
+                <h2>Global Regional Footprint</h2>
+                <p>Operational Hubs & Employee Distribution</p>
+            </div>
+            <div class="slide-content">
+                <div class="chart-container">
+                    <img src="allianz_regional_chart.png" alt="Regional Distribution">
+                </div>
+                <div>
+                    <div class="content-box">
+                        <h3>Strategic Locations</h3>
+                        <table class="data-table" style="font-size: 14px;">
+                            <tr>
+                                <th>Region</th>
+                                <th>Key Offices</th>
+                                <th>Focus</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Germany (HQ)</strong></td>
+                                <td>Munich, Frankfurt, Berlin</td>
+                                <td>Global HQ, Allianz Technology</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rest of Europe</strong></td>
+                                <td>London, Paris, Amsterdam, Zurich</td>
+                                <td>Regional Hubs, AGI Offices</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Americas</strong></td>
+                                <td>New York, Chicago, Phoenix</td>
+                                <td>PIMCO, Allianz Life US</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Asia-Pacific</strong></td>
+                                <td>Singapore, Sydney, Tokyo</td>
+                                <td>Growth Markets, Data Centers</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="content-box" style="margin-top: 20px;">
+                        <h3>Data Center Footprint</h3>
+                        <p style="font-size: 14px; line-height: 1.6;"><strong>Strategic DCs:</strong> Frankfurt, Paris, Phoenix, Edison (US), Singapore, Sydney.<br><br>
+                        <strong>Consolidation:</strong> Reduced from 100+ facilities (2012) to 6 strategic centers (2019).<br><br>
+                        <strong>Cloud:</strong> Hybrid approach with AWS/Azure public cloud + private DCs for regulatory data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Strategic Opportunities -->
+        <div class="slide" data-slide="10">
+            <div class="slide-header">
+                <h2>Strategic Opportunity Assessment</h2>
+                <p>Immediate & Long-term Revenue Opportunities</p>
+            </div>
+            <div class="slide-content slide-full">
+                <div class="opportunity-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="opp-card" style="border-color: #00C851;">
+                        <h4>🤖 Agentic AI Expansion</h4>
+                        <p><strong>Target:</strong> Thomas Baach (Core Insurance Platforms)<br>
+                        <strong>Pain:</strong> Project Nemo successful but limited to food spoilage (Australia)<br>
+                        <strong>Value:</strong> Scale to travel delays, auto claims, property damage globally<br>
+                        <strong>Hook:</strong> Modular architecture allows rapid deployment across 70 countries</p>
+                        <span class="tag">Immediate (6-12mo)</span>
+                    </div>
+                    <div class="opp-card" style="border-color: var(--allianz-blue);">
+                        <h4>🏢 Data Center Optimization</h4>
+                        <p><strong>Target:</strong> Barbara Karuth-Zelle (COO)<br>
+                        <strong>Pain:</strong> 6 strategic DCs aging, Yondr investment shows infrastructure focus<br>
+                        <strong>Value:</strong> Edge computing for regional offices, DC modernization<br>
+                        <strong>Hook:</strong> Sustainability focus - renewable energy, efficiency gains</p>
+                        <span class="tag">Strategic (12-24mo)</span>
+                    </div>
+                    <div class="opp-card" style="border-color: orange;">
+                        <h4>⚡ Viridium Integration</h4>
+                        <p><strong>Target:</strong> Oliver Bäte (CEO) + Viridium CTO<br>
+                        <strong>Pain:</strong> €3.5bn acquisition requires IT platform harmonization<br>
+                        <strong>Value:</strong> Migrate 3.4m policies to Business Master Platform<br>
+                        <strong>Hook:</strong> "Single, modern business platform" per Viridium strategy</p>
+                        <span class="tag">Immediate (6-12mo)</span>
+                    </div>
+                    <div class="opp-card" style="border-color: var(--allianz-accent);">
+                        <h4>📊 Underwriting Workbench</h4>
+                        <p><strong>Target:</strong> Maria Janssen (Chief Transformation Officer)<br>
+                        <strong>Pain:</strong> Shamrock ML tool deployed but manual processes remain<br>
+                        <strong>Value:</strong> End-to-end automated underwriting with explainable AI<br>
+                        <strong>Hook:</strong> EU AI Act compliance requires transparent decision-making</p>
+                        <span class="tag">Strategic (12-24mo)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: GTM Strategy -->
+        <div class="slide" data-slide="11">
+            <div class="slide-header">
+                <h2>Go-to-Market Strategy</h2>
+                <p>Account Entry & Positioning Framework</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-box">
+                    <h3>Recommended Approach</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">Phase 1: Executive Engagement</div>
+                            <div class="timeline-content"><strong>Target:</strong> Barbara Karuth-Zelle (COO)<br>
+                            <strong>Message:</strong> "Agentic AI at scale - beyond Project Nemo to enterprise workflows"<br>
+                            <strong>Channel:</strong> McKinsey/FT dialog references, WEF engagement</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">Phase 2: Technical Validation</div>
+                            <div class="timeline-content"><strong>Target:</strong> Thomas Baach (Core Platforms)<br>
+                            <strong>Message:</strong> Multi-agent orchestration, AWS/Azure native integration<br>
+                            <strong>Action:</strong> POC on claims workflow automation (travel or motor)</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">Phase 3: Business Case</div>
+                            <div class="timeline-content"><strong>Target:</strong> Oliver Bäte (CEO)<br>
+                            <strong>Message:</strong> Operational leverage - 80% efficiency gains at Viridium scale<br>
+                            <strong>Metric:</strong> Cost per claim, customer NPS, employee productivity</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="content-box" style="margin-bottom: 20px;">
+                        <h3>Competitive Positioning</h3>
+                        <ul class="feature-list">
+                            <li><strong>vs. Internal Allianz Technology:</strong> Augmentation not replacement. Speed-to-market for new agentic use cases.</li>
+                            <li><strong>vs. Deloitte:</strong> Complement corporate platform build with specialized AI workflow layer.</li>
+                            <li><strong>Differentiator:</strong> EU AI Act compliance expertise, German data sovereignty, insurance-specific agent frameworks.</li>
+                        </ul>
+                    </div>
+                    <div class="content-box">
+                        <h3>Required Proof Points</h3>
+                        <ul class="feature-list">
+                            <li>Agentic AI case studies (multi-step workflow automation)</li>
+                            <li>EU AI Act / GDPR compliance certification</li>
+                            <li>AWS/Azure partnership status (Allianz is multi-cloud)</li>
+                            <li>Insurance domain expertise (claims, underwriting)</li>
+                            <li>German language capabilities (Munich HQ)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Next Steps -->
+        <div class="slide" data-slide="12">
+            <div class="slide-header">
+                <h2>Strategic Recommendations</h2>
+                <p>Immediate Actions & Success Metrics</p>
+            </div>
+            <div class="slide-content slide-full">
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px;">
+                    <div>
+                        <div class="content-box">
+                            <h3>90-Day Action Plan</h3>
+                            <table class="data-table">
+                                <tr>
+                                    <th>Week</th>
+                                    <th>Action</th>
+                                    <th>Target</th>
+                                    <th>Success Metric</th>
+                                </tr>
+                                <tr>
+                                    <td>1-2</td>
+                                    <td>Engage via McKinsey/FT AI dialog content</td>
+                                    <td>COO Office</td>
+                                    <td>LinkedIn connection + profile view</td>
+                                </tr>
+                                <tr>
+                                    <td>3-4</td>
+                                    <td>Project Nemo case study & agentic AI demo</td>
+                                    <td>Allianz Technology</td>
+                                    <td>Technical meeting booked</td>
+                                </tr>
+                                <tr>
+                                    <td>5-8</td>
+                                    <td>POC proposal: Travel claims automation</td>
+                                    <td>Core Platforms Team</td>
+                                    <td>Scope defined, budget identified</td>
+                                </tr>
+                                <tr>
+                                    <td>9-12</td>
+                                    <td>Viridium integration workshop</td>
+                                    <td>Group Strategy</td>
+                                    <td>Integration roadmap agreement</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="metric-grid" style="grid-template-columns: 1fr;">
+                            <div class="metric-card" style="background: var(--allianz-blue); color: white;">
+                                <span class="metric-value" style="color: white;">€3.5bn</span>
+                                <span class="metric-label" style="color: white;">Viridium Deal Size</span>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-value">156k</span>
+                                <span class="metric-label">Employees (AI Users)</span>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-value">80%</span>
+                                <span class="metric-label">Efficiency Gain (Nemo)</span>
+                            </div>
+                            <div class="metric-card" style="background: var(--allianz-accent);">
+                                <span class="metric-value" style="color: white;">High</span>
+                                <span class="metric-label">Deal Probability</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 40px; text-align: center; padding: 30px; background: var(--allianz-gray); border-radius: 12px;">
+                    <h3 style="color: var(--allianz-blue); margin-bottom: 15px;">Key Insight</h3>
+                    <p style="font-size: 18px; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+                        <em>"Allianz has moved from 'experimentation' to 'industrialization' of AI. With the Anthropic partnership and Project Nemo's success, 
+                        they need <strong>scalable agentic AI infrastructure</strong> that can deploy across 70 countries while maintaining EU AI Act compliance. 
+                        The Viridium acquisition creates immediate demand for legacy platform modernization."</em>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="nav-controls">
+            <button class="nav-btn" onclick="prevSlide()">← Previous</button>
+            <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        </div>
+
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">12</span>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 12;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            if (n > totalSlides) currentSlide = 1;
+            if (n < 1) currentSlide = totalSlides;
+
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            document.querySelector(`[data-slide="${currentSlide}"]`).classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Touch support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) nextSlide();
+            if (touchEndX - touchStartX > 50) prevSlide();
+        });
+    </script>
+</body>
+</html>
