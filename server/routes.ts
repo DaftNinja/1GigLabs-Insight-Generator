@@ -10,16 +10,20 @@ import { registerImageRoutes } from "./replit_integrations/image/routes";
 import { registerAudioRoutes } from "./replit_integrations/audio/routes";
 import { searchApolloContacts } from "./apollo";
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
-  baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
-});
+let openai: OpenAI;
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  // Initialize OpenAI client once when routes are registered
+  if (!openai) {
+    openai = new OpenAI({
+      apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
+      baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
+    });
+  }
+
   // Register integration routes
   registerChatRoutes(app);
   registerImageRoutes(app);
